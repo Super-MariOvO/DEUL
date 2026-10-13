@@ -1,0 +1,948 @@
+% Expanded standalone WWW 2027 source; no external project .tex or .bib required.
+% Figures remain placeholders. Numerical entries are retained from the supplied manuscript.
+% Expansion adds definitions, derivations, protocol explanation and result interpretation, not new experiments.
+% Compile with the unmodified ACM acmart class from the supplied template (v2.20).
+% !TeX program = pdflatex
+% English anonymous-review entry point for WWW 2027.
+\documentclass[sigconf,anonymous,review]{acmart}
+\newif\ifChinese
+\Chinesefalse
+
+% ===== BEGIN inlined preamble =====
+% Shared typesetting only. Do not modify acmart.cls or the ACM page geometry.
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\newcommand{\lang}[2]{\ifChinese#2\else#1\fi}
+\newcommand{\DEUL}{\textsc{DEUL}}
+\DeclareMathOperator{\sg}{sg}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\E}{\mathbb{E}}
+\ifChinese
+\newtheoremstyle{zhplain}{6pt}{6pt}{\normalfont}{0pt}{\bfseries}{.}{0.5em}{}
+\theoremstyle{zhplain}
+\newtheorem{proposition}{命题}
+\newtheorem{definition}{定义}
+\renewcommand{\proofname}{证明}
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{图}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\abstractname}{摘要}
+\floatname{algorithm}{算法}
+\algrenewcommand{\algorithmicrequire}{输入：}
+\algrenewcommand{\algorithmicwhile}{当}
+\algrenewcommand{\algorithmicdo}{执行}
+\algrenewcommand{\algorithmicend}{结束}
+\algrenewcommand{\algorithmicif}{若}
+\algrenewcommand{\algorithmicthen}{则}
+\algrenewcommand{\algorithmicelse}{否则}
+\else
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\fi
+% No generated figures are embedded. Drop the named PDF into figures/ to replace a box.
+\newcommand{\figureasset}[3]{%
+  \IfFileExists{figures/#1.pdf}{\includegraphics[width=\linewidth,height=#2,keepaspectratio]{figures/#1.pdf}}{%
+  \fbox{\begin{minipage}[c][#2][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+  \centering\small\bfseries Figure placeholder\par\medskip
+  \normalfont #3\par\medskip\ttfamily\footnotesize\detokenize{figures/#1.pdf}
+  \end{minipage}}}}
+\setcopyright{none}
+\copyrightyear{2027}
+\acmYear{2027}
+\acmDOI{}
+\acmISBN{}
+\acmConference[WWW '27]{The Web Conference 2027}{May 10--14, 2027}{Dublin, Ireland}
+\settopmatter{printacmref=true}
+% Add the actual identifier only after OpenReview assigns it:
+% \acmSubmissionID{...}
+\renewcommand{\shortauthors}{Anonymous Author(s)}
+\AtBeginDocument{\providecommand\BibTeX{Bib\TeX}}
+\ifChinese
+  \pdfstringdefDisableCommands{\def\lang#1#2{#2}\def\DEUL{DEUL}}
+\else
+  \pdfstringdefDisableCommands{\def\lang#1#2{#1}\def\DEUL{DEUL}}
+\fi
+
+% ===== END inlined preamble =====
+
+\begin{document}
+
+% ===== BEGIN inlined content/frontmatter =====
+\title[When Experience Goes Stale]{When Experience Goes Stale: Drift-Aware Experience Utility Learning for Long-Horizon Agents}
+\begin{abstract}
+Historical experience can reduce the cost of long-horizon Web interaction, but a relevant trajectory need not remain a useful execution guide after websites and services change. We study how the utility of the same experience varies across Trajectory, Plan, and Skill representations, and how an agent should acquire evidence before reusing it. We introduce Drift-Aware Experience Utility Learning (DEUL), a budget-constrained controller that couples source-aware utility estimation, local dependency filtering, and sequential evidence acquisition. Each observation updates one joint posterior shared by all affected candidates; paired-advantage supervision and executed-transition learning connect this posterior to downstream success. The reported evaluation covers six protocols built on WebArena, WorkArena++, AppWorld, and text-only ALFWorld. On the three interface- or rule-drift protocols, DEUL achieves success rates of 60.4\%, 52.1\%, and 65.1\%, improving over a strengthened independent controller by 1.25, 1.08, and 2.36 percentage points. On W-Drift, it exceeds comprehensive verification by 2.50 points while using 25.5\% fewer logical tokens. Representation rankings reverse across changes, and frozen experience can regain utility when its dependencies become valid again. Gains are strongest with limited supervision and shared, observable dependencies; stable environments, abundant training data, and inaccurate dependency graphs expose clear limits. These findings motivate learning the current decision value of experience rather than treating retrieval relevance or age as sufficient criteria for reuse.
+\end{abstract}
+\ccsdesc[500]{Computing methodologies~Intelligent agents}
+\ccsdesc[300]{Computing methodologies~Reinforcement learning}
+\ccsdesc[300]{Information systems~Web applications}
+\keywords{Long-horizon agents, experience utility, non-stationary environments, shared evidence, sequential decision-making, Web reliability}
+
+% ===== END inlined content/frontmatter =====
+
+\maketitle
+
+% ===== BEGIN expanded main text =====
+\section{Introduction}
+\label{sec:intro}
+A Web agent that repeatedly completes similar tasks should not have to rediscover every procedure. Historical trajectories, subgoal plans, and parameterized skills can provide useful execution guidance. Yet websites and online services evolve independently: page organization changes, tool contracts are revised, and earlier intermediate results cease to satisfy current preconditions. The scientific problem is therefore not only how to retrieve a relevant experience, but how to determine whether its procedural content remains useful under the current Web environment. This distinction matters for the reliability and cost of agents acting across pages and services.
+
+Existing approaches learn workflows from trajectories, distill reasoning from successful and failed attempts, organize memory hierarchically, or adapt retrieved experience to the current query~\cite{awm,reasoningbank,hepm,hmt,qcr}. These advances leave a decision problem: a relevant source can produce several representations with different dependencies, while evidence about those dependencies is incomplete and costly to acquire. More context or more verification is not automatically better, particularly when the same budget could fund additional execution~\cite{budgetstudy}.
+
+Consider an experience that reads all matching records, checks exceptions, updates a target, and verifies the result. Its Trajectory retains concrete observations and recovery branches; its Plan retains subgoals and ordering constraints; its Skill encodes a parameterized procedure and stopping checks. A layout change can invalidate trajectory-level grounding while preserving a plan. Conversely, a rare exception can make a detailed trajectory more useful than a compressed plan. A pagination change can invalidate a skill's completion criterion even when each individual call succeeds. These examples motivate representation-conditioned utility rather than a fixed abstraction hierarchy.
+
+We introduce \DEUL, a controller that jointly learns experience utility and the value of acquiring evidence. It maintains a shared belief over scoped dependencies, evaluates reuse, adaptation, and replanning under that belief, and selects paid queries through a bounded-depth decision tree. The executor is fixed: the contribution concerns management of experience and evidence, not a new low-level language-model policy or an unrestricted rollback system. Figure~\ref{fig:overview} summarizes the architecture.
+
+\begin{figure}[t]
+\centering
+\figureasset{fig01_overview}{1.45in}{Source \(e\) \(\rightarrow\) Trajectory / Plan / Skill\\Scoped dependencies \(\rightarrow\) one shared posterior\\Query / reuse / adapt / replan under one budget}
+\caption{DEUL overview. One genuine observation updates one posterior that is shared across affected candidates. The frozen executor carries out the selected action until the next decision boundary.}
+\Description{Placeholder for the source, representation, dependency, shared-posterior and sequential-control architecture.}
+\label{fig:overview}
+\end{figure}
+
+The study makes three contributions. First, it formulates the current incremental utility of procedural experience and examines positive and negative transfer across representations and evolving conditions. Second, it couples source-aware paired supervision, local dependency beliefs, and candidate-set-level evidence acquisition in one controller. Third, it evaluates this design against strengthened independent, change-point, latent-value, and compute-matched baselines, exposing both its gains and its failure boundaries. Across the three rule- or interface-drift protocols, the reported improvement over Independent-\allowbreak3++ is 1.08--2.36 percentage points; the benefit is not uniform across stable environments, supervision levels, or dependency quality.
+
+\section{Related Work}
+\textbf{Procedural experience for agents.} AWM induces reusable workflows~\cite{awm}, while ReasoningBank distills strategies from successes and failures~\cite{reasoningbank}. H-EPM integrates episodic context with procedural transitions~\cite{hepm}; HMT separates intent, stages, and grounded actions using visible conditions~\cite{hmt}. QCR separates retrieval from query-conditioned reuse~\cite{qcr}. Accordingly, combining representations, checking preconditions, and adapting old trajectories are not by themselves the novelty of DEUL. Our emphasis is their changing utility and the shared decision value of evidence under a common budget.
+
+\textbf{Non-stationary decisions and information acquisition.} Discounting, sliding windows, and Bayesian change-point filtering provide established tools for adapting to changing environments~\cite{nonstationary,bocpd}. Correlated knowledge gradients show that an observation can change several alternatives' values~\cite{kg}. Active feature acquisition and paid-observation bandits explicitly model information costs~\cite{l2m,paidbandit}. Joint latent-state and value learning is also established in model-based control~\cite{tdmpc2}. DEUL specializes these ideas to the source--representation--dependency structure of procedural experience. The experiments therefore include corresponding strong controls rather than attributing all benefits to the presence of memory.
+
+\section{Problem Formulation}
+\label{sec:problem}
+At decision boundary \(t\), an agent receives goal \(g_t\) and an observable state estimate \(b_t\), comprising the interaction prefix, available evidence, experience-library summary, and remaining budget. An immutable identifier associates each historical source \(e\) with its derived representation \(r\in\{\mathrm{Trajectory},\mathrm{Plan},\mathrm{Skill}\}\). A source identifier denotes provenance, not a guarantee of statistical independence. Separately, each genuine observation has an event identifier \(u\) and a validity scope. Multiple renderings of one response are one measurement; repeated independent calls remain distinct measurements.
+
+\textbf{What is held fixed across representations?} Trajectory stores the historical observation--action--outcome sequence, including available exception branches. Plan retains a subgoal graph, ordering constraints, and resource requirements. Skill expresses a parameterized procedure with applicability and termination checks. They are derived from the same source, not independently generated answers to the test goal. The common textual interface makes each representation advisory: an executor can reject an obsolete step. Equal source access and an equal token cap control two important differences, but do not imply equal retained information, because compression can remove a branch that later becomes useful.
+
+The incremental utility of one representation is
+\begin{equation}
+U(e,r\mid g_t,b_t)=\E[Y^{e,r}-Y^{\varnothing}\mid g_t,b_t],
+\label{eq:utility}
+\end{equation}
+where \(Y\) is terminal task success. Both continuations start from the same prefix, state, and remaining budget; only the current use of \((e,r)\) changes. Earlier memory use in the common prefix is not removed, so this estimand is not the effect of deleting all persistent memory. Failure with an experience alone does not establish negative transfer: its matched no-experience branch may fail as well.
+
+The reference is local to the current decision. An experience can remain semantically relevant while having negative incremental utility, or have high absolute success but add little over replanning. Conversely, a failed execution can still belong to a representation with positive expected utility across repeated matched continuations. The controller therefore estimates a difference in terminal success rather than a compatibility label alone. Compatibility informs the decision through the belief model; it is not equated with success.
+
+The action set contains a legal query \(q\), reuse of \((e,r)\), adaptation of affected steps \(J\), and replanning from the current state. Queries obtain evidence and permit further decisions. Execution actions run only until the next meaningful boundary. Let \(C_i\) be total logical token cost and \(A_i\) native environment calls for task \(i\). The management policy \(\phi\) maximizes total task success subject to
+\begin{equation}
+\max_{\phi}\E_{\phi}\!\left[\sum_iY_i\right],\quad
+ C_i\le B_i,\quad A_i\le B_i^{\mathrm{env}},\quad
+ \frac1T\sum_i\E_{\phi}\!\left[\frac{C_i}{B_i}\right]\le\bar C.
+\label{eq:objective}
+\end{equation}
+The token ledger includes retrieval, writing, reasoning, querying, adaptation, execution, and amortized online maintenance. Browser and API calls are separately constrained in their native units. In the controller, costs and remaining budget are normalized by the task's initial token cap. A multiplier \(\lambda\ge0\) ranks feasible decisions; it never overrides hard budgets or permissions. The learned continuation ends at task termination, even though experience and beliefs persist across tasks.
+
+\textbf{Three hypotheses.} Our empirical evaluation is organized around three falsifiable hypotheses, each stated together with the condition that would weaken it. These three hypotheses are not a parallel list but three indispensable links in a single chain of argument: if utility did not vary with condition and representation (H1 fails), a fixed best representation would exist and there would be no decision problem to manage; if such variation could not be predicted from observable evidence before execution (H2 fails), semantic retrieval would already be the ceiling of decision quality and a controller would have no basis; if utility loss occurred merely with age rather than being driven by relevant environmental changes (H3 fails), existing heuristics such as discounting and sliding windows would suffice, with no need for belief updating that tracks changes. The three hypotheses respectively rule out three simpler alternatives---a fixed best representation, pure semantic retrieval, and age-based decay; only when all three hold does a unified controller that learns representation selection and evidence acquisition become necessary.
+
+H1 (transfer depends on current condition and representation): the incremental utility of a same-source experience changes sign or reverses order beyond execution noise; the claim is weakened if the differences vanish after fact refreshing, or if one representation is best under every condition. H2 (compatibility evidence outperforms semantics alone): on unseen tasks and changes, structure, dependencies, state, and representation interactions provide decision information beyond semantics; the claim is weakened if gains are limited to training fit without improving held-out decisions. H3 (utility loss is driven by relevant changes and is reversible): frozen experience retains its gain under irrelevant changes, loses it after relevant changes, and can regain it when conditions return; the claim is weakened if only artificial extreme changes matter, or if genuinely observable signals cannot predict the loss.
+
+\section{Environment and Change Protocol}
+\label{sec:protocol}
+Before any method is given, the stage for testing the phenomenon is fixed: how the environments and changes are constructed, how data are split, what triggers a change, and which alternative explanations are excluded in advance.
+
+The evaluation uses protocol-specific extensions of WebArena~\cite{webarena}, WorkArena++~\cite{workarena}, AppWorld~\cite{appworld}, and text-only ALFWorld~\cite{alfworld}. W-Static contains 256 targets; W-Drift contains 768; Work-Drift and App-Drift each contain 576; ALF-Static contains 144; and ALF-StateShift contains 576. Their sum is 2,896 targets per seed. These sets differ from the original benchmarks' task lists and leaderboards. In particular, ALF-StateShift changes resources, preconditions, and intermediate state while keeping the underlying dynamics fixed; it is a non-Web test of state-conditioned utility, not evidence of changing transition rules.
+
+Each changing protocol balances four paths: Stable preserves relevant dependencies; Relevant changes a required interface, contract, or condition; Irrelevant changes comparable but unrelated content; and Recurring restores a previous condition through an A--B--A sequence. The online paths contain 12 tasks. A separate frozen-experience diagnostic evaluates 13 snapshots, entering B at snapshot 4 and returning to A at snapshot 9. It reruns a no-experience reference at each snapshot. This separates loss of experience utility from increased task difficulty and separates frozen-source analysis from online adaptation.
+
+Workflow families and original sources are disjoint across controller training, development, and testing. The respective family counts are 32/8/16 for WebArena and 24/6/12 for each other domain. Each path begins with the same training-source library, capped at 256 active origins. New test-stream experiences become available only after the corresponding task finishes. A change must alter executable behavior and preserve a feasible target, with new conditions accessible through ordinary observations; an instruction saying that a rule changed is not itself an environment change. The evaluator's hidden state, future tasks, change labels, and unchosen rewards are not controller inputs.
+
+\textbf{Separating controlled changes from algorithmic feedback.} Change triggers refer to a shared semantic environment event rather than the number of model calls, since competing controllers call tools at different rates. Independent paths reset both the environment and the library. Fixed-source diagnostics instead hold experience content constant to measure its utility trajectory; they are not recovery curves for an updating agent. Current-evidence, fact-rebinding, unrelated-text, and writer controls test whether an apparent representation effect can be explained by fresh facts, context burden, or source compression. These controls preserve normal correction by the executor instead of manufacturing negative transfer by forcing an obsolete action.
+
+
+\section{Phenomenon Evidence: Testing the Three Hypotheses}
+\label{sec:phenomenon}
+Before presenting the method, we test the phenomenon behind the three hypotheses of Section~\ref{sec:problem}: whether same-source utility changes sign across conditions (H1), whether compatibility evidence outperforms semantics alone (H2), and whether utility loss is driven by relevant changes and is reversible (H3). None of the diagnostics here involves the controller proposed later.
+
+\subsection{Representation Utility Changes Sign and Order (H1)}
+
+% ===== BEGIN inlined tables/rq1 =====
+\begin{table}[t]
+\centering
+\caption{Paired utility relative to no experience (pp). Each representation comes from the same historical source.}
+\label{tab:rq1}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Condition & Trajectory & Plan & Skill \\
+\midrule
+Stable & \(6.6\!\pm\!0.6\) & \(6.2\!\pm\!1.7\) & \(11.2\!\pm\!2.4\) \\
+DOM shift & \(-7.9\!\pm\!1.2\) & \(7.4\!\pm\!1.7\) & \(0.9\!\pm\!2.0\) \\
+Contract shift & \(-13.6\!\pm\!3.1\) & \(0.9\!\pm\!1.6\) & \(-9.2\!\pm\!0.6\) \\
+Rare exception & \(14.1\!\pm\!1.7\) & \(-2.0\!\pm\!1.3\) & \(6.0\!\pm\!1.8\) \\
+Irrelevant & \(7.8\!\pm\!1.4\) & \(5.9\!\pm\!2.3\) & \(12.1\!\pm\!1.9\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ===== END inlined tables/rq1 =====
+
+Table~\ref{tab:rq1} directly compares three representations from the same source. Under stable conditions, Skill has the largest mean gain (11.2 pp). Under a DOM shift, Trajectory loses 7.9 pp while Plan gains 7.4 pp. Under a rare exception, the ordering reverses: Trajectory gains 14.1 pp while Plan loses 2.0 pp. A contract shift harms both Trajectory and Skill, by 13.6 and 9.2 pp respectively, while Plan remains near the reference. These comparisons reject a single fixed ranking for the tested conditions; they do not imply that one representation is intrinsically safe.
+
+The information-control diagnostic separates procedural mismatch from stale bindings and context length. With the same current-evidence access, the no-memory reference scores 40.6\%, a frozen trajectory 32.6\%, fact rebinding 35.5\%, and target-bound adaptation 50.9\%. Length-matched unrelated text scores 39.3\%. Updating facts therefore recovers part, but not all, of the trajectory loss in this comparison. In the auxiliary factor-prediction diagnostic, semantic features yield AUROC 0.559; four factor groups yield 0.795; adding representation interactions raises it to 0.838. These are predictive associations rather than a decomposition of causal effects.
+
+The matched factor interventions further qualify the prediction result. With high semantic similarity but incompatible dependencies, Trajectory and Skill have gains of \(-9.7\) and \(-5.7\) pp. With low similarity but compatible dependencies, all three gains are positive: 3.4, 4.6, and 6.8 pp. Thus retrieval relevance and executable compatibility cannot be treated as interchangeable. Representation identity alone leaves AUROC at 0.795, while representation interactions increase it to 0.838; the useful signal is how a representation responds to conditions, not a universal bonus for a representation type. Semantic-only ECE is already low (0.015), illustrating why calibration alone cannot establish discriminative decision quality.
+
+\begin{figure*}[t]
+\centering
+\figureasset{fig02_utility_evolution}{1.65in}{(a) Same-source utility by representation and change type: S06\\(b) Frozen-experience utility across 13 snapshots: S10\\(c) Stable / irrelevant / recurring controls, with change markers at 4 and 9}
+\caption{Representation-conditioned utility and environmental evolution. The vertical quantity is paired success-rate gain over a fresh no-experience reference at the same snapshot. Relevant-path representation curves and the three control-path averages are distinct cohorts. Error bars or bands denote seed-level SD.}
+\Description{Placeholder for paired representation utility and 13-snapshot frozen-experience curves.}
+\label{fig:utility}
+\end{figure*}
+
+Along the relevant-change path, frozen Trajectory, Plan, and Skill move from gains of 8.9, 6.3, and 12.0 pp at snapshot 0 to losses of 13.5, 7.3, and 12.7 pp at snapshot 12. Stable and irrelevant-change averages remain positive throughout. In the recurring path, average utility changes from 8.1 pp before the switch to \(-7.9\) pp at snapshot 4 and returns to 7.8 pp at snapshot 9. The measured pattern is consistent with dependency-conditioned, reversible staleness rather than an age-only decay rule. It does not establish a universal lifetime for experience.
+
+
+\section{Drift-Aware Experience Utility Learning}
+\label{sec:method}
+This evidence supports all three hypotheses: same-source utility changes sign with representation and condition; structure, dependencies, state, and representation interactions add predictive power beyond semantics; and utility loss is driven by relevant changes and recovers when conditions return. The natural next question is whether a controller can exploit this structure by choosing a representation and by deciding when evidence is worth paying for before reuse. This section presents one candidate.
+
+\subsection{One Shared Dependency Belief}
+A scoped dependency graph \(G_t\) connects candidate representations to conditions extracted from permitted observations, historical parameters, and procedural content. Conditions are merged only when their object, time, and semantic scopes agree. Let \(z_t\) denote the latent current conditions and \(p_t\) their joint belief. Prediction follows the previous action, and each previously unprocessed event supplies one likelihood update:
+\begin{equation}
+\begin{aligned}
+p_t^-(z)&=\int p_{\eta}(z\mid z',a_{t-1},b_{t-1})p_{t-1}(z')\,dz',\\
+p_t(z)&\propto p_{\eta}(o_u\mid z,a_{t-1},b_{u,-}^{\mathrm{obs}})p_t^-(z).
+\end{aligned}
+\label{eq:filter}
+\end{equation}
+Here \(b_{u,-}^{\mathrm{obs}}\) excludes the response being scored, preventing the observation model from predicting its own input. An event ledger prevents repeated multiplication of the same likelihood. A new observation can update several candidate values without becoming several independent observations. Correlations across conditions are retained; local graph connectivity alone does not justify ignoring prior dependence.
+
+A local hazard \(h_{j,t}\) controls retention or reset of each persistent condition. The hazard depends on previously available cues, elapsed time, and past residuals, not the evaluator's change labels. Normal action-induced state changes are represented by the action transition rather than automatically labeled as drift. The implementation specification uses 32 joint particles on a local candidate subgraph. Differentiation proceeds through soft weights; ancestor selection during resampling is detached. This is an approximate, potentially biased filter gradient, not an exact posterior guarantee.
+
+\textbf{Local transition.} For persistent condition \(j\), the mixture transition is
+\begin{equation}
+\begin{aligned}
+p_\eta(z_{j,t}\mid z_{t-1},a_{t-1},b_{t-1})
+={}&(1-h_{j,t})p_\eta^{\mathrm{persist}}(z_{j,t}\mid z_{t-1},a_{t-1})\\
+&+h_{j,t}p_{j,0}(z_{j,t}).
+\end{aligned}
+\end{equation}
+This reuses the hazard idea from change-point modeling~\cite{bocpd}. If the current response informs a change-point hypothesis, that variable belongs in the same Bayesian update; it is not used once to modify the prior and again as an independent measurement.
+
+\subsection{Source-Conditioned Values and Paired Supervision}
+A shared encoder reads the goal, observable physical state, source content, representation residual, graph, and budget. For execution candidate \(a\), two heads estimate remaining success and cost. Both integrate over the same posterior:
+\begin{equation}
+\begin{aligned}
+\hat Q^Y(b_t,a)&=\E_{z\sim p_t}[Q_\theta^Y(g_t,b_t^{\mathrm{obs}},z,a,B_t)],\\
+\hat Q^C(b_t,a)&=\E_{z\sim p_t}[Q_\theta^C(g_t,b_t^{\mathrm{obs}},z,a,B_t)],\\
+\hat Q(b_t,a)&=\hat Q^Y(b_t,a)-\lambda\hat Q^C(b_t,a).
+\end{aligned}
+\label{eq:values}
+\end{equation}
+The success head lies in \([0,1]\) and the cost head is nonnegative. The estimated advantage is \(\hat U_a=\hat Q^Y(b_t,a)-\hat Q^Y(b_t,\mathrm{replan})\). Replanning has its own state-dependent value. Sharing a source does not force equal utilities: a common condition can affect two representations differently.
+
+At a paired training snapshot \(d\), three reuse branches, three adaptation branches, and one replanning branch share the same prefix and continuation policy, with two repeats per branch in the base configuration. Define \(\Delta_{d,a}=\bar Y_{d,a}-\bar Y_{d,0}\). Since all advantages share the replanning estimate, their errors are correlated. The vector loss is
+\begin{equation}
+\mathcal L_{\mathrm{pair}}=\frac1{|\mathcal D|}\sum_d
+\frac{(\hat{\boldsymbol U}_d-\boldsymbol\Delta_d)^\top
+\sg(R_d^{-1})(\hat{\boldsymbol U}_d-\boldsymbol\Delta_d)}{|\mathcal A_d^{\mathrm{paired}}|}.
+\label{eq:pair}
+\end{equation}
+Under conditionally independent branch noise, the covariance is
+\begin{equation}
+R_d=\diag\!\left(\frac{\sigma_{d,a}^2}{m_{d,a}}\right)+\frac{\sigma_{d,0}^2}{m_{d,0}}\boldsymbol1\boldsymbol1^\top.
+\end{equation}
+Two repeats cannot identify a full covariance matrix; pooled training residuals, the shared-baseline term, and diagonal shrinkage stabilize the estimate. Additional cross-covariances are needed when branch randomness is coupled. The strengthened independent baseline receives the same covariance treatment and event deduplication.
+
+The shared posterior is a distribution over possible current worlds, not an average of three independently predicted environments. Within a joint particle, all candidates are evaluated under the same condition assignment. Their relative ranking can therefore change coherently after a single observation. The representation residual preserves differences in which prerequisites each candidate uses. This structural sharing is distinct from \(R_d\): posterior dependence describes uncertainty about the environment, whereas \(R_d\) describes noise in supervised differences that reuse the same reference rollout. Neither permits counting a repeated source or response as an additional experiment.
+
+\subsection{Joint Value, Observation, and Query Learning}
+Training alternates evaluation of a frozen management policy \(\phi_k\) and improvement through the common query tree. Every executed action yields a transition to the next boundary. Terminal reward is \(Y\), intermediate success reward is zero, and each cost is charged once. The same next action \(a^+=\phi_k(b')\) defines both targets:
+\begin{equation}
+\begin{aligned}
+y^Y&=r^Y+(1-d)\hat Q_{\bar\theta}^Y(b',a^+),\\
+y^C&=c+(1-d)\hat Q_{\bar\theta}^C(b',a^+),\\
+\mathcal L_{\mathrm{TD}}&=\E[(\hat Q^Y-\sg(y^Y))^2+\omega_C(\hat Q^C-\sg(y^C))^2].
+\end{aligned}
+\label{eq:td}
+\end{equation}
+Here \(d\) indicates task termination and lagged parameters define stopped-gradient targets. Paired continuations use the evaluated policy; results from older policies are not automatically labels for the current optimal value. Current-value gradients reach the dependency encoder and differentiable posterior weights. Unchosen branches are not supplied as online feedback.
+
+A unique-event predictive loss anchors the belief to observable evidence:
+\begin{equation}
+\mathcal L_{\mathrm{obs}}=-\frac1{|\mathcal E_{\mathrm{unique}}|}\sum_u
+\log\!\int p_\eta(o_u\mid z,a_u,b_{u,-}^{\mathrm{obs}})p_u^-(z)\,dz.
+\label{eq:obs}
+\end{equation}
+Lagged parameters \(\bar\theta,\bar\eta\) define the shared-posterior query target:
+\begin{equation}
+\begin{aligned}
+\mathcal L_{\mathrm{query}}=\E_{(b,q)}\Big[\big(\hat Q(b,q)-\sg\big(&-\lambda c_q+\E_{o\sim p_{\bar\eta}(\cdot\mid b,q)}\\
+&V_{d_q-1}^{\phi_k}(\mathcal T_{\bar\eta}(b,q,o),B-c_q)\big)\big)^2\Big].
+\end{aligned}
+\label{eq:queryconsistency}
+\end{equation}
+
+A query-consistency loss aligns \(\hat Q(b,q)\) with the paid cost and expected continuation obtained from the same lagged filter. During policy evaluation its continuation follows \(\phi_k\); maximization is reserved for policy improvement. Actual query transitions and predictive losses accompany this model-based target, so the query head is not trained solely on its own imagined rewards. The full objective is
+\begin{equation}
+\begin{aligned}
+\min_{\theta,\eta}\quad &\mathcal L_{\mathrm{TD}}+\alpha\mathcal L_{\mathrm{pair}}+
+\beta\mathcal L_{\mathrm{obs}}+\kappa\mathcal L_{\mathrm{query}}+\xi\mathcal R_{\mathrm{graph}},\\
+\lambda_{k+1}&=\big[\lambda_k+\rho(\widehat{\E}[C_i/B_i]-\bar C)\big]_+.
+\end{aligned}
+\label{eq:joint}
+\end{equation}
+The graph regularizer discourages unsupported density. Training/development data determine loss weights and the cost multiplier. Test-time neural weights remain fixed. Behavior-support masks retain replanning while limiting unsupported actions; this addresses an offline-learning failure mode without claiming the guarantees of conservative Q-learning~\cite{cql}.
+
+The losses constrain different failure modes. Paired supervision compares alternative first decisions under a common continuation; TD learning propagates the consequences of actual actions, including intermediate queries, to terminal success and remaining cost. Observation likelihood tests whether the belief predicts new evidence, while query consistency links its predicted information to the value of the next decision. Removing the predictive term could let a value model represent conditions only to fit rewards, without accurately forecasting observations. Conversely, a well-calibrated observation model need not represent the distinctions that determine which experience is worth executing. Joint learning connects these demands, but the empirical ablations, rather than the sum of losses itself, determine whether the connection is useful.
+
+\subsection{Sequential Evidence Acquisition}
+A hypothetical query draws one outcome \(o\) from the joint predictive model and broadcasts its posterior update to the entire candidate set. With at most \(d\) consecutive queries and normalized budget \(B\), the improvement rule is
+\begin{equation}
+\begin{aligned}
+V_0(b,B)&=\max_{a\in\mathcal A_B^{\mathrm{exec}}}\hat Q(b,a),\\
+V_d(b,B)&=\max\Big\{V_0(b,B),\max_{q\in\mathcal Q_B}\big[-\lambda c_q\\
+&\hspace{30mm}+\E_{o\mid b,q}V_{d-1}(\mathcal T_\eta(b,q,o),B-c_q)\big]\Big\}.
+\end{aligned}
+\label{eq:tree}
+\end{equation}
+The controller executes only the first chosen action, obtains the actual response, and replans. It does not sum individual candidates' information values, because only one downstream execution is selected. A query affecting many candidates may be useless if it leaves the best decision unchanged. Conversely, a narrow query can be valuable when it separates two competitive choices. Appendix~\ref{app:analysis} gives exact constructions showing why marginal utilities alone do not determine query value and why complementary queries can defeat a myopic rule. These are mechanism explanations, not universal optimality guarantees.
+
+Relative to immediate execution, the net value of a query is
+
+\begin{equation}
+\begin{aligned}
+\mathrm{VOI}(q\mid b,B)={}&-\lambda c_q-V_0(b,B)\\
+&+\E_{o\mid b,q}V_{d-1}(\mathcal T_\eta(b,q,o),B-c_q).
+\end{aligned}
+\label{eq:voi}
+\end{equation}
+
+A positive score means that the predicted downstream decision improvement exceeds the observation cost. The expectation includes both helpful and unhelpful responses; it is not the value of the best possible response. With depth two, the first response can also change which second query is worth buying. Only feasible branches are compared, and all candidate values after an outcome use its same posterior. Consequently, coverage, uncertainty reduction, and task-level information value are different quantities.
+
+The default tree has depth two, at most six legal queries per node, and at most three outcome branches per query. Queries obey normal tool permissions; navigation and focus changes are genuine state transitions. Adaptation invalidates downstream results that relied on changed steps rather than merely editing text. When the budget or evidence is insufficient, the controller falls back to ordinary replanning.
+
+\subsection{Training Schedule and Online Execution}
+The schedule separates fitting a policy's consequences from changing that policy. Observation-model warm-up uses unique training events. In round \(k\), \(\phi_k\) is fixed while matched branches and actual transitions are collected or selected. The common filter reconstructs histories. Paired, TD, predictive, and query losses then update the current model against detached targets from lagged parameters. Only between evaluation rounds does the query tree improve the management policy. A policy-version identifier distinguishes trajectories with different continuations; old terminal outcomes cannot silently become current-policy labels. Recollection or supported off-policy correction is needed when the continuation changes.
+
+At test time, \(\theta\), \(\eta\), and \(\lambda\) remain fixed. Adaptation occurs through posterior updates, selection of representations, and bounded experience versions. Algorithm~\ref{alg:online} specifies the online loop. After a query, the actual outcome replaces the hypothetical branch, and after execution the next boundary is evaluated from its new physical state. Stale dependent intermediates are invalidated when a procedure is adapted. This distinguishes reversible suspension of an experience version from deletion of its origin: a returning prerequisite can make the source useful again without assuming that its old task answer remains correct.
+
+\begin{algorithm}[t]
+\caption{DEUL online control}
+\label{alg:online}
+\begin{algorithmic}[1]
+\Require Frozen \(\theta,\eta,\lambda\); legal tools; source library; budget
+\While{the current task is active}
+\State Update observable context from genuine responses.
+\State Retrieve origins and deduplicate representation candidates.
+\State Predict local conditions with the action-aware transition.
+\State Apply Eq.~\eqref{eq:filter} once per new event.
+\State Evaluate candidates and the shared depth-two query tree.
+\State Execute the first feasible action and charge its cost.
+\If{the action is a query}
+\State Broadcast its one observed outcome; return to selection.
+\Else
+\State Execute until the next boundary or termination.
+\EndIf
+\EndWhile
+\State Update bounded experience versions using permitted feedback.
+\end{algorithmic}
+\end{algorithm}
+
+
+\section{Training, Comparator, and Measurement Protocol}
+\label{sec:evalproto}
+Method evaluation additionally requires the executor, comparators, and measurement conventions; the environment, change, and split definitions appear in Section~\ref{sec:protocol} and are not repeated.
+
+\subsection{Executor, Training, and Comparators}
+The primary executor is Qwen3-32B and the secondary executor is Qwen3-8B~\cite{qwen32,qwen8}. All methods share text/AXTree observations, tools, a 32k context policy, temperature 0.6, and top-\(p\) 0.95. Token caps are 64k for Web and ALF tasks and 96k for Work and App tasks. Native action caps are 80 for Web and 120 elsewhere. Experience injection is capped at 4k tokens with five retrieved origins. Main comparisons use textual guidance for all three representations rather than giving one representation a stronger execution interface.
+
+The controller specification uses a frozen text encoder, two graph layers of width 256, and representation-specific residual heads. Adam uses learning rate \(3\times10^{-4}\), batch size 128, and gradient-norm cap 1. Default weights are \(\alpha=1\), \(\beta=0.2\), \(\kappa=0.5\), \(\xi=0.001\), and \(\omega_C=1\). The base paired batch contains 300 snapshots per domain and 14 continuations per snapshot, totaling 16,800 continuations; query transitions and repeated policy-evaluation rounds are additional costs.
+
+Table~\ref{tab:main} includes no-memory, semantic retrieval with one or several representations, adaptations of five neighboring memory methods, fact refreshing, independent utility selection, comprehensive verification, and a compute-matched no-memory executor. The suffix ``adapt'' denotes a common-executor implementation on our protocols, not a reproduction of the original paper's leaderboard number. The six additional controls are Independent-\allowbreak3++ (M15), separately trained shared-graph values (M16), correlated knowledge gradients (M17), BOCPD plus correlated knowledge gradients (M18), recurrent belief-Q (M19), and generic joint latent-Q (M20). M15 receives deduplication, all raw evidence, paired covariance supervision, the same query depth, and matched capacity; its difference is the absence of a structurally shared dependency posterior. M20 is a mechanism-level latent-planning comparator, not a complete TD-MPC2 implementation.
+
+These controls answer different questions. Comparing M11 with M15 tests whether a gain survives stronger implementation, rather than merely adding independent heads. M16 preserves the graph while stopping joint fitting of evidence and value; M18 asks whether local change detection plus correlated information acquisition suffices; M19 tests history aggregation without explicit scoped filtering. M20 retains joint latent prediction, value learning, and the same planning depth, isolating the proposed source and dependency structure. None is intentionally deprived of raw observations. A gain over a weak retrieval method alone would not establish the value of this structure, and a failure of an inconsistent-query stress test would not replace comparison with these competent alternatives.
+
+\subsection{Measurements}
+Results report task success rate (SR), mean total logical tokens, and relevant diagnostic quantities over seeds 11, 23, 37, 53, and 71. Error terms are sample SDs, not standard errors or confidence intervals. For paired binary outcomes, PT is the proportion where memory succeeds and the matched no-experience branch fails; NT reverses these outcomes. Thus \(\Delta\mathrm{SR}=\mathrm{PT}-\mathrm{NT}\) exactly before rounding. These discordances include execution noise and are not individual causal-harm labels. Differences use matched seed vectors, while family-level inferential claims require the underlying task-flow records. No significance stars are inferred from marginal SDs.
+
+A fixed hard cap and equal realized expenditure are different controls. Verify-All can spend more of the same allowance, whereas No-Memory-Compute can redirect saved memory costs to execution or replanning. The random-query ablation matches realized query cost to test selection quality. Logical token totals include unsuccessful tasks and maintenance rather than only successful trajectories; an API sequence containing several primitive calls charges each call. No conversion from tokens to latency, GPU work, or monetary cost is made. Repeated aliases such as M13/A0/J0 are the same configuration, not additional independent runs.
+
+
+\section{Method Effectiveness Evidence}
+\label{sec:results}
+% ===== BEGIN inlined tables/main =====
+\begin{table*}[t]
+\centering
+\caption{Task success rates (\%) on six protocol-specific test sets. Entries are mean \(\pm\) sample SD over five seeds. W-Drift, Work-Drift and App-Drift include rule or interface changes; ALF-StateShift changes states under fixed dynamics. These are not the original benchmark leaderboard scores.}
+\label{tab:main}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Method & W-Static & W-Drift & Work-Drift & App-Drift & ALF-Static & ALF-Shift \\
+\midrule
+M0 No persistent experience & \(42.0\!\pm\!5.1\) & \(41.9\!\pm\!3.1\) & \(32.7\!\pm\!2.6\) & \(47.1\!\pm\!2.8\) & \(54.9\!\pm\!2.7\) & \(53.2\!\pm\!2.1\) \\
+M1 Trajectory-Semantic & \(47.1\!\pm\!4.6\) & \(40.7\!\pm\!3.7\) & \(31.0\!\pm\!2.7\) & \(45.0\!\pm\!3.3\) & \(61.8\!\pm\!4.8\) & \(52.5\!\pm\!1.6\) \\
+M2 Plan-Semantic & \(48.1\!\pm\!5.3\) & \(45.5\!\pm\!2.8\) & \(36.5\!\pm\!3.2\) & \(50.6\!\pm\!3.2\) & \(65.0\!\pm\!3.2\) & \(57.3\!\pm\!1.9\) \\
+M3 Skill-Semantic & \(52.7\!\pm\!6.2\) & \(46.1\!\pm\!3.4\) & \(36.6\!\pm\!3.1\) & \(49.8\!\pm\!3.2\) & \(77.4\!\pm\!3.0\) & \(60.5\!\pm\!2.9\) \\
+M4 Mixed-Semantic & \(50.8\!\pm\!5.2\) & \(45.4\!\pm\!5.2\) & \(37.5\!\pm\!2.8\) & \(50.5\!\pm\!3.3\) & \(66.7\!\pm\!2.3\) & \(58.6\!\pm\!1.6\) \\
+M5 AWM-adapt & \(51.5\!\pm\!6.0\) & \(47.1\!\pm\!3.4\) & \(38.9\!\pm\!3.3\) & \(50.9\!\pm\!2.9\) & \(66.0\!\pm\!4.8\) & \(58.3\!\pm\!2.5\) \\
+M6 ReasoningBank-adapt & \(53.3\!\pm\!4.7\) & \(48.8\!\pm\!2.9\) & \(41.0\!\pm\!3.2\) & \(55.2\!\pm\!3.1\) & \(68.1\!\pm\!2.3\) & \(61.7\!\pm\!1.6\) \\
+M7 H-EPM-infer-adapt & \(55.2\!\pm\!4.7\) & \(50.3\!\pm\!3.3\) & \(42.7\!\pm\!2.8\) & \(55.7\!\pm\!4.1\) & \(69.3\!\pm\!2.0\) & \(62.6\!\pm\!1.8\) \\
+M8 HMT-adapt & \(54.8\!\pm\!5.6\) & \(52.8\!\pm\!3.7\) & \(44.1\!\pm\!3.6\) & \(58.5\!\pm\!3.4\) & \(69.6\!\pm\!2.0\) & \(62.8\!\pm\!2.1\) \\
+M9 QCR-adapt & \(57.7\!\pm\!6.0\) & \(54.8\!\pm\!3.4\) & \(46.2\!\pm\!4.1\) & \(58.5\!\pm\!3.0\) & \(73.5\!\pm\!1.8\) & \(64.5\!\pm\!1.0\) \\
+M10 FreshFacts+Mixed & \(52.0\!\pm\!4.4\) & \(48.5\!\pm\!3.2\) & \(40.7\!\pm\!2.8\) & \(53.3\!\pm\!3.9\) & \(68.2\!\pm\!3.1\) & \(61.2\!\pm\!1.4\) \\
+M11 Independent-3+Selector & \(54.7\!\pm\!5.2\) & \(56.5\!\pm\!3.2\) & \(47.7\!\pm\!3.2\) & \(60.3\!\pm\!3.8\) & \(71.5\!\pm\!3.7\) & \(66.3\!\pm\!3.0\) \\
+M12 Verify-All+Adapt & \(55.3\!\pm\!5.2\) & \(57.9\!\pm\!2.6\) & \(50.1\!\pm\!3.1\) & \(62.2\!\pm\!3.1\) & \(69.6\!\pm\!1.8\) & \(68.7\!\pm\!0.9\) \\
+\textbf{M13 DEUL} & \(55.5\!\pm\!6.9\) & \(60.4\!\pm\!2.6\) & \(52.1\!\pm\!3.6\) & \(65.1\!\pm\!2.7\) & \(77.9\!\pm\!3.0\) & \(72.1\!\pm\!2.1\) \\
+M14 No-Memory-Compute & \(49.5\!\pm\!5.2\) & \(48.0\!\pm\!3.3\) & \(39.8\!\pm\!3.8\) & \(53.6\!\pm\!3.8\) & \(61.9\!\pm\!2.7\) & \(59.5\!\pm\!2.3\) \\
+M15 Independent-3++ & \(55.2\!\pm\!7.0\) & \(59.2\!\pm\!3.0\) & \(51.0\!\pm\!3.2\) & \(62.7\!\pm\!3.5\) & \(74.4\!\pm\!2.6\) & \(69.5\!\pm\!3.0\) \\
+M16 SharedGraph / separate & \(55.0\!\pm\!7.3\) & \(58.7\!\pm\!2.0\) & \(49.4\!\pm\!3.2\) & \(63.2\!\pm\!2.3\) & \(73.9\!\pm\!3.5\) & \(70.1\!\pm\!2.6\) \\
+M17 Correlated-KG-adapt & \(55.7\!\pm\!7.8\) & \(57.5\!\pm\!2.5\) & \(49.0\!\pm\!2.9\) & \(61.9\!\pm\!3.2\) & \(75.4\!\pm\!2.8\) & \(70.5\!\pm\!2.4\) \\
+M18 BOCPD + Correlated-KG & \(56.0\!\pm\!6.9\) & \(59.1\!\pm\!2.6\) & \(50.5\!\pm\!3.5\) & \(63.6\!\pm\!2.4\) & \(74.4\!\pm\!3.8\) & \(71.2\!\pm\!1.6\) \\
+M19 Recurrent belief-Q / depth2 & \(55.7\!\pm\!6.4\) & \(58.7\!\pm\!3.0\) & \(50.6\!\pm\!2.0\) & \(63.2\!\pm\!2.8\) & \(73.2\!\pm\!2.8\) & \(70.8\!\pm\!2.2\) \\
+M20 Joint latent-Q / depth2 & \(54.7\!\pm\!6.9\) & \(59.3\!\pm\!2.4\) & \(50.5\!\pm\!3.2\) & \(64.0\!\pm\!3.1\) & \(73.6\!\pm\!3.4\) & \(70.7\!\pm\!2.8\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/main =====
+\subsection{End-to-End Success and Strong Comparators}
+DEUL achieves 60.4\%, 52.1\%, and 65.1\% on W-Drift, Work-Drift, and App-Drift. Relative to Independent-\allowbreak3++, paired improvements are 1.25, 1.08, and 2.36 pp; relative to BOCPD+\allowbreak Correlated-KG, they are 1.35, 1.67, and 1.49 pp. The generic latent-Q comparison is narrower: 1.12, 1.67, and 1.11 pp, including individual seeds that favor the comparator. Appendix Table~\ref{tab:diff} retains the paired SDs. Thus the strongest evidence is a modest improvement over competent alternatives, not the much larger gap to semantic retrieval alone.
+
+The static results delimit this claim. QCR-adapt reaches 57.7\% on W-Static versus DEUL's 55.5\%, and Skill-Semantic is already close to DEUL on ALF-Static (77.4\% versus 77.9\%). In contrast, ALF-StateShift reaches 72.1\%, 2.60 pp above Independent-\allowbreak3++. The result supports the utility of conditional management beyond browsers, without converting state shifts into claims about changing physical dynamics.
+
+Path-level results locate the benefit more precisely. On W-Drift's Relevant path, DEUL scores 62.7\% versus 49.4\% for QCR-adapt; on its Stable path, the ordering is 60.7\% versus 62.1\%. The Irrelevant-path means are 57.6\% and 56.8\%. These are components of W-Drift, not the separate W-Static set, and their balanced average defines its overall score. The contrast is consistent with selective intervention after relevant changes rather than uniformly improving every use of memory. It also prevents the overall drift score from concealing a stable-regime disadvantage.
+
+\subsection{Which Couplings Matter?}
+
+% ===== BEGIN inlined tables/ablation =====
+\begin{table}[t]
+\centering
+\caption{Core ablations on W-Drift. SR is task success (\%); cost is mean total logical tokens (k).}
+\label{tab:ablation}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Configuration & SR & Tokens \\
+\midrule
+DEUL & \(60.4\!\pm\!2.6\) & \(45.6\!\pm\!2.3\) \\
+Skill-only + utility & \(56.2\!\pm\!2.5\) & \(41.6\!\pm\!1.5\) \\
+No shared posterior & \(56.9\!\pm\!2.3\) & \(48.1\!\pm\!1.1\) \\
+No local drift update & \(56.1\!\pm\!3.2\) & \(43.3\!\pm\!1.3\) \\
+No paired loss & \(57.3\!\pm\!2.7\) & \(44.4\!\pm\!1.5\) \\
+No paid queries & \(55.4\!\pm\!2.7\) & \(38.1\!\pm\!1.1\) \\
+Random queries & \(55.7\!\pm\!1.6\) & \(45.6\!\pm\!2.3\) \\
+Depth 1 & \(58.5\!\pm\!3.3\) & \(43.0\!\pm\!0.8\) \\
+Select once & \(56.9\!\pm\!2.8\) & \(42.7\!\pm\!0.6\) \\
+No consolidation & \(61.0\!\pm\!2.9\) & \(52.6\!\pm\!0.7\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ===== END inlined tables/ablation =====
+
+Table~\ref{tab:ablation} separates multiple representations from the controller that manages them. The best single-representation utility controller scores 56.2\% on W-Drift, compared with 60.4\% for DEUL. Removing local drift updating yields 56.1\%, removing the shared posterior 56.9\%, and removing paired supervision 57.3\%. Random verification with matched token cost reaches 55.7\%, versus 60.4\% for selected verification. However, omitting consolidation slightly improves SR to 61.0\% while increasing cost from 45.6k to 52.6k tokens. Consolidation is therefore a cost--quality trade-off, not an across-the-board accuracy improvement.
+
+The targeted joint-mechanism suite (Appendix Table~\ref{tab:joint}) refines the interpretation. Stopping value-to-belief gradients yields 59.3\%; factorizing the belief yields 58.1\%; removing observation prediction yields 57.1\%. Dropping only covariance weighting leaves 60.2\%, so the covariance correction is not the principal source of performance. In the \(2\times2\) gradient/shared-outcome design, the interaction is \(0.1\pm2.3\) pp on W-Drift and \(-0.5\pm0.7\) pp on App-Drift. The data support useful components without establishing super-additive synergy. Correct deduplication makes both DEUL and Independent-\allowbreak3++ invariant to repeated references; this property is not exclusive to the joint model.
+
+\begin{figure}[t]
+\centering
+\figureasset{fig03_structure_and_data}{1.50in}{(a) Training snapshots 50 / 100 / 300 / 900: S38\\(b) Shared-condition fraction and false edges: S41}
+\caption{Data efficiency and structural limits. Compare DEUL with M15/M18/M20 across supervision levels, and retain zero-sharing and false-edge conditions rather than selecting only favorable regimes.}
+\Description{Placeholder for training-data curves and dependency-quality stress tests.}
+\label{fig:structure}
+\end{figure}
+
+\subsection{Finite Supervision and Structural Limits}
+With 50 training snapshots per domain, DEUL reaches 53.6\% compared with 48.4\% for Independent-\allowbreak3++ and 51.4\% for latent-Q. At 300 snapshots, the gaps shrink; at 900, Independent-\allowbreak3++ reaches 62.6\%, above DEUL's 61.6\%. This supports a finite-data inductive-bias interpretation rather than a better asymptotic performance ceiling. Similarly, in the shared-condition diagnostic, DEUL moves from 56.2\% versus M15's 56.9\% with no sharing to 60.4\% versus 56.9\% at 75\% sharing. At 35\% false edges, the ordering reverses to 56.1\% versus 56.7\%. Reliable shared structure, rather than shared structure of any kind, is useful.
+
+\subsection{Budgeted Verification and Recovery}
+
+On W-Drift, total logical token cost is 45.60k for DEUL and 61.21k for Verify-All+Adapt: a 25.5\% reduction computed from the reported means, together with a 2.50 pp SR improvement. Against Independent-\allowbreak3++, the token difference is only 0.67k. The paired NT discordance is 0.73\% for DEUL versus 2.42\% for M15, but it remains an outcome-disagreement metric rather than an identified causal error rate. The probability diagnostic reports Brier 0.215 and query-gain MAE 0.029 for DEUL, compared with 0.225 and 0.044 for M15. Lower probability error complements, but does not replace, end-task evaluation.
+
+\begin{figure}[t]
+\centering
+\figureasset{fig04_budget_and_recovery}{1.50in}{(a) Success at 0.5x / 1x / 1.5x / 2x budget: S15\\(b) Recovery after observed tasks: S13\\Include Verify-All's high-budget advantage}
+\caption{Budget and recovery trade-offs. Budget multipliers change both token and native-action caps; the horizontal axis is not realized token consumption. Recovery uses a separate anchored cohort, not the main-table task stream.}
+\Description{Placeholder for a budget sweep and a separate post-change recovery cohort.}
+\label{fig:budget}
+\end{figure}
+
+At half the default budget, DEUL reaches 48.2\% versus 32.6\% for comprehensive verification. At double budget, comprehensive verification instead reaches 71.4\% versus 68.6\% for DEUL. Selective evidence acquisition therefore has a budget-dependent advantage, not a universal one. In the recovery cohort, DEUL changes from 60.0\% before a shift to 50.6\% after the first observed task and 59.9\% after eight tasks. These are discrete cohort measurements; they do not define an exact recovery time.
+
+\subsection{Long-Horizon and Cross-Domain Generalization}
+
+Long-horizon benefits also depend on actual subgoal dependencies. At depth two, DEUL and a select-once controller both score 64.1\%; at depth twelve they score 38.2\% and 31.3\%. In the strong-baseline leave-one-domain-out suite, DEUL reaches 55.7\%, 46.6\%, 60.4\%, and 66.6\% on the four changing/state-shift protocols (Appendix Table~\ref{tab:lodo}). This transfers the rule for evaluating target-domain experience, not unrelated workflows across action spaces. The supplied second-executor comparison reaches 39.5\% with Qwen3-8B versus 34.3\% for Independent-3; it does not establish the same margin over M15 or M20, which are not reported in that comparison.
+
+The distinction between learning a management rule and reusing task content is central to this transfer test. A target-domain library supplies local procedures to every method; only the controller is trained on other domains. The result therefore concerns portability of utility and verification decisions, not direct transfer of a Web workflow into an unrelated action space. Likewise, the select-once comparison isolates the ability to revisit representation choice after intermediate results change. A larger gap at greater dependency depth is consistent with repeated decision opportunities, but does not identify every intermediate action's causal contribution.
+
+\subsection{Residual Failure Modes}
+The separate failure-category diagnostic assigns 20.9\% of failures to grounding, 20.1\% to rule inference, 17.4\% to wrong reuse, 14.1\% to adaptation errors, 18.4\% to budget exhaustion, and 9.1\% to other causes. These percentages partition the diagnostic failures, not all main-test tasks. The categorization uses the earliest unrecoverable cause when an execution contains several errors. Thus reducing stale reuse does not remove low-level execution errors, and adaptation can itself introduce a new failure. Nor should these categories be equated with NT, which is defined by disagreement with a matched no-experience outcome. An agent can fail in both branches yet exhibit a specific execution error, or disagree with the reference because of execution randomness. The distinction keeps mechanism diagnosis separate from aggregate paired transfer.
+
+
+\section{Discussion and Conclusion}
+DEUL addresses the post-retrieval reliability of procedural experience as Web conditions change. The reported results support representation-conditioned utility, selective shared evidence acquisition, and useful finite-data structure. They do not establish universally superior reuse, super-additive learning, or global Bayes-optimal control. Incorrect graphs can propagate mistaken beliefs; unobservable changes can remove the information needed to distinguish valid from invalid experience. In the unobservable-shift diagnostic, DEUL scores 47.7\% versus M15's 48.6\%, illustrating this limit.
+
+Logical tokens do not measure controller FLOPs, wall-clock latency, or monetary cost. Likewise, source matching cannot eliminate information differences introduced by representation writers. Practical deployment must keep permission boundaries separate from expected utility, and treat retrieved content as untrusted guidance rather than executable authority. Within these limits, the main conclusion is that experience should be reused according to its current, representation-specific decision value. Shared evidence is most useful when it can resolve relevant uncertainty before a costly long-horizon commitment.
+
+% ===== END expanded main text =====
+
+\label{maintext:end}
+\clearpage
+% References and optional appendices begin after the self-contained main text.
+% ===== BEGIN inline bibliography (from ACM BibTeX style) =====
+%%% -*-BibTeX-*-
+%%% Embedded reference list originally produced by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{19}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter does
+%%% not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+\makeatletter
+\@ifundefined{NAT@parse@date}{}{\let\NAT@parse@date@orig\NAT@parse@date}
+\@ifundefined{NAT@parse@date}{}{\def\NAT@parse@date#1#2#3#4#5#6@@{\NAT@parse@date@orig#1#2#3#4#5#6@@\def\NAT@tempyear{0000}\def\NAT@tempexlab{{?}}\ifx\NAT@year\NAT@tempyear\ifx\NAT@exlab\NAT@tempexlab\def\NAT@date{[n.\,d.]}\else\edef\NAT@date{[n.\,d.]\NAT@exlab}\fi\fi}}
+\makeatother
+
+\bibitem[Adams and MacKay(2007)]%
+        {bocpd}
+\bibfield{author}{\bibinfo{person}{Ryan~Prescott Adams} {and}
+  \bibinfo{person}{David J.~C. MacKay}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \bibinfo{title}{Bayesian Online Changepoint Detection}.
+\newblock \bibinfo{howpublished}{arXiv:0710.3742}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.0710.3742}{doi:\nolinkurl{10.48550/arXiv.0710.3742}}
+
+
+\bibitem[Boisvert et~al\mbox{.}(2024)]%
+        {workarena}
+\bibfield{author}{\bibinfo{person}{L{\'e}o Boisvert}, \bibinfo{person}{Megh
+  Thakkar}, \bibinfo{person}{Maxime Gasse}, \bibinfo{person}{Massimo Caccia},
+  \bibinfo{person}{Thibault Le~Sellier De~Chezelles}, \bibinfo{person}{Quentin
+  Cappart}, \bibinfo{person}{Nicolas Chapados}, \bibinfo{person}{Alexandre
+  Lacoste}, {and} \bibinfo{person}{Alexandre Drouin}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{WorkArena++}: Towards Compositional Planning and
+  Reasoning-based Common Knowledge Work Tasks}.
+\newblock \bibinfo{howpublished}{arXiv:2407.05291v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2407.05291}{doi:\nolinkurl{10.48550/arXiv.2407.05291}}
+
+
+\bibitem[Frazier et~al\mbox{.}(2009)]%
+        {kg}
+\bibfield{author}{\bibinfo{person}{Peter Frazier},
+  \bibinfo{person}{Warren~Buckler Powell}, {and} \bibinfo{person}{Savas
+  Dayanik}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{The Knowledge-Gradient Policy for Correlated Normal
+  Beliefs}.
+\newblock \bibinfo{journal}{\emph{INFORMS Journal on Computing}}
+  \bibinfo{volume}{21}, \bibinfo{number}{4} (\bibinfo{year}{2009}),
+  \bibinfo{pages}{599--613}.
+\newblock
+\href{https://doi.org/10.1287/ijoc.1080.0314}{doi:\nolinkurl{10.1287/ijoc.1080.0314}}
+
+
+\bibitem[Garivier and Moulines(2008)]%
+        {nonstationary}
+\bibfield{author}{\bibinfo{person}{Aur{\'e}lien Garivier} {and}
+  \bibinfo{person}{Eric Moulines}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \bibinfo{title}{On Upper-Confidence Bound Policies for Non-Stationary
+  Bandit Problems}.
+\newblock \bibinfo{howpublished}{arXiv:0805.3415}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.0805.3415}{doi:\nolinkurl{10.48550/arXiv.0805.3415}}
+
+
+\bibitem[Gong and Zhang(2026)]%
+        {paidbandit}
+\bibfield{author}{\bibinfo{person}{Xueping Gong} {and} \bibinfo{person}{Jiheng
+  Zhang}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{The Cost of Information: Phase Transitions in
+  Contextual Bandits with Paid Observations}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 43rd International Conference on
+  Machine Learning}} \emph{(\bibinfo{series}{Proceedings of Machine Learning
+  Research}, Vol.~\bibinfo{volume}{306})}. \bibinfo{publisher}{PMLR},
+  \bibinfo{pages}{36013--36044}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v306/gong26i.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Hajimiri et~al\mbox{.}(2026)]%
+        {budgetstudy}
+\bibfield{author}{\bibinfo{person}{Sina Hajimiri}, \bibinfo{person}{Masih
+  Aminbeidokhti}, \bibinfo{person}{Jose Dolz}, \bibinfo{person}{Ismail
+  Ben~Ayed}, \bibinfo{person}{Issam~H. Laradji}, \bibinfo{person}{Spandana
+  Gella}, {and} \bibinfo{person}{Nicolas Gontier}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{Are Online Skill and Memory Modules Always Worth
+  Their Tokens? A Budget-Constrained Study of Web Agents}.
+\newblock \bibinfo{howpublished}{arXiv:2606.15017v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2606.15017}{doi:\nolinkurl{10.48550/arXiv.2606.15017}}
+
+
+\bibitem[Hansen et~al\mbox{.}(2024)]%
+        {tdmpc2}
+\bibfield{author}{\bibinfo{person}{Nicklas Hansen}, \bibinfo{person}{Hao Su},
+  {and} \bibinfo{person}{Xiaolong Wang}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{TD-MPC2}: Scalable, Robust World Models for
+  Continuous Control}.
+\newblock \bibinfo{howpublished}{arXiv:2310.16828v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2310.16828}{doi:\nolinkurl{10.48550/arXiv.2310.16828}}
+\newblock
+\shownote{ICLR 2024}.
+
+
+\bibitem[Kobayashi et~al\mbox{.}(2026)]%
+        {l2m}
+\bibfield{author}{\bibinfo{person}{Yuta Kobayashi}, \bibinfo{person}{Zilin
+  Jing}, \bibinfo{person}{Jiayu Yao}, \bibinfo{person}{Hongseok Namkoong},
+  {and} \bibinfo{person}{Shalmali Joshi}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Learning-To-Measure: In-Context Active Feature
+  Acquisition}. In \bibinfo{booktitle}{\emph{Proceedings of the 43rd
+  International Conference on Machine Learning}}
+  \emph{(\bibinfo{series}{Proceedings of Machine Learning Research},
+  Vol.~\bibinfo{volume}{306})}. \bibinfo{publisher}{PMLR},
+  \bibinfo{pages}{59720--59752}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v306/kobayashi26a.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Kumar et~al\mbox{.}(2020)]%
+        {cql}
+\bibfield{author}{\bibinfo{person}{Aviral Kumar}, \bibinfo{person}{Aurick
+  Zhou}, \bibinfo{person}{George Tucker}, {and} \bibinfo{person}{Sergey
+  Levine}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{Conservative {Q}-Learning for Offline Reinforcement
+  Learning}.
+\newblock \bibinfo{howpublished}{arXiv:2006.04779}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2006.04779}{doi:\nolinkurl{10.48550/arXiv.2006.04779}}
+
+
+\bibitem[Li et~al\mbox{.}(2026a)]%
+        {hepm}
+\bibfield{author}{\bibinfo{person}{Sijia Li}, \bibinfo{person}{Yuchen Huang},
+  \bibinfo{person}{Zifan Liu}, \bibinfo{person}{Zijian Li},
+  \bibinfo{person}{Jingjing Fu}, \bibinfo{person}{Lei Song},
+  \bibinfo{person}{Jiang Bian}, \bibinfo{person}{Jun Zhang}, {and}
+  \bibinfo{person}{Rui Wang}.} \bibinfo{year}{2026}\natexlab{a}.
+\newblock \bibinfo{title}{Experience-Evolving Multi-Turn Tool-Use Agent with
+  Hybrid Episodic--Procedural Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2512.07287v3}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2512.07287}{doi:\nolinkurl{10.48550/arXiv.2512.07287}}
+\newblock
+\shownote{ICML 2026}.
+
+
+\bibitem[Li et~al\mbox{.}(2026b)]%
+        {qcr}
+\bibfield{author}{\bibinfo{person}{Yifei Li}, \bibinfo{person}{Heng Wang},
+  \bibinfo{person}{Lingling Zhang}, \bibinfo{person}{Muye Huang},
+  \bibinfo{person}{Xinyu Zhang}, \bibinfo{person}{Jiashuai Liu},
+  \bibinfo{person}{Hang Yan}, {and} \bibinfo{person}{Rongman Xu}.}
+  \bibinfo{year}{2026}\natexlab{b}.
+\newblock \bibinfo{title}{Beyond Retrieval: Query-Conditioned Reuse of
+  Long-Horizon Agent Trajectories}.
+\newblock \bibinfo{howpublished}{arXiv:2608.12847v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2608.12847}{doi:\nolinkurl{10.48550/arXiv.2608.12847}}
+
+
+\bibitem[Ouyang et~al\mbox{.}(2026)]%
+        {reasoningbank}
+\bibfield{author}{\bibinfo{person}{Siru Ouyang}, \bibinfo{person}{Jun Yan},
+  \bibinfo{person}{I-Hung Hsu}, \bibinfo{person}{Yanfei Chen},
+  \bibinfo{person}{Ke Jiang}, \bibinfo{person}{Zifeng Wang},
+  \bibinfo{person}{Rujun Han}, \bibinfo{person}{Long~T. Le},
+  \bibinfo{person}{Samira Daruki}, \bibinfo{person}{Xiangru Tang},
+  \bibinfo{person}{Vishy Tirumalashetty}, \bibinfo{person}{George Lee},
+  \bibinfo{person}{Mahsan Rofouei}, \bibinfo{person}{Hangfei Lin},
+  \bibinfo{person}{Jiawei Han}, \bibinfo{person}{Chen-Yu Lee}, {and}
+  \bibinfo{person}{Tomas Pfister}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{{ReasoningBank}: Scaling Agent Self-Evolving with
+  Reasoning Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2509.25140v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2509.25140}{doi:\nolinkurl{10.48550/arXiv.2509.25140}}
+\newblock
+\shownote{Accepted to ICLR 2026}.
+
+
+\bibitem[{Qwen Team}(2025a)]%
+        {qwen32}
+\bibfield{author}{\bibinfo{person}{{Qwen Team}}.}
+  \bibinfo{year}{2025}\natexlab{a}.
+\newblock \bibinfo{title}{{Qwen3-32B} Model Card}.
+\newblock
+\urldef\tempurl%
+\url{https://huggingface.co/Qwen/Qwen3-32B}
+\showURL{%
+\tempurl}
+
+
+\bibitem[{Qwen Team}(2025b)]%
+        {qwen8}
+\bibfield{author}{\bibinfo{person}{{Qwen Team}}.}
+  \bibinfo{year}{2025}\natexlab{b}.
+\newblock \bibinfo{title}{{Qwen3-8B} Model Card}.
+\newblock
+\urldef\tempurl%
+\url{https://huggingface.co/Qwen/Qwen3-8B}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Shridhar et~al\mbox{.}(2021)]%
+        {alfworld}
+\bibfield{author}{\bibinfo{person}{Mohit Shridhar}, \bibinfo{person}{Xingdi
+  Yuan}, \bibinfo{person}{Marc-Alexandre C{\^o}t{\'e}},
+  \bibinfo{person}{Yonatan Bisk}, \bibinfo{person}{Adam Trischler}, {and}
+  \bibinfo{person}{Matthew Hausknecht}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \bibinfo{title}{{ALFWorld}: Aligning Text and Embodied Environments
+  for Interactive Learning}.
+\newblock \bibinfo{howpublished}{arXiv:2010.03768v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2010.03768}{doi:\nolinkurl{10.48550/arXiv.2010.03768}}
+\newblock
+\shownote{ICLR 2021}.
+
+
+\bibitem[Tan et~al\mbox{.}(2026)]%
+        {hmt}
+\bibfield{author}{\bibinfo{person}{Yunteng Tan}, \bibinfo{person}{Zhi Gao},
+  {and} \bibinfo{person}{Xinxiao Wu}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{Enhancing Web Agents with a Hierarchical Memory
+  Tree}.
+\newblock \bibinfo{howpublished}{arXiv:2603.07024v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2603.07024}{doi:\nolinkurl{10.48550/arXiv.2603.07024}}
+
+
+\bibitem[Trivedi et~al\mbox{.}(2024)]%
+        {appworld}
+\bibfield{author}{\bibinfo{person}{Harsh Trivedi}, \bibinfo{person}{Tushar
+  Khot}, \bibinfo{person}{Mareike Hartmann}, \bibinfo{person}{Ruskin Manku},
+  \bibinfo{person}{Vinty Dong}, \bibinfo{person}{Edward Li},
+  \bibinfo{person}{Shashank Gupta}, \bibinfo{person}{Ashish Sabharwal}, {and}
+  \bibinfo{person}{Niranjan Balasubramanian}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{AppWorld}: A Controllable World of Apps and People
+  for Benchmarking Interactive Coding Agents}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 62nd Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Bangkok, Thailand}, \bibinfo{pages}{16022--16076}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.acl-long.850}{doi:\nolinkurl{10.18653/v1/2024.acl-long.850}}
+
+
+\bibitem[Wang et~al\mbox{.}(2024)]%
+        {awm}
+\bibfield{author}{\bibinfo{person}{Zora~Zhiruo Wang}, \bibinfo{person}{Jiayuan
+  Mao}, \bibinfo{person}{Daniel Fried}, {and} \bibinfo{person}{Graham Neubig}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Agent Workflow Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2409.07429v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2409.07429}{doi:\nolinkurl{10.48550/arXiv.2409.07429}}
+
+
+\bibitem[Zhou et~al\mbox{.}(2024)]%
+        {webarena}
+\bibfield{author}{\bibinfo{person}{Shuyan Zhou}, \bibinfo{person}{Frank~F. Xu},
+  \bibinfo{person}{Hao Zhu}, \bibinfo{person}{Xuhui Zhou},
+  \bibinfo{person}{Robert Lo}, \bibinfo{person}{Abishek Sridhar},
+  \bibinfo{person}{Xianyi Cheng}, \bibinfo{person}{Tianyue Ou},
+  \bibinfo{person}{Yonatan Bisk}, \bibinfo{person}{Daniel Fried},
+  \bibinfo{person}{Uri Alon}, {and} \bibinfo{person}{Graham Neubig}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{WebArena}: A Realistic Web Environment for Building
+  Autonomous Agents}.
+\newblock \bibinfo{howpublished}{arXiv:2307.13854v4}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2307.13854}{doi:\nolinkurl{10.48550/arXiv.2307.13854}}
+
+
+\end{thebibliography}
+
+% ===== END inline bibliography =====
+
+% ===== BEGIN inlined content/appendix =====
+\appendix
+\section{Mechanism Analysis}
+\label{app:analysis}
+The following arguments clarify the decision structure. They are exact constructions and elementary consequences of the stated assumptions, not benchmark measurements or guarantees for arbitrary learned filters.
+
+\begin{proposition}[Marginal utilities do not determine query value]
+Two environments can have identical marginal candidate-value distributions and different values for the same query.
+\end{proposition}
+\begin{proof}
+Let two candidate values be binary and let replanning have value zero. In the first environment, the joint values are \((1,1)\) or \((0,0)\) with equal probability. In the second they are \((1,0)\) or \((0,1)\) with equal probability. Every marginal is Bernoulli\((1/2)\) and the best unqueried expected value is \(1/2\). A query reveals the first candidate's value. In the first environment, the expected best value remains \(1/2\); in the second it becomes \(1\). Thus the free-query values are zero and \(1/2\). A query cost of \(0.1\) changes the preferred decision between these two environments. An independent architecture with a sufficiently expressive conditional update can still solve this example; the insufficiency concerns marginals alone.
+\end{proof}
+
+\begin{proposition}[Complementary queries]
+A query with zero value before immediate execution can have positive value when another query is allowed.
+\end{proposition}
+\begin{proof}
+Let \(z_1,z_2\) be independent fair binary variables. Candidate A succeeds when \(z_1\mathbin{\mathrm{XOR}}z_2=0\) and candidate B when it is one. Each query reveals one variable at cost \(0.1\). Neither single query changes either candidate's success probability from \(1/2\). Both queries together identify a successful candidate and yield net value \(1-0.2=0.8\), greater than \(0.5\). This compares a myopic ``query once then execute'' rule with depth-two querying; a one-step action selector already equipped with the correct long-term Q-value is not subject to the same restriction.
+\end{proof}
+
+\textbf{Shared-baseline covariance.} For \(\Delta_a=\bar Y_a-\bar Y_0\) and \(\Delta_b=\bar Y_b-\bar Y_0\), conditional independence of branch noise gives \(\Cov(\Delta_a,\Delta_b)=\Var(\bar Y_0)\) for \(a\ne b\). This follows by expanding the covariance into four terms. It concerns label noise, not duplicate observations or equality of true representation values.
+
+\textbf{Duplicate and local-update invariance.} If event references and identical candidates are exactly deduplicated, and encoding and tie-breaking are set-invariant, duplicating references changes neither the posterior nor the policy distribution. If two condition groups have a factorized prior, no shared latent parameter, and a new likelihood involving only one group, the other group's posterior remains unchanged after normalization. Prior correlation invalidates this latter conclusion: indirect updating can be correct.
+
+\begin{proposition}[A restricted query-score bound]
+Suppose a one-query continuation value lies in \([0,V_{\max}]\), has uniform estimation error at most \(\epsilon\), the predictive outcome law has total-variation error at most \(\delta\), and cost-penalty error is at most \(\epsilon_c\). Then query-score error is at most \(\epsilon+V_{\max}\delta+\epsilon_c\). If all feasible action scores have error at most \(\epsilon_Q\), maximizing the estimated score incurs loss at most \(2\epsilon_Q\).
+\end{proposition}
+\begin{proof}
+Add and subtract the expectation of the true continuation value under the predicted law. The value error contributes at most \(\epsilon\); the distribution term contributes at most \(V_{\max}\delta\) for a function in \([0,V_{\max}]\); and cost contributes \(\epsilon_c\). For action selection, compare the true optimum and estimated maximizer, inserting their estimated scores. The middle difference is nonpositive and the two remaining errors sum to at most \(2\epsilon_Q\). These assumptions and bounds do not imply global regret control or exact finite-particle inference.
+\end{proof}
+
+\section{Algorithm and Protocol Details}
+\label{app:details}
+
+
+
+The evaluated continuation uses the same frozen \(\phi_k\) as the paired branches. Source-disjoint warm-up fits the observation model to unique raw events. During each evaluation round, the current filter reconstructs histories, vector supervision and actual-transition losses update the model, and lagged targets are refreshed. Between rounds, the shared query tree improves the policy. Unsupported old-policy branches require recollection, justified off-policy correction, or restriction to pretraining. The base protocol does not claim cross-task Bayes-optimal exploration.
+
+\textbf{Budget and complexity.} The default remaining-budget coordinate and all learned cost values use the same task-normalized unit. Query response categories retain an unknown branch. With \(m\) queries, \(c\) outcomes per query, and depth \(d\), naive expansion costs \(O((mc)^d)\) before graph and particle costs. Shared caching avoids repeated work but does not remove this combinatorial dependence. 
+
+\textbf{Interpretation of test sets.} Fixed-source utility studies, online closed-loop task streams, recovery cohorts, and controlled graph diagnostics are separate experiments. An ALFWorld state intervention must remain within valid state transitions and preserve a feasible reference path. WorkArena++ changes use permitted configurations, forms, roles, knowledge rules, and workflow settings rather than assuming arbitrary access to proprietary server code. These restrictions belong to the protocol; version identifiers, hardware-specific latency, and the full controller compute ledger are not implied by SR tables.
+
+\subsection{Dispersion and Supplementary Diagnostics}
+For matched seed-level success rates, the variance identity
+\begin{equation}
+\begin{aligned}
+\Var(\mathrm{SR}_{\mathrm{DEUL}}-\mathrm{SR}_{\mathrm{M15}})
+={}&\Var(\mathrm{SR}_{\mathrm{DEUL}})+\Var(\mathrm{SR}_{\mathrm{M15}})\\
+&-2\Cov(\mathrm{SR}_{\mathrm{DEUL}},\mathrm{SR}_{\mathrm{M15}})
+\end{aligned}
+\end{equation}
+explains why marginal SDs and the SD of a paired difference are different. Shared difficulty can make both methods vary together. Overlap between marginal error bars therefore neither supplies a paired test nor recovers a family-level confidence interval. In the separate repeated-execution diagnostic, W-Drift disagreement is 8.3\% for No Memory and 7.9\% for DEUL. These disagreements must not simply be subtracted from NT: the comparisons involve different pairs of runs and answer different questions.
+
+\textbf{Particle and loss sensitivity.} The supplied joint-sensitivity table reports W-Drift SR of 59.9\%, 60.4\%, 60.4\%, and 60.7\% with 8, 16, 32, and 64 particles. Logical costs are 44.4k, 45.1k, 45.6k, and 47.5k tokens. More particles can refine uncertainty approximation without guaranteeing a monotonic or cost-free improvement. At \(\alpha=0.5,1,2\), reported success is 59.5\%, 60.4\%, and 59.1\%; these few settings do not identify a globally optimal weight. Default entries reuse the main configuration rather than adding independent repetitions. Controller computation is separate from logical-token accounting.
+
+\textbf{Adaptation versus retention.} In the independent version-retention diagnostic, DEUL has FWT 17.4 pp and BWT \(-1.1\) pp; permanent deletion has FWT 17.1 pp and BWT \(-6.1\) pp. FWT compares experience assistance on new tasks, whereas BWT compares present and historical libraries on frozen old environments. Following a changed rule is therefore not automatically forgetting. The contrast connects reversible suspension to A--B--A recovery without implying that every old version should be retained indefinitely: storage and maintenance remain part of the constrained design.
+
+\section{Additional Quantitative Comparisons}
+\label{app:results}
+
+% ===== BEGIN inlined tables/differences =====
+\begin{table*}[t]
+\centering
+\caption{Paired seed-level improvements of DEUL over each comparator (pp, mean \(\pm\) SD). The SD belongs to the difference vector; it is not the sum of marginal SDs.}
+\label{tab:diff}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Comparator & W-Drift & Work-Drift & App-Drift & ALF-Shift \\
+\midrule
+Independent-3+Selector & \(4.0\!\pm\!1.5\) & \(4.4\!\pm\!2.5\) & \(4.8\!\pm\!1.9\) & \(5.8\!\pm\!2.3\) \\
+Verify-All+Adapt & \(2.5\!\pm\!1.0\) & \(2.0\!\pm\!2.0\) & \(2.9\!\pm\!1.1\) & \(3.4\!\pm\!1.5\) \\
+Independent-3++ & \(1.3\!\pm\!0.6\) & \(1.1\!\pm\!0.6\) & \(2.4\!\pm\!1.2\) & \(2.6\!\pm\!1.4\) \\
+SharedGraph / separate & \(1.7\!\pm\!0.7\) & \(2.7\!\pm\!1.3\) & \(1.9\!\pm\!1.0\) & \(2.0\!\pm\!0.8\) \\
+Correlated-KG-adapt & \(3.0\!\pm\!0.7\) & \(3.1\!\pm\!1.1\) & \(3.2\!\pm\!1.0\) & \(1.6\!\pm\!1.1\) \\
+BOCPD + Correlated-KG & \(1.4\!\pm\!0.4\) & \(1.7\!\pm\!1.4\) & \(1.5\!\pm\!0.7\) & \(0.9\!\pm\!1.1\) \\
+Recurrent belief-Q / depth2 & \(1.7\!\pm\!1.3\) & \(1.5\!\pm\!1.7\) & \(1.9\!\pm\!0.4\) & \(1.3\!\pm\!0.8\) \\
+Joint latent-Q / depth2 & \(1.1\!\pm\!1.3\) & \(1.7\!\pm\!1.1\) & \(1.1\!\pm\!1.2\) & \(1.4\!\pm\!1.5\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/differences =====
+
+
+% ===== BEGIN inlined tables/joint =====
+\begin{table*}[t]
+\centering
+\caption{Joint-mechanism ablations. Success rates are in percent; logical token cost is in thousands. J4 is a deliberately inconsistent-model stress test, not the primary baseline. J12 and J13 reuse M15 and M16.}
+\label{tab:joint}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Configuration & W-Drift & Work-Drift & App-Drift & ALF-Shift & W tokens \\
+\midrule
+J0 DEUL & \(60.4\!\pm\!2.6\) & \(52.1\!\pm\!3.6\) & \(65.1\!\pm\!2.7\) & \(72.1\!\pm\!2.1\) & \(45.6\!\pm\!2.3\) \\
+J1 Stop value-to-belief gradient & \(59.3\!\pm\!2.1\) & \(50.9\!\pm\!3.3\) & \(64.1\!\pm\!3.1\) & \(71.0\!\pm\!1.9\) & \(46.4\!\pm\!2.3\) \\
+J2 Scalar paired MSE & \(60.2\!\pm\!3.1\) & \(51.6\!\pm\!3.9\) & \(64.9\!\pm\!3.5\) & \(71.2\!\pm\!2.4\) & \(45.6\!\pm\!2.2\) \\
+J3 Factorized belief & \(58.1\!\pm\!2.7\) & \(51.1\!\pm\!3.6\) & \(62.8\!\pm\!3.0\) & \(70.8\!\pm\!2.4\) & \(45.7\!\pm\!2.1\) \\
+J4 Independent query outcomes & \(58.7\!\pm\!2.2\) & \(49.9\!\pm\!3.1\) & \(62.7\!\pm\!3.0\) & \(70.0\!\pm\!2.0\) & \(46.3\!\pm\!2.2\) \\
+J5 Sum candidate VOIs & \(58.1\!\pm\!2.6\) & \(50.5\!\pm\!2.9\) & \(63.3\!\pm\!3.0\) & \(70.2\!\pm\!2.0\) & \(52.2\!\pm\!2.0\) \\
+J6 No observation loss & \(57.1\!\pm\!3.2\) & \(50.3\!\pm\!3.3\) & \(62.6\!\pm\!2.7\) & \(70.7\!\pm\!3.0\) & \(45.7\!\pm\!2.3\) \\
+J7 No query consistency & \(59.9\!\pm\!2.6\) & \(51.0\!\pm\!3.9\) & \(64.4\!\pm\!2.5\) & \(71.3\!\pm\!2.7\) & \(45.1\!\pm\!2.3\) \\
+J8 Global drift rate & \(59.1\!\pm\!3.1\) & \(50.3\!\pm\!3.2\) & \(63.3\!\pm\!2.8\) & \(70.4\!\pm\!1.9\) & \(45.7\!\pm\!2.3\) \\
+J9 No representation residual & \(58.1\!\pm\!3.0\) & \(50.2\!\pm\!4.2\) & \(63.8\!\pm\!3.1\) & \(70.6\!\pm\!2.5\) & \(45.1\!\pm\!1.8\) \\
+J10 Marginal entropy queries & \(58.5\!\pm\!2.9\) & \(50.0\!\pm\!3.0\) & \(63.9\!\pm\!3.2\) & \(70.1\!\pm\!2.4\) & \(49.3\!\pm\!2.5\) \\
+J11 Fixed cost multiplier & \(60.4\!\pm\!1.5\) & \(50.7\!\pm\!3.6\) & \(64.4\!\pm\!1.7\) & \(72.2\!\pm\!2.3\) & \(45.1\!\pm\!2.6\) \\
+J12 Independent-3++ & \(59.2\!\pm\!3.0\) & \(51.0\!\pm\!3.2\) & \(62.7\!\pm\!3.5\) & \(69.5\!\pm\!3.0\) & \(46.3\!\pm\!3.0\) \\
+J13 Two-stage shared model & \(58.7\!\pm\!2.0\) & \(49.4\!\pm\!3.2\) & \(63.2\!\pm\!2.3\) & \(70.1\!\pm\!2.6\) & \(47.8\!\pm\!2.1\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/joint =====
+
+
+% ===== BEGIN inlined tables/lodo =====
+\begin{table*}[t]
+\centering
+\caption{Leave-one-domain-out evaluation: the strong-baseline suite (S43). Controller weights stay frozen in the target domain.}
+\label{tab:lodo}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Method & W-Drift & Work-Drift & App-Drift & ALF-Shift \\
+\midrule
+Independent-3++ & \(53.9\!\pm\!4.0\) & \(45.2\!\pm\!3.5\) & \(57.4\!\pm\!4.1\) & \(63.6\!\pm\!4.2\) \\
+BOCPD + Correlated-KG & \(53.5\!\pm\!1.7\) & \(44.7\!\pm\!3.8\) & \(58.9\!\pm\!2.4\) & \(64.4\!\pm\!1.2\) \\
+Joint latent-Q / depth2 & \(53.4\!\pm\!3.2\) & \(44.5\!\pm\!2.1\) & \(58.7\!\pm\!3.7\) & \(65.6\!\pm\!2.9\) \\
+DEUL full & \(55.7\!\pm\!3.5\) & \(46.6\!\pm\!4.5\) & \(60.4\!\pm\!2.6\) & \(66.6\!\pm\!2.0\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/lodo =====
+
+Table~\ref{tab:diff} reports direct differences between paired seed vectors. A positive average with a negative seed is retained, and each uncertainty is the sample SD of that paired vector. Table~\ref{tab:joint} distinguishes the loss components and structural approximations. J2 removes covariance weighting but not paired supervision; J3 factorizes the belief but does not remove the graph. J4 is an inconsistent hypothetical-outcome stress test, not evidence that all independent controllers are inconsistent. J11 is the fixed-multiplier variant and slightly exceeds DEUL on ALF-StateShift, while not improving all protocols.
+
+The leave-one-domain-out results in Table~\ref{tab:lodo} use the S43 strong-baseline suite. Each controller trains on 100 snapshots from each of the other three domains. Target-domain neural weights and hyperparameters stay fixed, while all methods receive the same non-test target-domain history and legal adapter. Transfer therefore concerns the experience-management rule. It does not establish that the underlying language model has never encountered the target domain.
+
+Full experiment matrices contain repeated aliases: M13, A0, and J0 denote the same full configuration. A7 reuses M11, A15 reuses Myopic-VOI, J12 reuses M15, and J13 reuses M16. The one-times-budget and default-parameter rows also reuse the base vectors. They are not additional independent repetitions. Main-text tables retain the original rounded summaries, while paired improvements are taken from the higher-precision supplied vectors, explaining occasional 0.1-point differences from subtracting displayed means.
+
+% ===== END inlined content/appendix =====
+
+\end{document}

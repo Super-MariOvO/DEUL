@@ -1,0 +1,354 @@
+table,config,metric,seed_11,seed_23,seed_37,seed_53,seed_71,mean,sd
+S35_strong,M11 Independent-3+Selector,ALF-StateShift SR (%),64.4097,62.8472,69.0972,69.7917,65.4514,66.3194,3.0096
+S35_strong,M11 Independent-3+Selector,ALF-Static SR (%),77.0833,71.5278,66.6667,71.5278,70.8333,71.5278,3.7073
+S35_strong,M11 Independent-3+Selector,App-Drift SR (%),64.2361,59.8958,59.7222,63.1944,54.5139,60.3125,3.8028
+S35_strong,M11 Independent-3+Selector,W NT (%),1.5625,0.9115,1.6927,0.9115,1.6927,1.3542,0.4076
+S35_strong,M11 Independent-3+Selector,W Tokens (k),49.7986,47.0197,52.1367,48.037,48.3637,49.0711,1.9815
+S35_strong,M11 Independent-3+Selector,W-Drift SR (%),55.4688,61.1979,56.901,56.3802,52.3438,56.4583,3.1849
+S35_strong,M11 Independent-3+Selector,W-Static SR (%),57.0312,54.6875,58.5938,57.4219,45.7031,54.6875,5.2189
+S35_strong,M11 Independent-3+Selector,Work-Drift SR (%),49.1319,52.6042,46.1806,44.2708,46.3542,47.7083,3.2396
+S35_strong,M12 Verify-All+Adapt,ALF-StateShift SR (%),67.7083,68.75,69.2708,69.7917,68.0556,68.7153,0.8541
+S35_strong,M12 Verify-All+Adapt,ALF-Static SR (%),71.5278,70.8333,67.3611,68.0556,70.1389,69.5833,1.7975
+S35_strong,M12 Verify-All+Adapt,App-Drift SR (%),65.4514,60.5903,60.2431,65.625,59.0278,62.1875,3.1139
+S35_strong,M12 Verify-All+Adapt,W NT (%),1.6927,0.9115,0.9115,1.3021,1.3021,1.2240,0.3268
+S35_strong,M12 Verify-All+Adapt,W Tokens (k),61.418,62.8363,57.3717,61.1912,63.2399,61.2114,2.3206
+S35_strong,M12 Verify-All+Adapt,W-Drift SR (%),57.2917,62.1094,57.9427,57.5521,54.8177,57.9427,2.6317
+S35_strong,M12 Verify-All+Adapt,W-Static SR (%),57.8125,57.0312,57.8125,57.8125,46.0938,55.3125,5.1645
+S35_strong,M12 Verify-All+Adapt,Work-Drift SR (%),52.7778,53.4722,49.8264,46.1806,48.2639,50.1042,3.0557
+S35_strong,M13 DEUL full,ALF-StateShift SR (%),69.6181,72.3958,75.0,73.0903,70.4861,72.1181,2.1355
+S35_strong,M13 DEUL full,ALF-Static SR (%),78.4722,81.9444,73.6111,78.4722,77.0833,77.9166,3.0030
+S35_strong,M13 DEUL full,App-Drift SR (%),68.4028,62.6736,64.7569,67.3611,62.3264,65.1042,2.7258
+S35_strong,M13 DEUL full,W NT (%),0.5208,0.3906,0.7812,0.9115,1.0417,0.7292,0.2700
+S35_strong,M13 DEUL full,W Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S35_strong,M13 DEUL full,W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S35_strong,M13 DEUL full,W-Static SR (%),60.5469,57.8125,57.8125,58.2031,43.3594,55.5469,6.9075
+S35_strong,M13 DEUL full,Work-Drift SR (%),56.9444,53.9931,49.4792,47.9167,52.2569,52.1181,3.5862
+S35_strong,M15 Independent-3++ (strong),ALF-StateShift SR (%),67.0139,71.0069,72.2222,71.7014,65.625,69.5139,2.9884
+S35_strong,M15 Independent-3++ (strong),ALF-Static SR (%),73.6111,77.7778,70.8333,75.6944,74.3056,74.4444,2.5704
+S35_strong,M15 Independent-3++ (strong),App-Drift SR (%),67.3611,58.5069,61.9792,64.9306,60.9375,62.7431,3.4605
+S35_strong,M15 Independent-3++ (strong),W NT (%),2.9948,1.8229,2.2135,2.6042,2.474,2.4219,0.4377
+S35_strong,M15 Independent-3++ (strong),W Tokens (k),48.3868,49.4536,43.402,47.2369,42.8811,46.2721,2.9691
+S35_strong,M15 Independent-3++ (strong),W-Drift SR (%),58.0729,64.3229,58.9844,57.5521,57.0312,59.1927,2.9572
+S35_strong,M15 Independent-3++ (strong),W-Static SR (%),60.5469,57.4219,58.2031,57.0312,42.9688,55.2344,6.9910
+S35_strong,M15 Independent-3++ (strong),Work-Drift SR (%),55.2083,53.125,48.0903,47.7431,51.0417,51.0417,3.2130
+S35_strong,M16 SharedGraph / separate training,ALF-StateShift SR (%),67.3611,71.0069,72.7431,72.0486,67.3611,70.1042,2.5792
+S35_strong,M16 SharedGraph / separate training,ALF-Static SR (%),73.6111,79.1667,69.4444,74.3056,72.9167,73.8889,3.4930
+S35_strong,M16 SharedGraph / separate training,App-Drift SR (%),66.6667,61.8056,63.3681,63.7153,60.4167,63.1945,2.3454
+S35_strong,M16 SharedGraph / separate training,W NT (%),1.9531,3.125,2.2135,2.2135,3.125,2.5260,0.5570
+S35_strong,M16 SharedGraph / separate training,W Tokens (k),47.8029,49.7131,48.1812,48.8827,44.2526,47.7665,2.0950
+S35_strong,M16 SharedGraph / separate training,W-Drift SR (%),59.2448,61.9792,58.2031,57.2917,56.901,58.7240,2.0319
+S35_strong,M16 SharedGraph / separate training,W-Static SR (%),59.375,56.25,58.9844,58.2031,42.1875,55.0000,7.2629
+S35_strong,M16 SharedGraph / separate training,Work-Drift SR (%),52.4306,51.2153,47.5694,44.7917,51.0417,49.4097,3.1529
+S35_strong,M17 Correlated-KG-adapt,ALF-StateShift SR (%),66.8403,72.0486,72.3958,71.875,69.4444,70.5208,2.3658
+S35_strong,M17 Correlated-KG-adapt,ALF-Static SR (%),75.0,77.7778,70.8333,77.0833,76.3889,75.4167,2.7604
+S35_strong,M17 Correlated-KG-adapt,App-Drift SR (%),65.1042,57.9861,62.8472,64.5833,59.2014,61.9444,3.1998
+S35_strong,M17 Correlated-KG-adapt,W NT (%),4.5573,2.9948,3.6458,3.3854,2.6042,3.4375,0.7400
+S35_strong,M17 Correlated-KG-adapt,W Tokens (k),47.8507,47.5575,43.1168,46.748,42.7554,45.6057,2.4735
+S35_strong,M17 Correlated-KG-adapt,W-Drift SR (%),56.25,61.849,57.4219,55.599,56.25,57.4740,2.5326
+S35_strong,M17 Correlated-KG-adapt,W-Static SR (%),60.1562,58.2031,58.9844,59.375,41.7969,55.7031,7.8056
+S35_strong,M17 Correlated-KG-adapt,Work-Drift SR (%),52.2569,51.2153,47.9167,44.7917,48.7847,48.9931,2.9345
+S35_strong,M18 BOCPD + Correlated-KG,ALF-StateShift SR (%),69.9653,71.7014,73.7847,70.4861,70.3125,71.2500,1.5606
+S35_strong,M18 BOCPD + Correlated-KG,ALF-Static SR (%),74.3056,79.1667,68.75,76.3889,73.6111,74.4445,3.8478
+S35_strong,M18 BOCPD + Correlated-KG,App-Drift SR (%),66.6667,61.8056,62.3264,65.625,61.6319,63.6111,2.3569
+S35_strong,M18 BOCPD + Correlated-KG,W NT (%),1.9531,1.9531,2.2135,2.3438,2.9948,2.2917,0.4279
+S35_strong,M18 BOCPD + Correlated-KG,W Tokens (k),50.3192,46.9722,45.8359,47.92,44.4011,47.0897,2.2323
+S35_strong,M18 BOCPD + Correlated-KG,W-Drift SR (%),59.375,63.2812,59.1146,56.901,56.7708,59.0885,2.6372
+S35_strong,M18 BOCPD + Correlated-KG,W-Static SR (%),59.7656,57.8125,60.5469,58.2031,43.75,56.0156,6.9472
+S35_strong,M18 BOCPD + Correlated-KG,Work-Drift SR (%),53.4722,53.4722,46.7014,46.7014,51.9097,50.4514,3.4822
+S35_strong,M19 Recurrent belief-Q / depth2,ALF-StateShift SR (%),69.2708,70.1389,74.4792,71.1806,69.0972,70.8333,2.1995
+S35_strong,M19 Recurrent belief-Q / depth2,ALF-Static SR (%),72.9167,75.6944,68.75,75.6944,72.9167,73.1944,2.8464
+S35_strong,M19 Recurrent belief-Q / depth2,App-Drift SR (%),65.9722,60.5903,63.0208,66.1458,60.4167,63.2292,2.7815
+S35_strong,M19 Recurrent belief-Q / depth2,W NT (%),2.2135,2.474,1.5625,3.776,1.9531,2.3958,0.8418
+S35_strong,M19 Recurrent belief-Q / depth2,W Tokens (k),49.0737,48.3651,45.9169,48.3913,44.3492,47.2192,2.0037
+S35_strong,M19 Recurrent belief-Q / depth2,W-Drift SR (%),58.8542,62.8906,59.5052,54.6875,57.6823,58.7240,2.9735
+S35_strong,M19 Recurrent belief-Q / depth2,W-Static SR (%),59.7656,56.6406,56.25,60.9375,44.9219,55.7031,6.3505
+S35_strong,M19 Recurrent belief-Q / depth2,Work-Drift SR (%),53.4722,50.8681,49.6528,48.0903,50.8681,50.5903,1.9741
+S35_strong,M20 Generic joint latent-Q / depth2,ALF-StateShift SR (%),69.0972,72.7431,73.9583,70.6597,67.0139,70.6944,2.7816
+S35_strong,M20 Generic joint latent-Q / depth2,ALF-Static SR (%),72.9167,77.7778,68.75,75.6944,72.9167,73.6111,3.4021
+S35_strong,M20 Generic joint latent-Q / depth2,App-Drift SR (%),65.9722,61.8056,63.7153,68.0556,60.4167,63.9931,3.0852
+S35_strong,M20 Generic joint latent-Q / depth2,W NT (%),1.0417,2.7344,1.6927,2.2135,3.3854,2.2135,0.9068
+S35_strong,M20 Generic joint latent-Q / depth2,W Tokens (k),49.1166,47.6379,46.6223,46.4999,42.7892,46.5332,2.3410
+S35_strong,M20 Generic joint latent-Q / depth2,W-Drift SR (%),60.4167,62.3698,59.7656,58.0729,55.9896,59.3229,2.4161
+S35_strong,M20 Generic joint latent-Q / depth2,W-Static SR (%),59.7656,57.0312,56.6406,57.4219,42.5781,54.6875,6.8777
+S35_strong,M20 Generic joint latent-Q / depth2,Work-Drift SR (%),53.8194,53.6458,47.5694,47.2222,50.0,50.4514,3.1814
+S35_strong,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S36_joint,J0 DEUL full,ALF-StateShift SR (%),69.6181,72.3958,75.0,73.0903,70.4861,72.1181,2.1355
+S36_joint,J0 DEUL full,App-Drift SR (%),68.4028,62.6736,64.7569,67.3611,62.3264,65.1042,2.7258
+S36_joint,J0 DEUL full,W Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S36_joint,J0 DEUL full,W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S36_joint,J0 DEUL full,Work-Drift SR (%),56.9444,53.9931,49.4792,47.9167,52.2569,52.1181,3.5862
+S36_joint,J1 Stop value-to-belief gradients,ALF-StateShift SR (%),68.9236,71.7014,73.0903,72.2222,69.0972,71.0069,1.8899
+S36_joint,J1 Stop value-to-belief gradients,App-Drift SR (%),67.0139,60.2431,63.7153,67.3611,61.9792,64.0625,3.1081
+S36_joint,J1 Stop value-to-belief gradients,W Tokens (k),47.5214,48.3005,47.0944,46.5081,42.4082,46.3665,2.3072
+S36_joint,J1 Stop value-to-belief gradients,W-Drift SR (%),60.1562,62.5,58.5938,58.4635,56.901,59.3229,2.1168
+S36_joint,J1 Stop value-to-belief gradients,Work-Drift SR (%),55.3819,52.9514,48.0903,47.3958,50.5208,50.8680,3.3395
+S36_joint,J10 Marginal entropy query rule,ALF-StateShift SR (%),66.4931,69.9653,73.0903,71.1806,69.9653,70.1389,2.4056
+S36_joint,J10 Marginal entropy query rule,App-Drift SR (%),67.3611,61.1111,64.0625,66.4931,60.2431,63.8542,3.1571
+S36_joint,J10 Marginal entropy query rule,W Tokens (k),50.7266,51.2788,49.4952,49.9522,44.9383,49.2782,2.5217
+S36_joint,J10 Marginal entropy query rule,W-Drift SR (%),58.3333,63.2812,57.9427,55.599,57.1615,58.4635,2.8896
+S36_joint,J10 Marginal entropy query rule,Work-Drift SR (%),54.8611,49.8264,48.2639,47.0486,49.8264,49.9653,2.9753
+S36_joint,J11 Fixed cost multiplier,ALF-StateShift SR (%),69.4444,72.9167,75.1736,73.0903,70.1389,72.1528,2.3441
+S36_joint,J11 Fixed cost multiplier,App-Drift SR (%),66.1458,63.1944,63.7153,66.1458,62.6736,64.3750,1.6580
+S36_joint,J11 Fixed cost multiplier,W Tokens (k),46.9681,46.9271,43.0076,47.0576,41.588,45.1097,2.6159
+S36_joint,J11 Fixed cost multiplier,W-Drift SR (%),62.1094,61.7188,59.2448,60.2865,58.5938,60.3907,1.5224
+S36_joint,J11 Fixed cost multiplier,Work-Drift SR (%),55.7292,52.7778,47.0486,47.5694,50.1736,50.6597,3.6405
+S36_joint,J12 Independent-3++ (same as M15),ALF-StateShift SR (%),67.0139,71.0069,72.2222,71.7014,65.625,69.5139,2.9884
+S36_joint,J12 Independent-3++ (same as M15),App-Drift SR (%),67.3611,58.5069,61.9792,64.9306,60.9375,62.7431,3.4605
+S36_joint,J12 Independent-3++ (same as M15),W Tokens (k),48.3868,49.4536,43.402,47.2369,42.8811,46.2721,2.9691
+S36_joint,J12 Independent-3++ (same as M15),W-Drift SR (%),58.0729,64.3229,58.9844,57.5521,57.0312,59.1927,2.9572
+S36_joint,J12 Independent-3++ (same as M15),Work-Drift SR (%),55.2083,53.125,48.0903,47.7431,51.0417,51.0417,3.2130
+S36_joint,J13 Two-stage model / value fit (M16),ALF-StateShift SR (%),67.3611,71.0069,72.7431,72.0486,67.3611,70.1042,2.5792
+S36_joint,J13 Two-stage model / value fit (M16),App-Drift SR (%),66.6667,61.8056,63.3681,63.7153,60.4167,63.1945,2.3454
+S36_joint,J13 Two-stage model / value fit (M16),W Tokens (k),47.8029,49.7131,48.1812,48.8827,44.2526,47.7665,2.0950
+S36_joint,J13 Two-stage model / value fit (M16),W-Drift SR (%),59.2448,61.9792,58.2031,57.2917,56.901,58.7240,2.0319
+S36_joint,J13 Two-stage model / value fit (M16),Work-Drift SR (%),52.4306,51.2153,47.5694,44.7917,51.0417,49.4097,3.1529
+S36_joint,J2 Scalar paired MSE (no covariance),ALF-StateShift SR (%),69.0972,71.875,74.4792,71.875,68.5764,71.1806,2.3962
+S36_joint,J2 Scalar paired MSE (no covariance),App-Drift SR (%),68.4028,63.0208,63.8889,68.75,60.5903,64.9306,3.5431
+S36_joint,J2 Scalar paired MSE (no covariance),W Tokens (k),47.9828,46.9974,44.4069,46.0761,42.5617,45.6050,2.1513
+S36_joint,J2 Scalar paired MSE (no covariance),W-Drift SR (%),61.849,64.1927,60.4167,56.5104,57.8125,60.1563,3.0827
+S36_joint,J2 Scalar paired MSE (no covariance),Work-Drift SR (%),56.5972,53.2986,48.9583,46.5278,52.7778,51.6319,3.9353
+S36_joint,J3 Factorized belief (no joint dependence),ALF-StateShift SR (%),68.0556,70.4861,74.4792,71.1806,69.6181,70.7639,2.3823
+S36_joint,J3 Factorized belief (no joint dependence),App-Drift SR (%),65.1042,60.7639,63.3681,65.9722,58.6806,62.7778,3.0335
+S36_joint,J3 Factorized belief (no joint dependence),W Tokens (k),46.6648,48.2121,45.2095,45.7027,42.5927,45.6764,2.0697
+S36_joint,J3 Factorized belief (no joint dependence),W-Drift SR (%),58.4635,62.5,57.1615,57.2917,55.0781,58.0990,2.7458
+S36_joint,J3 Factorized belief (no joint dependence),Work-Drift SR (%),56.5972,52.2569,49.3056,46.875,50.3472,51.0764,3.6466
+S36_joint,J4 Independent hypothetical query outcomes,ALF-StateShift SR (%),66.6667,71.0069,71.875,70.6597,69.6181,69.9653,2.0134
+S36_joint,J4 Independent hypothetical query outcomes,App-Drift SR (%),66.1458,59.2014,64.0625,64.2361,60.0694,62.7430,2.9682
+S36_joint,J4 Independent hypothetical query outcomes,W Tokens (k),48.5884,47.1573,46.0893,46.885,42.8132,46.3066,2.1515
+S36_joint,J4 Independent hypothetical query outcomes,W-Drift SR (%),58.3333,62.5,57.0312,57.5521,58.0729,58.6979,2.1835
+S36_joint,J4 Independent hypothetical query outcomes,Work-Drift SR (%),53.8194,51.3889,46.0069,47.5694,50.5208,49.8611,3.1042
+S36_joint,J5 Sum candidate VOIs,ALF-StateShift SR (%),67.7083,71.1806,72.9167,70.3125,69.0972,70.2431,1.9856
+S36_joint,J5 Sum candidate VOIs,App-Drift SR (%),66.6667,61.1111,62.3264,66.1458,60.0694,63.2639,2.9834
+S36_joint,J5 Sum candidate VOIs,W Tokens (k),54.1757,53.243,51.9499,52.498,48.9281,52.1589,1.9899
+S36_joint,J5 Sum candidate VOIs,W-Drift SR (%),56.7708,62.7604,56.7708,57.4219,56.6406,58.0729,2.6381
+S36_joint,J5 Sum candidate VOIs,Work-Drift SR (%),54.1667,52.4306,47.7431,47.3958,50.6944,50.4861,2.9345
+S36_joint,J6 No observation predictive loss,ALF-StateShift SR (%),66.3194,71.1806,74.6528,70.4861,70.6597,70.6597,2.9616
+S36_joint,J6 No observation predictive loss,App-Drift SR (%),64.0625,59.2014,63.7153,65.7986,60.4167,62.6389,2.7351
+S36_joint,J6 No observation predictive loss,W Tokens (k),47.352,47.5212,45.9864,45.7237,41.8018,45.6770,2.3088
+S36_joint,J6 No observation predictive loss,W-Drift SR (%),57.1615,62.3698,55.7292,56.5104,53.9062,57.1354,3.1700
+S36_joint,J6 No observation predictive loss,Work-Drift SR (%),54.8611,52.0833,48.0903,46.5278,50.0,50.3125,3.2858
+S36_joint,J7 No query-consistency loss,ALF-StateShift SR (%),70.8333,72.7431,73.9583,72.0486,67.0139,71.3194,2.6597
+S36_joint,J7 No query-consistency loss,App-Drift SR (%),68.4028,62.8472,63.5417,65.1042,61.9792,64.3750,2.5260
+S36_joint,J7 No query-consistency loss,W Tokens (k),46.737,46.8953,43.7513,46.2821,41.7529,45.0837,2.2539
+S36_joint,J7 No query-consistency loss,W-Drift SR (%),58.8542,64.4531,59.8958,58.0729,58.2031,59.8958,2.6477
+S36_joint,J7 No query-consistency loss,Work-Drift SR (%),54.6875,52.9514,48.0903,45.6597,53.8194,51.0417,3.9475
+S36_joint,J8 Fixed global drift rate,ALF-StateShift SR (%),67.7083,71.1806,72.5694,71.3542,69.0972,70.3819,1.9472
+S36_joint,J8 Fixed global drift rate,App-Drift SR (%),67.0139,59.8958,64.0625,64.4097,61.1111,63.2986,2.8278
+S36_joint,J8 Fixed global drift rate,W Tokens (k),46.6571,47.9164,45.3165,46.8755,41.9682,45.7467,2.3061
+S36_joint,J8 Fixed global drift rate,W-Drift SR (%),59.2448,64.3229,58.4635,57.0312,56.3802,59.0885,3.1377
+S36_joint,J8 Fixed global drift rate,Work-Drift SR (%),54.8611,51.2153,47.2222,47.0486,51.0417,50.2778,3.2494
+S36_joint,J9 No representation residual,ALF-StateShift SR (%),67.1875,70.8333,74.1319,70.3125,70.3125,70.5555,2.4662
+S36_joint,J9 No representation residual,App-Drift SR (%),67.5347,61.8056,63.0208,66.3194,60.0694,63.7500,3.1139
+S36_joint,J9 No representation residual,W Tokens (k),46.0011,46.7065,44.1948,46.0865,42.37,45.0718,1.7772
+S36_joint,J9 No representation residual,W-Drift SR (%),56.25,62.7604,59.2448,55.7292,56.3802,58.0729,2.9592
+S36_joint,J9 No representation residual,Work-Drift SR (%),56.0764,51.7361,47.5694,45.1389,50.5208,50.2083,4.1692
+S36_joint,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S37_factorial,Detached model / shared hypothetical outcome,ALF-StateShift,68.9236,71.7014,73.0903,72.2222,69.0972,71.0069,1.8899
+S37_factorial,Detached model / shared hypothetical outcome,App-Drift,67.0139,60.2431,63.7153,67.3611,61.9792,64.0625,3.1081
+S37_factorial,Detached model / shared hypothetical outcome,W-Drift,60.1562,62.5,58.5938,58.4635,56.901,59.3229,2.1168
+S37_factorial,Detached model / shared hypothetical outcome,Work-Drift,55.3819,52.9514,48.0903,47.3958,50.5208,50.8680,3.3395
+S37_factorial,Joint training / independent hypothetical outcome,ALF-StateShift,66.6667,71.0069,71.875,70.6597,69.6181,69.9653,2.0134
+S37_factorial,Joint training / independent hypothetical outcome,App-Drift,66.1458,59.2014,64.0625,64.2361,60.0694,62.7430,2.9682
+S37_factorial,Joint training / independent hypothetical outcome,W-Drift,58.3333,62.5,57.0312,57.5521,58.0729,58.6979,2.1835
+S37_factorial,Joint training / independent hypothetical outcome,Work-Drift,53.8194,51.3889,46.0069,47.5694,50.5208,49.8611,3.1042
+S37_factorial,Joint training / shared hypothetical outcome,ALF-StateShift,69.6181,72.3958,75.0,73.0903,70.4861,72.1181,2.1355
+S37_factorial,Joint training / shared hypothetical outcome,App-Drift,68.4028,62.6736,64.7569,67.3611,62.3264,65.1042,2.7258
+S37_factorial,Joint training / shared hypothetical outcome,W-Drift,60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S37_factorial,Joint training / shared hypothetical outcome,Work-Drift,56.9444,53.9931,49.4792,47.9167,52.2569,52.1181,3.5862
+S37_factorial,No joint training / no shared hypothetical outcome,ALF-StateShift,65.625,69.9653,71.7014,69.6181,67.3611,68.8542,2.3760
+S37_factorial,No joint training / no shared hypothetical outcome,App-Drift,64.7569,56.4236,61.4583,64.4097,59.0278,61.2153,3.5550
+S37_factorial,No joint training / no shared hypothetical outcome,W-Drift,55.7292,63.151,56.7708,55.3385,57.5521,57.7083,3.1646
+S37_factorial,No joint training / no shared hypothetical outcome,Work-Drift,54.1667,49.1319,46.0069,46.1806,48.0903,48.7153,3.3182
+S37_factorial,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S38_data,100 train snapshots/domain,M13 SR (%),57.5521,61.0677,55.3385,52.2135,55.9896,56.4323,3.2377
+S38_data,100 train snapshots/domain,M15 SR (%),53.5156,57.8125,53.5156,52.0833,52.3438,53.8542,2.3084
+S38_data,100 train snapshots/domain,M18 SR (%),53.9062,58.3333,54.5573,51.3021,50.3906,53.6979,3.1204
+S38_data,100 train snapshots/domain,M20 SR (%),54.9479,57.9427,52.474,51.6927,50.1302,53.4375,3.0614
+S38_data,300 train snapshots/domain,M13 SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S38_data,300 train snapshots/domain,M15 SR (%),58.0729,64.3229,58.9844,57.5521,57.0312,59.1927,2.9572
+S38_data,300 train snapshots/domain,M18 SR (%),59.375,63.2812,59.1146,56.901,56.7708,59.0885,2.6372
+S38_data,300 train snapshots/domain,M20 SR (%),60.4167,62.3698,59.7656,58.0729,55.9896,59.3229,2.4161
+S38_data,50 train snapshots/domain,M13 SR (%),52.9948,56.7708,54.4271,51.5625,52.2135,53.5937,2.0723
+S38_data,50 train snapshots/domain,M15 SR (%),48.0469,52.6042,48.3073,47.9167,45.3125,48.4375,2.6253
+S38_data,50 train snapshots/domain,M18 SR (%),52.3438,52.9948,49.8698,47.2656,48.4375,50.1823,2.4613
+S38_data,50 train snapshots/domain,M20 SR (%),52.7344,54.4271,50.9115,50.0,48.6979,51.3542,2.2602
+S38_data,900 train snapshots/domain,M13 SR (%),62.1094,66.9271,61.1979,60.1562,57.8125,61.6406,3.3623
+S38_data,900 train snapshots/domain,M15 SR (%),61.849,66.4062,61.7188,61.849,61.3281,62.6302,2.1216
+S38_data,900 train snapshots/domain,M18 SR (%),62.6302,65.625,62.5,59.375,58.9844,61.8229,2.7210
+S38_data,900 train snapshots/domain,M20 SR (%),61.5885,64.5833,62.7604,60.2865,58.724,61.5885,2.2496
+S38_data,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S39_calibration,DEUL full,Brier,0.2151,0.212,0.2202,0.2111,0.215,0.2147,0.0036
+S39_calibration,DEUL full,ECE,0.0426,0.035,0.0468,0.0338,0.0482,0.0413,0.0066
+S39_calibration,DEUL full,NLL,0.6205,0.6122,0.6325,0.6103,0.6195,0.6190,0.0088
+S39_calibration,DEUL full,Query gain MAE,0.0294,0.0284,0.0282,0.0286,0.0283,0.0286,0.0005
+S39_calibration,J3 Factorized belief,Brier,0.2285,0.2262,0.2334,0.2252,0.2287,0.2284,0.0032
+S39_calibration,J3 Factorized belief,ECE,0.0797,0.0666,0.0903,0.0683,0.0659,0.0742,0.0106
+S39_calibration,J3 Factorized belief,NLL,0.6523,0.6495,0.6654,0.6451,0.6623,0.6549,0.0086
+S39_calibration,J3 Factorized belief,Query gain MAE,0.0581,0.0601,0.0574,0.0572,0.0544,0.0574,0.0021
+S39_calibration,J6 No observation loss,Brier,0.2391,0.2357,0.2396,0.2233,0.2299,0.2335,0.0069
+S39_calibration,J6 No observation loss,ECE,0.108,0.0907,0.1087,0.0857,0.0806,0.0947,0.0129
+S39_calibration,J6 No observation loss,NLL,0.6853,0.6766,0.6828,0.6449,0.6625,0.6704,0.0168
+S39_calibration,J6 No observation loss,Query gain MAE,0.0648,0.0661,0.0649,0.0666,0.067,0.0659,0.0010
+S39_calibration,M15 Independent-3++,Brier,0.216,0.222,0.2345,0.2198,0.2326,0.2250,0.0081
+S39_calibration,M15 Independent-3++,ECE,0.0695,0.0575,0.0779,0.0731,0.0807,0.0717,0.0091
+S39_calibration,M15 Independent-3++,NLL,0.6221,0.637,0.6638,0.6292,0.6685,0.6441,0.0209
+S39_calibration,M15 Independent-3++,Query gain MAE,0.0431,0.0427,0.0443,0.0432,0.0442,0.0435,0.0007
+S39_calibration,M16 Two-stage shared model,Brier,0.2269,0.2233,0.2295,0.227,0.2229,0.2259,0.0028
+S39_calibration,M16 Two-stage shared model,ECE,0.0688,0.0685,0.08,0.0826,0.0681,0.0736,0.0071
+S39_calibration,M16 Two-stage shared model,NLL,0.6483,0.6404,0.6558,0.6472,0.6428,0.6469,0.0059
+S39_calibration,M16 Two-stage shared model,Query gain MAE,0.0491,0.0492,0.0484,0.0492,0.0485,0.0489,0.0004
+S39_calibration,M18 BOCPD+Correlated-KG,Brier,0.2163,0.2219,0.2232,0.2205,0.2135,0.2191,0.0041
+S39_calibration,M18 BOCPD+Correlated-KG,ECE,0.0498,0.0625,0.0521,0.0559,0.0589,0.0558,0.0051
+S39_calibration,M18 BOCPD+Correlated-KG,NLL,0.622,0.6361,0.6395,0.6321,0.6182,0.6296,0.0091
+S39_calibration,M18 BOCPD+Correlated-KG,Query gain MAE,0.0402,0.0395,0.0393,0.0401,0.0408,0.0400,0.0006
+S39_calibration,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S40_duplicate,1 exact references/event,DEUL ECE,0.0354,0.0334,0.0353,0.0279,0.0276,0.0319,0.0039
+S40_duplicate,1 exact references/event,DEUL SR (%),59.8958,60.9375,61.4583,63.0208,60.6771,61.1979,1.1646
+S40_duplicate,1 exact references/event,Independent-3++ ECE,0.0472,0.0392,0.0417,0.05,0.0433,0.0443,0.0043
+S40_duplicate,1 exact references/event,Independent-3++ SR (%),59.375,61.1979,60.9375,62.5,60.1562,60.8333,1.1733
+S40_duplicate,1 exact references/event,No dedup ECE,0.0375,0.0347,0.0363,0.0437,0.0327,0.0370,0.0042
+S40_duplicate,1 exact references/event,No dedup SR (%),60.1562,60.4167,59.8958,60.1562,59.1146,59.9479,0.5009
+S40_duplicate,27 exact references/event,DEUL ECE,0.0354,0.0334,0.0353,0.0279,0.0276,0.0319,0.0039
+S40_duplicate,27 exact references/event,DEUL SR (%),59.8958,60.9375,61.4583,63.0208,60.6771,61.1979,1.1646
+S40_duplicate,27 exact references/event,Independent-3++ ECE,0.0472,0.0392,0.0417,0.05,0.0433,0.0443,0.0043
+S40_duplicate,27 exact references/event,Independent-3++ SR (%),59.375,61.1979,60.9375,62.5,60.1562,60.8333,1.1733
+S40_duplicate,27 exact references/event,No dedup ECE,0.1056,0.1083,0.1198,0.1138,0.0985,0.1092,0.0081
+S40_duplicate,27 exact references/event,No dedup SR (%),53.3854,53.9062,55.2083,54.1667,52.6042,53.8542,0.9639
+S40_duplicate,3 exact references/event,DEUL ECE,0.0354,0.0334,0.0353,0.0279,0.0276,0.0319,0.0039
+S40_duplicate,3 exact references/event,DEUL SR (%),59.8958,60.9375,61.4583,63.0208,60.6771,61.1979,1.1646
+S40_duplicate,3 exact references/event,Independent-3++ ECE,0.0472,0.0392,0.0417,0.05,0.0433,0.0443,0.0043
+S40_duplicate,3 exact references/event,Independent-3++ SR (%),59.375,61.1979,60.9375,62.5,60.1562,60.8333,1.1733
+S40_duplicate,3 exact references/event,No dedup ECE,0.0649,0.051,0.055,0.0671,0.0702,0.0616,0.0082
+S40_duplicate,3 exact references/event,No dedup SR (%),57.8125,58.3333,58.0729,59.375,56.7708,58.0729,0.9390
+S40_duplicate,9 exact references/event,DEUL ECE,0.0354,0.0334,0.0353,0.0279,0.0276,0.0319,0.0039
+S40_duplicate,9 exact references/event,DEUL SR (%),59.8958,60.9375,61.4583,63.0208,60.6771,61.1979,1.1646
+S40_duplicate,9 exact references/event,Independent-3++ ECE,0.0472,0.0392,0.0417,0.05,0.0433,0.0443,0.0043
+S40_duplicate,9 exact references/event,Independent-3++ SR (%),59.375,61.1979,60.9375,62.5,60.1562,60.8333,1.1733
+S40_duplicate,9 exact references/event,No dedup ECE,0.0808,0.0762,0.0873,0.0819,0.0812,0.0815,0.0040
+S40_duplicate,9 exact references/event,No dedup SR (%),54.9479,55.9896,55.9896,59.1146,55.2083,56.2500,1.6675
+S40_duplicate,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S41_edges,25% shared conditions,DEUL Queries/task,2.9679,2.6742,2.8793,2.9056,3.1921,2.9238,0.1861
+S41_edges,25% shared conditions,DEUL SR (%),55.2083,58.0729,56.5104,52.8646,57.2917,55.9896,2.0422
+S41_edges,25% shared conditions,M15 Queries/task,2.542,2.607,2.9231,2.7526,2.6803,2.7010,0.1471
+S41_edges,25% shared conditions,M15 SR (%),53.9062,55.9896,55.4688,53.9062,55.9896,55.0521,1.0674
+S41_edges,50% shared / 15% false edges,DEUL Queries/task,3.4829,3.4395,3.5756,3.6225,3.5176,3.5276,0.0727
+S41_edges,50% shared / 15% false edges,DEUL SR (%),58.3333,56.7708,57.0312,59.6354,59.375,58.2291,1.3099
+S41_edges,50% shared / 15% false edges,M15 Queries/task,2.9379,2.8574,2.9877,2.9411,2.6867,2.8822,0.1189
+S41_edges,50% shared / 15% false edges,M15 SR (%),56.5104,56.5104,55.7292,58.8542,58.0729,57.1354,1.2837
+S41_edges,50% shared / 35% false edges,DEUL Queries/task,3.5632,3.4353,3.6323,3.6863,3.5197,3.5674,0.0976
+S41_edges,50% shared / 35% false edges,DEUL SR (%),56.7708,54.6875,56.7708,57.8125,54.4271,56.0937,1.4685
+S41_edges,50% shared / 35% false edges,M15 Queries/task,2.7952,2.423,2.9202,2.6483,2.5669,2.6707,0.1939
+S41_edges,50% shared / 35% false edges,M15 SR (%),56.7708,55.4688,58.5938,57.5521,55.2083,56.7188,1.4192
+S41_edges,50% shared conditions,DEUL Queries/task,2.6289,2.7854,2.2761,2.4942,2.341,2.5051,0.2082
+S41_edges,50% shared conditions,DEUL SR (%),60.4167,59.8958,59.6354,56.5104,58.5938,59.0104,1.5472
+S41_edges,50% shared conditions,M15 Queries/task,2.6021,2.7256,2.9155,2.7525,2.7591,2.7510,0.1117
+S41_edges,50% shared conditions,M15 SR (%),58.3333,57.5521,55.7292,55.2083,55.9896,56.5625,1.3202
+S41_edges,75% shared conditions,DEUL Queries/task,2.1551,2.2885,2.5499,2.4104,2.4502,2.3708,0.1527
+S41_edges,75% shared conditions,DEUL SR (%),61.7188,59.6354,59.375,61.9792,59.375,60.4167,1.3151
+S41_edges,75% shared conditions,M15 Queries/task,2.5351,2.5416,2.5838,2.7721,2.7849,2.6435,0.1247
+S41_edges,75% shared conditions,M15 SR (%),58.3333,57.0312,55.2083,57.5521,56.25,56.8750,1.2019
+S41_edges,No shared conditions,DEUL Queries/task,3.0179,3.2585,2.8073,3.2051,2.959,3.0496,0.1842
+S41_edges,No shared conditions,DEUL SR (%),55.9896,53.6458,59.375,55.2083,56.7708,56.1979,2.1188
+S41_edges,No shared conditions,M15 Queries/task,2.7679,2.933,2.9405,2.7191,2.9345,2.8590,0.1069
+S41_edges,No shared conditions,M15 SR (%),56.7708,55.7292,58.8542,55.4688,57.5521,56.8750,1.3854
+S41_edges,Unobservable relevant shift,DEUL Queries/task,1.2149,1.5553,1.5784,1.4809,1.2595,1.4178,0.1695
+S41_edges,Unobservable relevant shift,DEUL SR (%),46.875,46.3542,49.7396,47.3958,47.9167,47.6563,1.3021
+S41_edges,Unobservable relevant shift,M15 Queries/task,2.72,3.02,2.7691,2.77,2.5606,2.7679,0.1649
+S41_edges,Unobservable relevant shift,M15 SR (%),47.3958,48.1771,50.2604,48.9583,48.1771,48.5937,1.0832
+S41_edges,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S42_queries,Correlated-KG / one query,Queries/task,2.0416,1.6289,1.745,1.8388,1.8583,1.8225,0.1525
+S42_queries,Correlated-KG / one query,SR (%),58.3333,56.7708,59.8958,57.0312,58.0729,58.0208,1.2407
+S42_queries,Correlated-KG / one query,Tokens (k),44.3826,43.5822,42.8463,41.9469,42.6167,43.0749,0.9357
+S42_queries,DEUL shared tree / depth2,Queries/task,2.0077,2.2464,2.021,2.2094,2.1247,2.1218,0.1077
+S42_queries,DEUL shared tree / depth2,SR (%),59.6354,58.5938,61.9792,58.0729,59.375,59.5313,1.5028
+S42_queries,DEUL shared tree / depth2,Tokens (k),44.878,45.6298,44.5994,43.5489,46.0843,44.9481,0.9798
+S42_queries,Max marginal entropy,Queries/task,3.4192,3.3567,3.4528,3.3572,3.4129,3.3998,0.0419
+S42_queries,Max marginal entropy,SR (%),56.5104,55.7292,58.8542,55.7292,56.25,56.6146,1.2969
+S42_queries,Max marginal entropy,Tokens (k),46.076,48.206,47.3504,50.1595,46.7998,47.7183,1.5711
+S42_queries,No paid queries,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S42_queries,No paid queries,SR (%),53.6458,52.6042,55.2083,53.6458,52.6042,53.5417,1.0674
+S42_queries,No paid queries,Tokens (k),34.7112,34.2856,35.7091,36.0129,35.8294,35.3096,0.7634
+S42_queries,Sum marginal VOI,Queries/task,3.9948,4.0442,3.9554,3.9159,4.0207,3.9862,0.0513
+S42_queries,Sum marginal VOI,SR (%),56.7708,55.9896,58.0729,55.2083,56.5104,56.5104,1.0578
+S42_queries,Sum marginal VOI,Tokens (k),50.4378,51.3136,52.7462,52.885,53.0428,52.0851,1.1514
+S42_queries,Verify-all / same hard cap,Queries/task,4.5006,4.5667,4.6806,4.3784,4.7003,4.5653,0.1329
+S42_queries,Verify-all / same hard cap,SR (%),60.6771,59.1146,61.9792,59.1146,59.375,60.0521,1.2570
+S42_queries,Verify-all / same hard cap,Tokens (k),56.8557,57.9259,57.222,59.5174,58.2616,57.9565,1.0346
+S42_queries,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S43_lodo_strong,BOCPD + Correlated-KG,ALF-StateShift,63.1944,64.4097,66.3194,63.8889,64.2361,64.4097,1.1646
+S43_lodo_strong,BOCPD + Correlated-KG,App-Drift,62.1528,56.25,58.5069,60.4167,57.1181,58.8889,2.4100
+S43_lodo_strong,BOCPD + Correlated-KG,W-Drift,52.9948,56.5104,52.8646,53.125,52.2135,53.5417,1.6962
+S43_lodo_strong,BOCPD + Correlated-KG,Work-Drift,48.9583,47.3958,40.7986,40.625,45.8333,44.7222,3.8246
+S43_lodo_strong,DEUL full,ALF-StateShift,63.3681,66.4931,67.5347,68.75,67.0139,66.6320,2.0074
+S43_lodo_strong,DEUL full,App-Drift,63.3681,57.8125,59.7222,62.8472,58.1597,60.3819,2.5966
+S43_lodo_strong,DEUL full,W-Drift,55.9896,61.0677,55.7292,53.9062,51.6927,55.6771,3.4702
+S43_lodo_strong,DEUL full,Work-Drift,50.8681,50.6944,43.4028,40.7986,47.2222,46.5972,4.4510
+S43_lodo_strong,Generic joint latent-Q / depth2,ALF-StateShift,63.8889,68.0556,68.4028,66.1458,61.6319,65.6250,2.8659
+S43_lodo_strong,Generic joint latent-Q / depth2,App-Drift,60.2431,56.25,57.9861,64.2361,54.6875,58.6806,3.7296
+S43_lodo_strong,Generic joint latent-Q / depth2,W-Drift,54.2969,57.6823,54.0365,52.2135,48.9583,53.4375,3.1889
+S43_lodo_strong,Generic joint latent-Q / depth2,Work-Drift,46.875,46.3542,41.8403,43.2292,44.4444,44.5486,2.1071
+S43_lodo_strong,Independent-3++ (strong),ALF-StateShift,62.3264,65.2778,67.7083,65.7986,56.9444,63.6111,4.1966
+S43_lodo_strong,Independent-3++ (strong),App-Drift,62.1528,52.4306,55.5556,60.9375,55.7292,57.3611,4.0615
+S43_lodo_strong,Independent-3++ (strong),W-Drift,51.8229,60.1562,55.7292,51.0417,50.7812,53.9062,4.0217
+S43_lodo_strong,Independent-3++ (strong),Work-Drift,50.6944,46.5278,42.5347,42.1875,44.0972,45.2083,3.5123
+S43_lodo_strong,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S44_differences,DEUL − BOCPD + Correlated-KG,ALF-StateShift,-0.3472,0.6944,1.2153,2.6042,0.1736,0.8681,1.1318
+S44_differences,DEUL − BOCPD + Correlated-KG,App-Drift,1.7361,0.8681,2.4306,1.7361,0.6944,1.4931,0.7116
+S44_differences,DEUL − BOCPD + Correlated-KG,W-Drift,0.9115,1.5625,0.9115,1.6927,1.6927,1.3542,0.4076
+S44_differences,DEUL − BOCPD + Correlated-KG,Work-Drift,3.4722,0.5208,2.7778,1.2153,0.3472,1.6667,1.3921
+S44_differences,DEUL − Correlated-KG-adapt,ALF-StateShift,2.7778,0.3472,2.6042,1.2153,1.0417,1.5972,1.0518
+S44_differences,DEUL − Correlated-KG-adapt,App-Drift,3.2986,4.6875,1.9097,2.7778,3.125,3.1597,1.0078
+S44_differences,DEUL − Correlated-KG-adapt,W-Drift,4.0365,2.9948,2.6042,2.9948,2.2135,2.9688,0.6791
+S44_differences,DEUL − Correlated-KG-adapt,Work-Drift,4.6875,2.7778,1.5625,3.125,3.4722,3.1250,1.1318
+S44_differences,DEUL − Generic joint latent-Q / depth2,ALF-StateShift,0.5208,-0.3472,1.0417,2.4306,3.4722,1.4236,1.5254
+S44_differences,DEUL − Generic joint latent-Q / depth2,App-Drift,2.4306,0.8681,1.0417,-0.6944,1.9097,1.1111,1.1940
+S44_differences,DEUL − Generic joint latent-Q / depth2,W-Drift,-0.1302,2.474,0.2604,0.5208,2.474,1.1198,1.2577
+S44_differences,DEUL − Generic joint latent-Q / depth2,Work-Drift,3.125,0.3472,1.9097,0.6944,2.2569,1.6666,1.1424
+S44_differences,DEUL − Independent-3++ (strong),ALF-StateShift,2.6042,1.3889,2.7778,1.3889,4.8611,2.6042,1.4211
+S44_differences,DEUL − Independent-3++ (strong),App-Drift,1.0417,4.1667,2.7778,2.4306,1.3889,2.3611,1.2374
+S44_differences,DEUL − Independent-3++ (strong),W-Drift,2.2135,0.5208,1.0417,1.0417,1.4323,1.2500,0.6285
+S44_differences,DEUL − Independent-3++ (strong),Work-Drift,1.7361,0.8681,1.3889,0.1736,1.2153,1.0764,0.5938
+S44_differences,DEUL − Independent-3+Selector,ALF-StateShift,5.2083,9.5486,5.9028,3.2986,5.0347,5.7986,2.3052
+S44_differences,DEUL − Independent-3+Selector,App-Drift,4.1667,2.7778,5.0347,4.1667,7.8125,4.7917,1.8723
+S44_differences,DEUL − Independent-3+Selector,W-Drift,4.8177,3.6458,3.125,2.2135,6.1198,3.9844,1.5202
+S44_differences,DEUL − Independent-3+Selector,Work-Drift,7.8125,1.3889,3.2986,3.6458,5.9028,4.4097,2.4876
+S44_differences,DEUL − Recurrent belief-Q / depth2,ALF-StateShift,0.3472,2.2569,0.5208,1.9097,1.3889,1.2847,0.8380
+S44_differences,DEUL − Recurrent belief-Q / depth2,App-Drift,2.4306,2.0833,1.7361,1.2153,1.9097,1.8750,0.4494
+S44_differences,DEUL − Recurrent belief-Q / depth2,W-Drift,1.4323,1.9531,0.5208,3.9062,0.7812,1.7187,1.3450
+S44_differences,DEUL − Recurrent belief-Q / depth2,Work-Drift,3.4722,3.125,-0.1736,-0.1736,1.3889,1.5278,1.7422
+S44_differences,DEUL − SharedGraph / separate training,ALF-StateShift,2.2569,1.3889,2.2569,1.0417,3.125,2.0139,0.8198
+S44_differences,DEUL − SharedGraph / separate training,App-Drift,1.7361,0.8681,1.3889,3.6458,1.9097,1.9097,1.0488
+S44_differences,DEUL − SharedGraph / separate training,W-Drift,1.0417,2.8646,1.8229,1.3021,1.5625,1.7188,0.7036
+S44_differences,DEUL − SharedGraph / separate training,Work-Drift,4.5139,2.7778,1.9097,3.125,1.2153,2.7083,1.2555
+S44_differences,DEUL − Verify-All+Adapt,ALF-StateShift,1.9097,3.6458,5.7292,3.2986,2.4306,3.4028,1.4711
+S44_differences,DEUL − Verify-All+Adapt,App-Drift,2.9514,2.0833,4.5139,1.7361,3.2986,2.9167,1.0939
+S44_differences,DEUL − Verify-All+Adapt,W-Drift,2.9948,2.7344,2.0833,1.0417,3.6458,2.5000,0.9891
+S44_differences,DEUL − Verify-All+Adapt,Work-Drift,4.1667,0.5208,-0.3472,1.7361,3.9931,2.0139,2.0269
+S44_differences,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S45_hyper_joint,alpha=0.5,Tokens (k),46.7875,47.6866,44.9003,45.869,41.9659,45.4419,2.2027
+S45_hyper_joint,alpha=0.5,W-Drift SR (%),59.7656,63.0208,59.1146,58.724,56.901,59.5052,2.2345
+S45_hyper_joint,alpha=1 (default),Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S45_hyper_joint,alpha=1 (default),W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S45_hyper_joint,alpha=2,Tokens (k),47.7783,47.4347,45.5246,46.1298,42.5524,45.8840,2.0786
+S45_hyper_joint,alpha=2,W-Drift SR (%),58.5938,64.5833,58.5938,56.5104,57.2917,59.1146,3.1841
+S45_hyper_joint,beta=0.05,Tokens (k),47.3636,46.9817,44.799,46.033,41.707,45.3769,2.2779
+S45_hyper_joint,beta=0.05,W-Drift SR (%),59.5052,62.8906,59.1146,57.1615,58.2031,59.3750,2.1632
+S45_hyper_joint,beta=0.2 (default),Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S45_hyper_joint,beta=0.2 (default),W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S45_hyper_joint,beta=0.8,Tokens (k),47.0776,48.0922,44.4142,46.2407,42.3303,45.6310,2.2857
+S45_hyper_joint,beta=0.8,W-Drift SR (%),59.2448,64.8438,59.1146,58.9844,59.2448,60.2865,2.5499
+S45_hyper_joint,kappa=0.1,Tokens (k),46.916,47.6116,44.5618,46.1688,41.1648,45.2846,2.5668
+S45_hyper_joint,kappa=0.1,W-Drift SR (%),60.1562,63.6719,60.6771,58.724,58.0729,60.2604,2.1776
+S45_hyper_joint,kappa=0.5 (default),Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S45_hyper_joint,kappa=0.5 (default),W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S45_hyper_joint,kappa=1,Tokens (k),47.393,47.6716,44.094,47.132,42.8454,45.8272,2.2052
+S45_hyper_joint,kappa=1,W-Drift SR (%),59.7656,63.8021,59.8958,58.2031,57.6823,59.8698,2.3999
+S45_hyper_joint,particles=16,Tokens (k),45.7259,46.8029,45.1456,46.7177,40.8894,45.0563,2.4305
+S45_hyper_joint,particles=16,W-Drift SR (%),60.9375,66.0156,59.1146,58.0729,58.0729,60.4427,3.3278
+S45_hyper_joint,particles=32 (default),Tokens (k),47.1243,47.3619,45.073,46.5739,41.8728,45.6012,2.2664
+S45_hyper_joint,particles=32 (default),W-Drift SR (%),60.2865,64.8438,60.026,58.5938,58.4635,60.4427,2.5934
+S45_hyper_joint,particles=64,Tokens (k),49.1524,48.5851,47.4172,48.4463,43.769,47.4740,2.1637
+S45_hyper_joint,particles=64,W-Drift SR (%),61.1979,65.4948,58.2031,59.375,59.375,60.7292,2.8714
+S45_hyper_joint,particles=8,Tokens (k),46.6144,46.6631,44.1867,44.3091,39.9862,44.3519,2.7180
+S45_hyper_joint,particles=8,W-Drift SR (%),58.0729,64.974,59.7656,58.9844,57.6823,59.8958,2.9520
+S45_hyper_joint,配置,指标,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908

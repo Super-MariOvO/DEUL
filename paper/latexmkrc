@@ -1,0 +1,1 @@
+$pdf_mode = 5;  # 强制 XeLaTeX（Overleaf 读取 latexmkrc，优先于菜单编译器设置）

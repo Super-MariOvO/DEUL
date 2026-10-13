@@ -1,0 +1,1174 @@
+table,config,metric,seed_11,seed_23,seed_37,seed_53,seed_71,mean,sd
+S01_main,M0 No Persistent Experience,App-Drift,49.13,44.27,46.53,50.87,44.79,47.1180,2.8285
+S01_main,M0 No Persistent Experience,W-Drift,42.71,46.61,41.93,39.58,38.8,41.9260,3.0753
+S01_main,M0 No Persistent Experience,W-Static,44.14,44.92,44.14,43.75,32.81,41.9520,5.1282
+S01_main,M0 No Persistent Experience,Work-Drift,33.16,35.24,32.29,28.47,34.2,32.6720,2.5966
+S01_main,M1 Trajectory-Semantic,App-Drift,48.61,41.32,45.66,47.57,41.84,45.0000,3.3015
+S01_main,M1 Trajectory-Semantic,W-Drift,40.1,47.14,38.54,39.45,38.15,40.6760,3.6933
+S01_main,M1 Trajectory-Semantic,W-Static,48.05,50.39,49.22,48.83,39.06,47.1100,4.5786
+S01_main,M1 Trajectory-Semantic,Work-Drift,33.51,33.33,30.73,26.91,30.73,31.0420,2.6737
+S01_main,M10 FreshFacts+Mixed,App-Drift,57.12,48.61,54.86,56.08,49.65,53.2640,3.8751
+S01_main,M10 FreshFacts+Mixed,W-Drift,48.18,53.91,47.92,45.7,47.01,48.5440,3.1527
+S01_main,M10 FreshFacts+Mixed,W-Static,53.52,53.91,54.69,53.52,44.14,51.9560,4.3953
+S01_main,M10 FreshFacts+Mixed,Work-Drift,44.27,41.49,40.97,36.63,39.93,40.6580,2.7655
+S01_main,M11 Independent-3+Selector,App-Drift,64.24,59.9,59.72,63.19,54.51,60.3120,3.8045
+S01_main,M11 Independent-3+Selector,W-Drift,55.47,61.2,56.9,56.38,52.34,56.4580,3.1868
+S01_main,M11 Independent-3+Selector,W-Static,57.03,54.69,58.59,57.42,45.7,54.6860,5.2192
+S01_main,M11 Independent-3+Selector,Work-Drift,49.13,52.6,46.18,44.27,46.35,47.7060,3.2385
+S01_main,M12 Verify-All+Adapt,App-Drift,65.45,60.59,60.24,65.62,59.03,62.1860,3.1121
+S01_main,M12 Verify-All+Adapt,W-Drift,57.29,62.11,57.94,57.55,54.82,57.9420,2.6314
+S01_main,M12 Verify-All+Adapt,W-Static,57.81,57.03,57.81,57.81,46.09,55.3100,5.1652
+S01_main,M12 Verify-All+Adapt,Work-Drift,52.78,53.47,49.83,46.18,48.26,50.1040,3.0563
+S01_main,M13 DEUL (proposed),App-Drift,68.4,62.67,64.76,67.36,62.33,65.1040,2.7245
+S01_main,M13 DEUL (proposed),W-Drift,60.29,64.84,60.03,58.59,58.46,60.4420,2.5929
+S01_main,M13 DEUL (proposed),W-Static,60.55,57.81,57.81,58.2,43.36,55.5460,6.9071
+S01_main,M13 DEUL (proposed),Work-Drift,56.94,53.99,49.48,47.92,52.26,52.1180,3.5832
+S01_main,M14 No-Memory-Compute,App-Drift,57.99,50.0,54.17,56.42,49.31,53.5780,3.8377
+S01_main,M14 No-Memory-Compute,W-Drift,47.53,53.65,47.01,46.74,44.92,47.9700,3.3239
+S01_main,M14 No-Memory-Compute,W-Static,51.95,52.34,51.95,50.78,40.23,49.4500,5.1872
+S01_main,M14 No-Memory-Compute,Work-Drift,41.67,44.62,39.06,34.2,39.58,39.8260,3.8302
+S01_main,M2 Plan-Semantic,App-Drift,55.21,49.13,47.57,52.6,48.44,50.5900,3.2117
+S01_main,M2 Plan-Semantic,W-Drift,45.7,50.0,44.27,44.92,42.45,45.4680,2.8034
+S01_main,M2 Plan-Semantic,W-Static,51.95,48.05,51.17,50.39,39.06,48.1240,5.2729
+S01_main,M2 Plan-Semantic,Work-Drift,38.02,40.8,33.33,33.16,36.98,36.4580,3.2491
+S01_main,M3 Skill-Semantic,App-Drift,54.34,47.4,47.74,52.08,47.4,49.7920,3.2239
+S01_main,M3 Skill-Semantic,W-Drift,47.01,51.56,44.66,43.75,43.36,46.0680,3.3815
+S01_main,M3 Skill-Semantic,W-Static,53.91,58.98,53.91,54.3,42.19,52.6580,6.2325
+S01_main,M3 Skill-Semantic,Work-Drift,38.72,39.76,35.59,31.77,37.33,36.6340,3.1367
+S01_main,M4 Mixed-Semantic,App-Drift,54.69,48.09,48.61,53.3,47.57,50.4520,3.2920
+S01_main,M4 Mixed-Semantic,W-Drift,45.7,53.91,45.05,41.54,41.02,45.4440,5.1650
+S01_main,M4 Mixed-Semantic,W-Static,52.34,51.56,54.69,53.52,41.8,50.7820,5.1594
+S01_main,M4 Mixed-Semantic,Work-Drift,39.24,40.62,36.98,33.33,37.15,37.4640,2.7630
+S01_main,M5 AWM-adapt,App-Drift,52.78,48.26,50.87,54.69,47.74,50.8680,2.9517
+S01_main,M5 AWM-adapt,W-Drift,46.22,52.47,47.79,45.44,43.62,47.1080,3.3524
+S01_main,M5 AWM-adapt,W-Static,55.86,53.12,54.3,53.12,41.02,51.4840,5.9567
+S01_main,M5 AWM-adapt,Work-Drift,40.8,41.67,40.8,33.85,37.5,38.9240,3.2539
+S01_main,M6 ReasoningBank-adapt,App-Drift,57.99,52.95,53.82,59.03,52.08,55.1740,3.1285
+S01_main,M6 ReasoningBank-adapt,W-Drift,48.7,53.78,48.31,46.88,46.48,48.8300,2.9204
+S01_main,M6 ReasoningBank-adapt,W-Static,56.25,54.69,55.08,55.47,44.92,53.2820,4.7100
+S01_main,M6 ReasoningBank-adapt,Work-Drift,42.36,45.14,40.45,36.28,40.8,41.0060,3.2253
+S01_main,M7 H-EPM-infer-adapt,App-Drift,60.07,51.56,55.03,59.9,52.08,55.7280,4.1057
+S01_main,M7 H-EPM-infer-adapt,W-Drift,50.0,55.47,51.04,48.05,47.14,50.3400,3.2560
+S01_main,M7 H-EPM-infer-adapt,W-Static,56.64,58.2,57.42,56.64,46.88,55.1560,4.6714
+S01_main,M7 H-EPM-infer-adapt,Work-Drift,45.31,46.01,41.15,39.58,41.49,42.7080,2.8004
+S01_main,M8 HMT-adapt,App-Drift,60.94,54.86,58.51,62.67,55.38,58.4720,3.4030
+S01_main,M8 HMT-adapt,W-Drift,54.17,58.46,51.82,49.87,49.61,52.7860,3.6617
+S01_main,M8 HMT-adapt,W-Static,56.25,56.25,60.16,56.25,45.31,54.8440,5.5921
+S01_main,M8 HMT-adapt,Work-Drift,46.53,49.13,41.67,40.8,42.36,44.0980,3.5717
+S01_main,M9 QCR-adapt,App-Drift,62.85,56.25,56.42,60.42,56.6,58.5080,2.9836
+S01_main,M9 QCR-adapt,W-Drift,54.56,59.9,55.34,54.17,50.26,54.8460,3.4408
+S01_main,M9 QCR-adapt,W-Static,58.98,60.55,58.59,62.89,47.27,57.6560,6.0470
+S01_main,M9 QCR-adapt,Work-Drift,49.48,49.48,45.83,39.58,46.7,46.2140,4.0536
+S01_main,配置,App-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S01_main,配置,W-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S01_main,配置,W-Static,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S01_main,配置,Work-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S05_ablation,A0 DEUL full,App-Drift,68.4,62.67,64.76,67.36,62.33,65.1040,2.7245
+S05_ablation,A0 DEUL full,W-Drift,60.29,64.84,60.03,58.59,58.46,60.4420,2.5929
+S05_ablation,A0 DEUL full,Work-Drift,56.94,53.99,49.48,47.92,52.26,52.1180,3.5832
+S05_ablation,A1 Trajectory-only+Utility,App-Drift,62.33,56.25,57.99,61.11,57.64,59.0640,2.5472
+S05_ablation,A1 Trajectory-only+Utility,W-Drift,54.3,60.94,52.6,52.99,52.21,54.6080,3.6259
+S05_ablation,A1 Trajectory-only+Utility,Work-Drift,50.17,49.13,43.75,43.58,44.1,46.1460,3.2252
+S05_ablation,A10 No local drift update,App-Drift,67.71,59.9,58.16,62.5,58.85,61.4240,3.8818
+S05_ablation,A10 No local drift update,W-Drift,55.99,60.94,56.51,54.95,52.21,56.1200,3.1646
+S05_ablation,A10 No local drift update,Work-Drift,47.92,52.26,47.05,44.27,47.57,47.8140,2.8715
+S05_ablation,A11 Global reset,App-Drift,65.1,57.81,58.33,62.85,57.81,60.3800,3.3835
+S05_ablation,A11 Global reset,W-Drift,56.25,61.98,54.82,53.91,52.08,55.8080,3.7671
+S05_ablation,A11 Global reset,Work-Drift,51.04,53.3,46.88,43.23,47.4,48.3700,3.9056
+S05_ablation,A12 No pairwise advantage loss,App-Drift,66.84,59.55,61.98,66.15,59.9,62.8840,3.4334
+S05_ablation,A12 No pairwise advantage loss,W-Drift,56.64,61.72,57.81,56.12,54.43,57.3440,2.7318
+S05_ablation,A12 No pairwise advantage loss,Work-Drift,51.56,52.78,48.26,42.53,50.69,49.1640,4.0612
+S05_ablation,A13 No paid verification,App-Drift,65.97,58.68,59.2,65.28,58.51,61.5280,3.7566
+S05_ablation,A13 No paid verification,W-Drift,55.34,59.9,54.43,52.86,54.56,55.4180,2.6622
+S05_ablation,A13 No paid verification,Work-Drift,48.61,52.26,48.78,44.79,46.01,48.0900,2.8876
+S05_ablation,A14 Random verification (cost-matched),App-Drift,65.8,58.68,59.2,62.85,56.77,60.6600,3.6194
+S05_ablation,A14 Random verification (cost-matched),W-Drift,55.21,58.33,55.34,55.86,53.91,55.7300,1.6211
+S05_ablation,A14 Random verification (cost-matched),Work-Drift,49.83,51.39,46.53,39.58,48.09,47.0840,4.5747
+S05_ablation,A15 Myopic VOI (depth=1),App-Drift,66.15,60.76,59.03,68.75,61.46,63.2300,4.0580
+S05_ablation,A15 Myopic VOI (depth=1),W-Drift,59.38,63.15,58.98,56.38,54.43,58.4640,3.3045
+S05_ablation,A15 Myopic VOI (depth=1),Work-Drift,53.99,52.6,49.65,44.79,48.61,49.9280,3.6004
+S05_ablation,A16 Select representation once,App-Drift,66.84,59.38,61.11,66.67,58.85,62.5700,3.9112
+S05_ablation,A16 Select representation once,W-Drift,56.12,61.59,56.9,55.86,54.17,56.9280,2.7899
+S05_ablation,A16 Select representation once,Work-Drift,49.48,53.3,48.44,43.4,50.17,48.9580,3.5970
+S05_ablation,A17 Replace whole experience,App-Drift,67.53,58.68,59.2,65.97,55.03,61.2820,5.2727
+S05_ablation,A17 Replace whole experience,W-Drift,55.99,61.72,55.86,54.82,55.34,56.7460,2.8188
+S05_ablation,A17 Replace whole experience,Work-Drift,49.65,51.22,48.26,42.19,48.09,47.8820,3.4225
+S05_ablation,A18 Permanent delete,App-Drift,68.06,60.07,62.67,66.84,61.46,63.8200,3.4660
+S05_ablation,A18 Permanent delete,W-Drift,57.55,63.67,58.85,57.29,56.9,58.8520,2.7910
+S05_ablation,A18 Permanent delete,Work-Drift,52.08,57.47,46.88,44.79,48.78,50.0000,4.9622
+S05_ablation,A19 No consolidation,App-Drift,68.75,62.67,63.89,68.58,61.98,65.1740,3.2599
+S05_ablation,A19 No consolidation,W-Drift,59.9,65.76,61.33,59.24,58.59,60.9640,2.8669
+S05_ablation,A19 No consolidation,Work-Drift,55.9,54.34,52.26,45.31,52.26,52.0140,4.0489
+S05_ablation,A2 Plan-only+Utility,App-Drift,61.63,55.03,60.42,63.37,53.99,58.8880,4.1481
+S05_ablation,A2 Plan-only+Utility,W-Drift,52.86,59.24,55.34,51.56,54.17,54.6340,2.9379
+S05_ablation,A2 Plan-only+Utility,Work-Drift,47.22,50.87,43.92,41.32,46.35,45.9360,3.5894
+S05_ablation,A20 Ignore query cost,App-Drift,67.01,62.5,60.42,64.41,60.76,63.0200,2.7382
+S05_ablation,A20 Ignore query cost,W-Drift,57.16,62.24,58.59,55.73,53.39,57.4220,3.3078
+S05_ablation,A20 Ignore query cost,Work-Drift,50.0,51.39,48.96,43.4,48.61,48.4720,3.0345
+S05_ablation,A3 Skill-only+Utility,App-Drift,64.76,57.81,60.07,65.97,57.12,61.1460,4.0258
+S05_ablation,A3 Skill-only+Utility,W-Drift,55.99,60.42,55.86,54.56,54.04,56.1740,2.5159
+S05_ablation,A3 Skill-only+Utility,Work-Drift,50.52,52.08,46.01,42.71,46.01,47.4660,3.7906
+S05_ablation,A4 T+P,App-Drift,65.62,57.99,59.55,63.37,56.25,60.5560,3.8633
+S05_ablation,A4 T+P,W-Drift,56.12,60.16,58.2,54.17,55.99,56.9280,2.3023
+S05_ablation,A4 T+P,Work-Drift,50.52,51.74,49.31,44.1,47.92,48.7180,2.9450
+S05_ablation,A5 T+S,App-Drift,65.8,60.42,61.28,67.53,59.2,62.8460,3.6158
+S05_ablation,A5 T+S,W-Drift,58.98,61.07,58.46,57.42,56.77,58.5400,1.6574
+S05_ablation,A5 T+S,Work-Drift,52.26,51.04,48.96,43.75,50.87,49.3760,3.3594
+S05_ablation,A6 P+S,App-Drift,64.93,59.38,61.46,67.71,60.59,62.8140,3.4286
+S05_ablation,A6 P+S,W-Drift,57.68,64.71,58.85,58.07,54.17,58.6960,3.8112
+S05_ablation,A6 P+S,Work-Drift,53.3,54.34,49.48,43.23,50.35,50.1400,4.3547
+S05_ablation,A7 Independent-3+Selector,App-Drift,64.24,59.9,59.72,63.19,54.51,60.3120,3.8045
+S05_ablation,A7 Independent-3+Selector,W-Drift,55.47,61.2,56.9,56.38,52.34,56.4580,3.1868
+S05_ablation,A7 Independent-3+Selector,Work-Drift,49.13,52.6,46.18,44.27,46.35,47.7060,3.2385
+S05_ablation,A8 No shared dependency posterior,App-Drift,65.62,59.72,60.07,66.15,56.6,61.6320,4.1150
+S05_ablation,A8 No shared dependency posterior,W-Drift,55.47,60.29,58.2,55.6,54.95,56.9020,2.2759
+S05_ablation,A8 No shared dependency posterior,Work-Drift,50.87,53.99,47.22,42.53,48.78,48.6780,4.2707
+S05_ablation,A9 No lineage deduplication,App-Drift,64.76,57.99,60.24,64.41,57.81,61.0420,3.3753
+S05_ablation,A9 No lineage deduplication,W-Drift,55.08,60.42,55.86,55.34,53.52,56.0440,2.5971
+S05_ablation,A9 No lineage deduplication,Work-Drift,50.87,53.65,45.31,42.71,46.18,47.7440,4.4262
+S05_ablation,配置,App-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S05_ablation,配置,W-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S05_ablation,配置,Work-Drift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S27_nonweb_main,M0 No Persistent Experience,ALF-StateShift,52.08,54.17,54.34,55.21,50.0,53.1600,2.1075
+S27_nonweb_main,M0 No Persistent Experience,ALF-Static,55.56,59.03,52.08,52.78,54.86,54.8620,2.7356
+S27_nonweb_main,M1 Trajectory-Semantic,ALF-StateShift,50.69,52.95,53.3,54.51,51.04,52.4980,1.6039
+S27_nonweb_main,M1 Trajectory-Semantic,ALF-Static,67.36,65.97,56.25,58.33,61.11,61.8040,4.7860
+S27_nonweb_main,M10 FreshFacts+Mixed,ALF-StateShift,60.76,60.42,62.85,62.33,59.55,61.1820,1.3713
+S27_nonweb_main,M10 FreshFacts+Mixed,ALF-Static,69.44,71.53,63.19,68.75,68.06,68.1940,3.0842
+S27_nonweb_main,M11 Independent-3+Selector,ALF-StateShift,64.41,62.85,69.1,69.79,65.45,66.3200,3.0090
+S27_nonweb_main,M11 Independent-3+Selector,ALF-Static,77.08,71.53,66.67,71.53,70.83,71.5280,3.7051
+S27_nonweb_main,M12 Verify-All+Adapt,ALF-StateShift,67.71,68.75,69.27,69.79,68.06,68.7160,0.8520
+S27_nonweb_main,M12 Verify-All+Adapt,ALF-Static,71.53,70.83,67.36,68.06,70.14,69.5840,1.7970
+S27_nonweb_main,M13 DEUL (proposed),ALF-StateShift,69.62,72.4,75.0,73.09,70.49,72.1200,2.1343
+S27_nonweb_main,M13 DEUL (proposed),ALF-Static,78.47,81.94,73.61,78.47,77.08,77.9140,3.0020
+S27_nonweb_main,M14 No-Memory-Compute,ALF-StateShift,58.16,59.03,60.24,63.02,56.94,59.4780,2.3187
+S27_nonweb_main,M14 No-Memory-Compute,ALF-Static,63.89,64.58,57.64,61.81,61.81,61.9460,2.7063
+S27_nonweb_main,M2 Plan-Semantic,ALF-StateShift,54.34,57.29,58.68,59.2,57.12,57.3260,1.8911
+S27_nonweb_main,M2 Plan-Semantic,ALF-Static,69.44,67.36,63.19,63.19,61.81,64.9980,3.2408
+S27_nonweb_main,M3 Skill-Semantic,ALF-StateShift,59.55,58.85,60.76,65.28,57.99,60.4860,2.8653
+S27_nonweb_main,M3 Skill-Semantic,ALF-Static,79.86,81.25,75.0,75.69,75.0,77.3600,2.9711
+S27_nonweb_main,M4 Mixed-Semantic,ALF-StateShift,56.6,58.85,60.59,59.55,57.64,58.6460,1.5681
+S27_nonweb_main,M4 Mixed-Semantic,ALF-Static,67.36,70.14,63.89,65.97,65.97,66.6660,2.3035
+S27_nonweb_main,M5 AWM-adapt,ALF-StateShift,56.42,59.72,59.38,61.11,55.03,58.3320,2.5150
+S27_nonweb_main,M5 AWM-adapt,ALF-Static,70.14,70.14,58.33,65.97,65.28,65.9720,4.8380
+S27_nonweb_main,M6 ReasoningBank-adapt,ALF-StateShift,60.24,61.63,62.85,63.72,59.9,61.6680,1.6412
+S27_nonweb_main,M6 ReasoningBank-adapt,ALF-Static,70.14,69.44,65.97,69.44,65.28,68.0540,2.2490
+S27_nonweb_main,M7 H-EPM-infer-adapt,ALF-StateShift,61.81,62.33,64.41,64.41,60.07,62.6060,1.8473
+S27_nonweb_main,M7 H-EPM-infer-adapt,ALF-Static,69.44,70.83,68.06,71.53,66.67,69.3060,1.9867
+S27_nonweb_main,M8 HMT-adapt,ALF-StateShift,60.76,61.81,65.45,64.58,61.46,62.8120,2.0693
+S27_nonweb_main,M8 HMT-adapt,ALF-Static,70.14,68.75,68.06,72.92,68.06,69.5860,2.0481
+S27_nonweb_main,M9 QCR-adapt,ALF-StateShift,64.24,63.72,64.41,66.32,63.89,64.5160,1.0449
+S27_nonweb_main,M9 QCR-adapt,ALF-Static,73.61,74.31,72.92,75.69,70.83,73.4720,1.7976
+S27_nonweb_main,配置,ALF-StateShift,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S27_nonweb_main,配置,ALF-Static,11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S29_nonweb_ablation,A0 DEUL full,ALF-StateShift SR (%),69.62,72.4,75.0,73.09,70.49,72.1200,2.1343
+S29_nonweb_ablation,A1 Trajectory-only+Utility,ALF-StateShift SR (%),63.37,64.58,66.49,65.28,64.58,64.8600,1.1413
+S29_nonweb_ablation,A10 No local drift update,ALF-StateShift SR (%),65.45,65.97,69.1,69.79,65.97,67.2560,2.0243
+S29_nonweb_ablation,A11 Global reset,ALF-StateShift SR (%),64.93,68.58,65.97,68.06,65.97,66.7020,1.5478
+S29_nonweb_ablation,A12 No pairwise advantage loss,ALF-StateShift SR (%),65.8,68.58,70.49,72.74,67.01,68.9240,2.7638
+S29_nonweb_ablation,A13 No paid verification,ALF-StateShift SR (%),65.62,65.8,68.92,70.49,65.45,67.2560,2.3068
+S29_nonweb_ablation,A14 Random verification (cost-matched),ALF-StateShift SR (%),64.76,66.15,69.1,70.14,67.36,67.5020,2.1725
+S29_nonweb_ablation,A15 Myopic VOI (depth=1),ALF-StateShift SR (%),66.49,68.92,71.18,70.83,66.32,68.7480,2.3061
+S29_nonweb_ablation,A16 Select representation once,ALF-StateShift SR (%),66.67,68.92,71.53,72.05,68.06,69.4460,2.2928
+S29_nonweb_ablation,A17 Replace whole experience,ALF-StateShift SR (%),67.53,67.71,69.1,69.27,66.84,68.0900,1.0527
+S29_nonweb_ablation,A18 Permanent delete,ALF-StateShift SR (%),68.06,68.06,70.83,71.53,69.44,69.5840,1.5816
+S29_nonweb_ablation,A19 No consolidation,ALF-StateShift SR (%),71.01,69.44,73.61,72.4,70.49,71.3900,1.6360
+S29_nonweb_ablation,A2 Plan-only+Utility,ALF-StateShift SR (%),63.72,65.45,66.32,66.49,64.06,65.2080,1.2719
+S29_nonweb_ablation,A20 Ignore query cost,ALF-StateShift SR (%),67.88,69.1,71.88,68.75,68.92,69.3060,1.5132
+S29_nonweb_ablation,A3 Skill-only+Utility,ALF-StateShift SR (%),64.58,66.67,68.58,68.92,66.84,67.1180,1.7395
+S29_nonweb_ablation,A4 T+P,ALF-StateShift SR (%),65.8,68.23,70.49,71.88,68.06,68.8920,2.3544
+S29_nonweb_ablation,A5 T+S,ALF-StateShift SR (%),65.1,68.75,68.58,70.49,66.84,67.9520,2.0520
+S29_nonweb_ablation,A6 P+S,ALF-StateShift SR (%),67.71,67.88,70.14,71.53,67.36,68.9240,1.8221
+S29_nonweb_ablation,A7 Independent-3+Selector,ALF-StateShift SR (%),64.41,62.85,69.1,69.79,65.45,66.3200,3.0090
+S29_nonweb_ablation,A8 No shared dependency posterior,ALF-StateShift SR (%),64.93,69.44,69.62,70.49,66.67,68.2300,2.3360
+S29_nonweb_ablation,A9 No lineage deduplication,ALF-StateShift SR (%),66.84,67.88,68.4,69.62,65.97,67.7420,1.4082
+S29_nonweb_ablation,配置,ALF-StateShift SR (%),11.0,23.0,37.0,53.0,71.0,39.0000,23.7908
+S02_App-Drift,M0 No Persistent Experience,Irrelevant,49.31,45.83,55.56,51.39,45.14,49.4460,4.2660
+S02_App-Drift,M0 No Persistent Experience,Recurring,45.14,40.97,40.97,49.31,47.92,44.8620,3.8571
+S02_App-Drift,M0 No Persistent Experience,Relevant,50.69,43.06,44.44,49.31,39.58,45.4160,4.5700
+S02_App-Drift,M0 No Persistent Experience,Stable,51.39,47.22,45.14,53.47,46.53,48.7500,3.5196
+S02_App-Drift,M1 Trajectory-Semantic,Irrelevant,54.17,45.83,55.56,54.86,49.31,51.9460,4.2087
+S02_App-Drift,M1 Trajectory-Semantic,Recurring,46.53,36.81,38.89,48.61,37.5,41.6680,5.4891
+S02_App-Drift,M1 Trajectory-Semantic,Relevant,37.5,31.25,35.42,28.47,29.86,32.5000,3.8177
+S02_App-Drift,M1 Trajectory-Semantic,Stable,56.25,51.39,52.78,58.33,50.69,53.8880,3.2789
+S02_App-Drift,M10 FreshFacts+Mixed,Irrelevant,60.42,59.03,66.67,54.17,67.36,61.5300,5.5240
+S02_App-Drift,M10 FreshFacts+Mixed,Recurring,47.22,43.75,51.39,59.03,41.67,48.6120,6.8924
+S02_App-Drift,M10 FreshFacts+Mixed,Relevant,54.86,38.89,40.28,48.61,36.11,43.7500,7.7634
+S02_App-Drift,M10 FreshFacts+Mixed,Stable,65.97,52.78,61.11,62.5,53.47,59.1660,5.7969
+S02_App-Drift,M11 Independent-3+Selector,Irrelevant,75.69,57.64,63.89,67.36,54.17,63.7500,8.4369
+S02_App-Drift,M11 Independent-3+Selector,Recurring,54.17,58.33,57.64,58.33,56.94,57.0820,1.7267
+S02_App-Drift,M11 Independent-3+Selector,Relevant,58.33,57.64,51.39,57.64,52.08,55.4160,3.3809
+S02_App-Drift,M11 Independent-3+Selector,Stable,68.75,65.97,65.97,69.44,54.86,64.9980,5.8838
+S02_App-Drift,M12 Verify-All+Adapt,Irrelevant,69.44,64.58,62.5,67.36,52.08,63.1920,6.7508
+S02_App-Drift,M12 Verify-All+Adapt,Recurring,64.58,56.94,56.25,70.14,58.33,61.2480,5.9629
+S02_App-Drift,M12 Verify-All+Adapt,Relevant,64.58,63.19,61.81,63.89,61.11,62.9160,1.4385
+S02_App-Drift,M12 Verify-All+Adapt,Stable,63.19,57.64,60.42,61.11,64.58,61.3880,2.6692
+S02_App-Drift,M13 DEUL (proposed),Irrelevant,71.53,54.86,56.25,70.83,64.58,63.6100,7.8506
+S02_App-Drift,M13 DEUL (proposed),Recurring,61.11,69.44,71.53,65.97,60.42,65.6940,4.9243
+S02_App-Drift,M13 DEUL (proposed),Relevant,72.22,68.75,65.97,69.44,64.58,68.1920,3.0032
+S02_App-Drift,M13 DEUL (proposed),Stable,68.75,57.64,65.28,63.19,59.72,62.9160,4.4088
+S02_App-Drift,M14 No-Memory-Compute,Irrelevant,54.17,50.0,54.17,59.03,50.0,53.4740,3.7408
+S02_App-Drift,M14 No-Memory-Compute,Recurring,60.42,47.22,52.08,54.86,50.0,52.9160,5.0432
+S02_App-Drift,M14 No-Memory-Compute,Relevant,59.72,52.08,54.17,56.25,50.0,54.4440,3.7587
+S02_App-Drift,M14 No-Memory-Compute,Stable,57.64,50.69,56.25,55.56,47.22,53.4720,4.3668
+S02_App-Drift,M2 Plan-Semantic,Irrelevant,59.03,60.42,45.14,70.14,45.14,55.9740,10.7765
+S02_App-Drift,M2 Plan-Semantic,Recurring,45.14,43.06,44.44,50.0,52.78,47.0840,4.1204
+S02_App-Drift,M2 Plan-Semantic,Relevant,51.39,38.19,41.67,38.19,40.97,42.0820,5.4392
+S02_App-Drift,M2 Plan-Semantic,Stable,65.28,54.86,59.03,52.08,54.86,57.2220,5.1429
+S02_App-Drift,M3 Skill-Semantic,Irrelevant,58.33,60.42,56.25,64.58,52.78,58.4720,4.4288
+S02_App-Drift,M3 Skill-Semantic,Recurring,52.78,36.81,43.75,40.28,41.67,43.0580,5.9933
+S02_App-Drift,M3 Skill-Semantic,Relevant,38.19,34.03,34.03,34.72,31.94,34.5820,2.2708
+S02_App-Drift,M3 Skill-Semantic,Stable,68.06,58.33,56.94,68.75,63.19,63.0540,5.4134
+S02_App-Drift,M4 Mixed-Semantic,Irrelevant,58.33,61.81,65.28,61.11,52.78,59.8620,4.6693
+S02_App-Drift,M4 Mixed-Semantic,Recurring,51.39,44.44,41.67,45.83,43.75,45.4160,3.6613
+S02_App-Drift,M4 Mixed-Semantic,Relevant,45.83,33.33,27.08,41.67,38.89,37.3600,7.3242
+S02_App-Drift,M4 Mixed-Semantic,Stable,63.19,52.78,60.42,64.58,54.86,59.1660,5.1575
+S02_App-Drift,M5 AWM-adapt,Irrelevant,63.89,50.0,55.56,66.67,55.56,58.3360,6.8045
+S02_App-Drift,M5 AWM-adapt,Recurring,45.83,45.83,45.14,43.75,51.39,46.3880,2.9223
+S02_App-Drift,M5 AWM-adapt,Relevant,41.67,36.81,42.36,45.14,31.94,39.5840,5.2214
+S02_App-Drift,M5 AWM-adapt,Stable,59.72,60.42,60.42,63.19,52.08,59.1660,4.1790
+S02_App-Drift,M6 ReasoningBank-adapt,Irrelevant,59.72,54.17,68.06,63.19,60.42,61.1120,5.0794
+S02_App-Drift,M6 ReasoningBank-adapt,Recurring,56.25,50.69,47.22,55.56,51.39,52.2220,3.7224
+S02_App-Drift,M6 ReasoningBank-adapt,Relevant,50.69,44.44,39.58,53.47,45.14,46.6640,5.4768
+S02_App-Drift,M6 ReasoningBank-adapt,Stable,65.28,62.5,60.42,63.89,51.39,60.6960,5.5033
+S02_App-Drift,M7 H-EPM-infer-adapt,Irrelevant,70.14,56.25,54.86,59.03,61.11,60.2780,6.0226
+S02_App-Drift,M7 H-EPM-infer-adapt,Recurring,53.47,48.61,50.69,55.56,47.92,51.2500,3.2356
+S02_App-Drift,M7 H-EPM-infer-adapt,Relevant,47.92,43.06,53.47,55.56,43.06,48.6140,5.7880
+S02_App-Drift,M7 H-EPM-infer-adapt,Stable,68.75,58.33,61.11,69.44,56.25,62.7760,6.0255
+S02_App-Drift,M8 HMT-adapt,Irrelevant,66.67,60.42,64.58,65.28,61.11,63.6120,2.7166
+S02_App-Drift,M8 HMT-adapt,Recurring,52.78,47.22,62.5,56.94,52.08,54.3040,5.7353
+S02_App-Drift,M8 HMT-adapt,Relevant,59.72,49.31,49.31,63.19,47.92,53.8900,7.0369
+S02_App-Drift,M8 HMT-adapt,Stable,64.58,62.5,57.64,65.28,60.42,62.0840,3.1279
+S02_App-Drift,M9 QCR-adapt,Irrelevant,65.28,62.5,63.89,63.89,58.33,62.7780,2.6737
+S02_App-Drift,M9 QCR-adapt,Recurring,58.33,42.36,52.78,61.81,59.03,54.8620,7.7186
+S02_App-Drift,M9 QCR-adapt,Relevant,56.25,53.47,52.08,56.94,54.17,54.5820,2.0005
+S02_App-Drift,M9 QCR-adapt,Stable,71.53,66.67,56.94,59.03,54.86,61.8060,7.0329
+S02_W-Drift,M0 No Persistent Experience,Irrelevant,42.19,41.15,29.17,46.35,36.98,39.1680,6.5075
+S02_W-Drift,M0 No Persistent Experience,Recurring,41.15,51.56,42.19,36.98,38.54,42.0840,5.6853
+S02_W-Drift,M0 No Persistent Experience,Relevant,41.15,45.31,46.35,35.94,41.15,41.9800,4.1245
+S02_W-Drift,M0 No Persistent Experience,Stable,46.35,48.44,50.0,39.06,38.54,44.4780,5.3458
+S02_W-Drift,M1 Trajectory-Semantic,Irrelevant,41.67,57.81,40.62,47.92,37.5,45.1040,8.0482
+S02_W-Drift,M1 Trajectory-Semantic,Recurring,36.98,41.67,38.02,29.69,39.06,37.0840,4.4859
+S02_W-Drift,M1 Trajectory-Semantic,Relevant,28.65,33.33,29.17,27.08,27.6,29.1660,2.4703
+S02_W-Drift,M1 Trajectory-Semantic,Stable,53.12,55.73,46.35,53.12,48.44,51.3520,3.8379
+S02_W-Drift,M10 FreshFacts+Mixed,Irrelevant,50.52,53.12,57.81,46.35,58.33,53.2260,5.0417
+S02_W-Drift,M10 FreshFacts+Mixed,Recurring,45.31,48.96,44.79,41.15,43.23,44.6880,2.8849
+S02_W-Drift,M10 FreshFacts+Mixed,Relevant,37.5,45.83,33.33,40.1,40.62,39.4760,4.5757
+S02_W-Drift,M10 FreshFacts+Mixed,Stable,59.38,67.71,55.73,55.21,45.83,56.7720,7.9009
+S02_W-Drift,M11 Independent-3+Selector,Irrelevant,58.33,66.15,57.29,57.29,45.83,56.9780,7.2530
+S02_W-Drift,M11 Independent-3+Selector,Recurring,54.17,60.94,59.9,50.52,48.96,54.8980,5.3964
+S02_W-Drift,M11 Independent-3+Selector,Relevant,50.52,55.73,46.35,54.17,49.48,51.2500,3.7508
+S02_W-Drift,M11 Independent-3+Selector,Stable,58.85,61.98,64.06,63.54,65.1,62.7060,2.4319
+S02_W-Drift,M12 Verify-All+Adapt,Irrelevant,55.21,62.5,56.77,53.65,48.44,55.3140,5.0939
+S02_W-Drift,M12 Verify-All+Adapt,Recurring,59.38,61.98,60.94,57.81,54.69,58.9600,2.8624
+S02_W-Drift,M12 Verify-All+Adapt,Relevant,59.38,60.42,57.29,61.46,54.17,58.5440,2.8907
+S02_W-Drift,M12 Verify-All+Adapt,Stable,55.21,63.54,56.77,57.29,61.98,58.9580,3.5967
+S02_W-Drift,M13 DEUL (proposed),Irrelevant,60.94,58.85,58.85,56.25,53.65,57.7080,2.8128
+S02_W-Drift,M13 DEUL (proposed),Recurring,61.98,63.54,58.85,58.85,60.94,60.8320,2.0322
+S02_W-Drift,M13 DEUL (proposed),Relevant,59.9,66.15,66.15,61.46,58.85,62.5020,3.4572
+S02_W-Drift,M13 DEUL (proposed),Stable,58.33,70.83,56.25,57.81,60.42,60.7280,5.8409
+S02_W-Drift,M14 No-Memory-Compute,Irrelevant,50.0,54.69,45.83,39.58,43.75,46.7700,5.8064
+S02_W-Drift,M14 No-Memory-Compute,Recurring,46.88,56.25,45.83,50.52,41.15,48.1260,5.6396
+S02_W-Drift,M14 No-Memory-Compute,Relevant,47.92,56.25,47.4,43.23,43.75,47.7100,5.2159
+S02_W-Drift,M14 No-Memory-Compute,Stable,45.31,47.4,48.96,53.65,51.04,49.2720,3.2246
+S02_W-Drift,M2 Plan-Semantic,Irrelevant,45.83,52.08,39.58,61.46,46.35,49.0600,8.2239
+S02_W-Drift,M2 Plan-Semantic,Recurring,44.27,46.35,39.06,39.58,42.71,42.3940,3.0945
+S02_W-Drift,M2 Plan-Semantic,Relevant,40.1,39.58,45.83,30.73,32.81,37.8100,6.0791
+S02_W-Drift,M2 Plan-Semantic,Stable,52.6,61.98,52.6,47.92,47.92,52.6040,5.7400
+S02_W-Drift,M3 Skill-Semantic,Irrelevant,52.08,57.81,57.81,45.31,48.96,52.3940,5.4941
+S02_W-Drift,M3 Skill-Semantic,Recurring,45.31,42.71,35.94,41.67,41.15,41.3560,3.4257
+S02_W-Drift,M3 Skill-Semantic,Relevant,27.6,39.58,29.17,30.21,34.38,32.1880,4.8352
+S02_W-Drift,M3 Skill-Semantic,Stable,63.02,66.15,55.73,57.81,48.96,58.3340,6.6704
+S02_W-Drift,M4 Mixed-Semantic,Irrelevant,50.52,60.94,52.08,35.42,48.44,49.4800,9.1916
+S02_W-Drift,M4 Mixed-Semantic,Recurring,40.62,52.6,39.06,35.42,33.85,40.3100,7.3883
+S02_W-Drift,M4 Mixed-Semantic,Relevant,31.25,44.27,32.29,30.21,36.46,34.8960,5.7524
+S02_W-Drift,M4 Mixed-Semantic,Stable,60.42,57.81,56.77,65.1,45.31,57.0820,7.3253
+S02_W-Drift,M5 AWM-adapt,Irrelevant,55.73,61.98,47.92,42.19,50.52,51.6680,7.5504
+S02_W-Drift,M5 AWM-adapt,Recurring,39.58,43.75,49.48,45.31,40.1,43.6440,4.0596
+S02_W-Drift,M5 AWM-adapt,Relevant,38.02,44.79,30.21,38.54,29.69,36.2500,6.3408
+S02_W-Drift,M5 AWM-adapt,Stable,51.56,59.38,63.54,55.73,54.17,56.8760,4.6791
+S02_W-Drift,M6 ReasoningBank-adapt,Irrelevant,51.04,56.25,50.52,52.6,45.31,51.1440,3.9569
+S02_W-Drift,M6 ReasoningBank-adapt,Recurring,42.71,48.44,47.4,44.79,45.83,45.8340,2.2413
+S02_W-Drift,M6 ReasoningBank-adapt,Relevant,39.58,39.06,43.75,36.98,39.06,39.6860,2.4816
+S02_W-Drift,M6 ReasoningBank-adapt,Stable,61.46,71.35,51.56,53.12,55.73,58.6440,8.0399
+S02_W-Drift,M7 H-EPM-infer-adapt,Irrelevant,54.69,53.65,51.04,55.21,52.6,53.4380,1.6737
+S02_W-Drift,M7 H-EPM-infer-adapt,Recurring,46.88,52.6,45.83,43.75,43.75,46.5620,3.6369
+S02_W-Drift,M7 H-EPM-infer-adapt,Relevant,39.58,47.4,49.48,36.98,40.62,42.8120,5.3567
+S02_W-Drift,M7 H-EPM-infer-adapt,Stable,58.85,68.23,57.81,56.25,51.56,58.5400,6.0928
+S02_W-Drift,M8 HMT-adapt,Irrelevant,56.77,57.81,58.33,48.96,52.6,54.8940,4.0095
+S02_W-Drift,M8 HMT-adapt,Recurring,53.12,61.46,52.08,43.23,44.79,50.9360,7.3142
+S02_W-Drift,M8 HMT-adapt,Relevant,50.0,50.52,38.02,51.56,42.19,46.4580,6.0102
+S02_W-Drift,M8 HMT-adapt,Stable,56.77,64.06,58.85,55.73,58.85,58.8520,3.2096
+S02_W-Drift,M9 QCR-adapt,Irrelevant,60.42,66.67,56.77,50.52,48.96,56.6680,7.2688
+S02_W-Drift,M9 QCR-adapt,Recurring,54.69,50.52,52.08,50.0,48.96,51.2500,2.2283
+S02_W-Drift,M9 QCR-adapt,Relevant,52.08,56.25,52.08,45.83,41.15,49.4780,5.9595
+S02_W-Drift,M9 QCR-adapt,Stable,51.04,66.15,60.42,70.31,61.98,61.9800,7.2266
+S02_Work-Drift,M0 No Persistent Experience,Irrelevant,34.03,38.19,37.5,29.17,38.89,35.5560,4.0293
+S02_Work-Drift,M0 No Persistent Experience,Recurring,27.08,36.11,28.47,33.33,36.11,32.2200,4.2420
+S02_Work-Drift,M0 No Persistent Experience,Relevant,34.03,31.25,25.69,22.92,29.17,28.6120,4.4035
+S02_Work-Drift,M0 No Persistent Experience,Stable,37.5,35.42,37.5,28.47,32.64,34.3060,3.8236
+S02_Work-Drift,M1 Trajectory-Semantic,Irrelevant,43.75,40.97,43.06,35.42,40.97,40.8340,3.2713
+S02_Work-Drift,M1 Trajectory-Semantic,Recurring,22.22,29.17,31.25,27.08,28.47,27.6380,3.3820
+S02_Work-Drift,M1 Trajectory-Semantic,Relevant,18.75,19.44,20.83,9.03,14.58,16.5260,4.7942
+S02_Work-Drift,M1 Trajectory-Semantic,Stable,49.31,43.75,27.78,36.11,38.89,39.1680,8.1082
+S02_Work-Drift,M10 FreshFacts+Mixed,Irrelevant,54.86,49.31,54.17,45.83,45.14,49.8620,4.5387
+S02_Work-Drift,M10 FreshFacts+Mixed,Recurring,38.89,40.97,38.89,30.56,36.11,37.0840,4.0353
+S02_Work-Drift,M10 FreshFacts+Mixed,Relevant,31.94,26.39,26.39,24.31,31.94,28.1940,3.5235
+S02_Work-Drift,M10 FreshFacts+Mixed,Stable,51.39,49.31,44.44,45.83,46.53,47.5000,2.8063
+S02_Work-Drift,M11 Independent-3+Selector,Irrelevant,59.72,59.03,50.69,50.0,51.39,54.1660,4.7867
+S02_Work-Drift,M11 Independent-3+Selector,Recurring,45.14,47.92,45.14,39.58,49.31,45.4180,3.7298
+S02_Work-Drift,M11 Independent-3+Selector,Relevant,37.5,47.22,41.67,34.72,33.33,38.8880,5.6425
+S02_Work-Drift,M11 Independent-3+Selector,Stable,54.17,56.25,47.22,52.78,51.39,52.3620,3.3891
+S02_Work-Drift,M12 Verify-All+Adapt,Irrelevant,56.94,59.72,47.92,50.0,50.69,53.0540,5.0202
+S02_Work-Drift,M12 Verify-All+Adapt,Recurring,43.06,51.39,54.17,44.44,58.33,50.2780,6.4692
+S02_Work-Drift,M12 Verify-All+Adapt,Relevant,52.08,52.78,45.83,45.14,39.58,47.0820,5.4559
+S02_Work-Drift,M12 Verify-All+Adapt,Stable,59.03,50.0,51.39,45.14,44.44,50.0000,5.8738
+S02_Work-Drift,M13 DEUL (proposed),Irrelevant,59.03,56.25,50.69,52.08,51.39,53.8880,3.5971
+S02_Work-Drift,M13 DEUL (proposed),Recurring,58.33,51.39,45.14,54.17,58.33,53.4720,5.5101
+S02_Work-Drift,M13 DEUL (proposed),Relevant,55.56,59.72,47.92,38.89,47.22,49.8620,8.0744
+S02_Work-Drift,M13 DEUL (proposed),Stable,54.86,48.61,54.17,46.53,52.08,51.2500,3.5880
+S02_Work-Drift,M14 No-Memory-Compute,Irrelevant,38.89,50.69,45.14,34.03,42.36,42.2220,6.2939
+S02_Work-Drift,M14 No-Memory-Compute,Recurring,41.67,50.69,32.64,32.64,43.06,40.1400,7.6595
+S02_Work-Drift,M14 No-Memory-Compute,Relevant,43.06,37.5,36.81,32.64,36.81,37.3640,3.7213
+S02_Work-Drift,M14 No-Memory-Compute,Stable,43.06,39.58,41.67,37.5,36.11,39.5840,2.8656
+S02_Work-Drift,M2 Plan-Semantic,Irrelevant,43.06,46.53,36.81,38.19,49.31,42.7800,5.3266
+S02_Work-Drift,M2 Plan-Semantic,Recurring,39.58,36.81,28.47,29.86,35.42,34.0280,4.7108
+S02_Work-Drift,M2 Plan-Semantic,Relevant,24.31,32.64,28.47,22.22,25.0,26.5280,4.0909
+S02_Work-Drift,M2 Plan-Semantic,Stable,45.14,47.22,39.58,42.36,38.19,42.4980,3.7540
+S02_Work-Drift,M3 Skill-Semantic,Irrelevant,51.39,48.61,46.53,47.92,47.22,48.3340,1.8763
+S02_Work-Drift,M3 Skill-Semantic,Recurring,31.25,36.81,27.78,23.61,37.5,31.3900,5.9222
+S02_Work-Drift,M3 Skill-Semantic,Relevant,19.44,20.14,16.67,18.06,21.53,19.1680,1.8752
+S02_Work-Drift,M3 Skill-Semantic,Stable,52.78,53.47,51.39,37.5,43.06,47.6400,7.0404
+S02_Work-Drift,M4 Mixed-Semantic,Irrelevant,51.39,47.92,43.75,45.14,54.86,48.6120,4.5532
+S02_Work-Drift,M4 Mixed-Semantic,Recurring,35.42,31.94,34.03,29.17,23.61,30.8340,4.6750
+S02_Work-Drift,M4 Mixed-Semantic,Relevant,19.44,31.25,25.69,18.06,19.44,22.7760,5.5857
+S02_Work-Drift,M4 Mixed-Semantic,Stable,50.69,51.39,44.44,40.97,50.69,47.6360,4.6743
+S02_Work-Drift,M5 AWM-adapt,Irrelevant,49.31,42.36,57.64,38.89,56.94,49.0280,8.4274
+S02_Work-Drift,M5 AWM-adapt,Recurring,40.28,38.89,32.64,30.56,31.25,34.7240,4.5270
+S02_Work-Drift,M5 AWM-adapt,Relevant,25.0,31.25,24.31,20.14,20.14,24.1680,4.5639
+S02_Work-Drift,M5 AWM-adapt,Stable,48.61,54.17,48.61,45.83,41.67,47.7780,4.5647
+S02_Work-Drift,M6 ReasoningBank-adapt,Irrelevant,39.58,59.03,48.61,43.75,60.42,50.2780,9.2101
+S02_Work-Drift,M6 ReasoningBank-adapt,Recurring,45.83,27.78,38.19,35.42,28.47,35.1380,7.4551
+S02_Work-Drift,M6 ReasoningBank-adapt,Relevant,34.72,34.72,27.78,23.61,29.86,30.1380,4.7498
+S02_Work-Drift,M6 ReasoningBank-adapt,Stable,49.31,59.03,47.22,42.36,44.44,48.4720,6.4683
+S02_Work-Drift,M7 H-EPM-infer-adapt,Irrelevant,57.64,52.08,47.22,49.31,47.92,50.8340,4.2352
+S02_Work-Drift,M7 H-EPM-infer-adapt,Recurring,39.58,47.22,34.72,34.03,38.89,38.8880,5.2648
+S02_Work-Drift,M7 H-EPM-infer-adapt,Relevant,38.19,34.03,36.81,25.0,24.31,31.6680,6.5795
+S02_Work-Drift,M7 H-EPM-infer-adapt,Stable,45.83,50.69,45.83,50.0,54.86,49.4420,3.7854
+S02_Work-Drift,M8 HMT-adapt,Irrelevant,60.42,54.17,45.83,45.14,46.53,50.4180,6.6735
+S02_Work-Drift,M8 HMT-adapt,Recurring,39.58,47.22,43.06,35.42,42.36,41.5280,4.3744
+S02_Work-Drift,M8 HMT-adapt,Relevant,36.11,43.75,27.78,31.94,36.11,35.1380,5.9250
+S02_Work-Drift,M8 HMT-adapt,Stable,50.0,51.39,50.0,50.69,44.44,49.3040,2.7794
+S02_Work-Drift,M9 QCR-adapt,Irrelevant,55.56,51.39,50.69,43.75,56.25,51.5280,4.9943
+S02_Work-Drift,M9 QCR-adapt,Recurring,35.42,50.0,45.83,40.28,42.36,42.7780,5.5233
+S02_Work-Drift,M9 QCR-adapt,Relevant,52.78,40.97,35.42,24.31,36.11,37.9180,10.3063
+S02_Work-Drift,M9 QCR-adapt,Stable,54.17,55.56,51.39,50.0,52.08,52.6400,2.2200
+S03,M0 No Persistent Experience,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M0 No Persistent Experience,Env Steps/task,19.0,19.11,19.26,19.04,18.6,19.0020,0.2456
+S03,M0 No Persistent Experience,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M0 No Persistent Experience,Success/M tokens,9.94,11.37,9.58,8.06,8.74,9.5380,1.2591
+S03,M0 No Persistent Experience,Total Tokens (k),42.95,40.99,43.78,49.14,44.39,44.2500,3.0195
+S03,M1 Trajectory-Semantic,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M1 Trajectory-Semantic,Env Steps/task,19.12,18.75,18.82,19.08,18.68,18.8900,0.1985
+S03,M1 Trajectory-Semantic,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M1 Trajectory-Semantic,Success/M tokens,8.63,11.43,7.33,8.37,8.72,8.8960,1.5208
+S03,M1 Trajectory-Semantic,Total Tokens (k),46.46,41.24,52.58,47.12,43.76,46.2320,4.2476
+S03,M10 FreshFacts+Mixed,Adapt/task,0.1,0.12,0.09,0.11,0.12,0.1080,0.0130
+S03,M10 FreshFacts+Mixed,Env Steps/task,18.47,18.28,18.29,18.7,18.8,18.5080,0.2362
+S03,M10 FreshFacts+Mixed,Queries/task,2.89,2.79,2.85,2.83,2.94,2.8600,0.0574
+S03,M10 FreshFacts+Mixed,Success/M tokens,10.56,11.51,9.91,8.34,8.36,9.7360,1.3873
+S03,M10 FreshFacts+Mixed,Total Tokens (k),45.64,46.82,48.37,54.83,56.24,50.3800,4.8302
+S03,M11 Independent-3+Selector,Adapt/task,0.67,0.66,0.63,0.63,0.67,0.6520,0.0205
+S03,M11 Independent-3+Selector,Env Steps/task,18.28,18.86,18.15,17.89,17.92,18.2200,0.3927
+S03,M11 Independent-3+Selector,Queries/task,3.09,3.2,3.4,3.03,3.33,3.2100,0.1560
+S03,M11 Independent-3+Selector,Success/M tokens,11.09,12.22,12.02,12.19,10.13,11.5300,0.9090
+S03,M11 Independent-3+Selector,Total Tokens (k),50.0,50.09,47.32,46.26,51.68,49.0700,2.2179
+S03,M12 Verify-All+Adapt,Adapt/task,0.91,0.86,0.86,0.85,0.87,0.8700,0.0235
+S03,M12 Verify-All+Adapt,Env Steps/task,18.46,17.86,18.32,18.38,17.83,18.1700,0.3010
+S03,M12 Verify-All+Adapt,Queries/task,7.24,7.22,7.21,7.15,7.19,7.2020,0.0342
+S03,M12 Verify-All+Adapt,Success/M tokens,8.9,9.93,10.04,9.31,9.2,9.4760,0.4898
+S03,M12 Verify-All+Adapt,Total Tokens (k),64.34,62.56,57.7,61.85,59.6,61.2100,2.5952
+S03,M13 DEUL (proposed),Adapt/task,0.8,0.83,0.77,0.74,0.72,0.7720,0.0444
+S03,M13 DEUL (proposed),Env Steps/task,18.12,17.87,17.76,17.81,17.79,17.8700,0.1454
+S03,M13 DEUL (proposed),Queries/task,2.88,2.76,2.84,2.83,2.84,2.8300,0.0436
+S03,M13 DEUL (proposed),Success/M tokens,12.14,14.45,14.02,13.11,12.72,13.2880,0.9432
+S03,M13 DEUL (proposed),Total Tokens (k),49.66,44.89,42.8,44.68,45.96,45.5980,2.5399
+S03,M14 No-Memory-Compute,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M14 No-Memory-Compute,Env Steps/task,18.65,18.48,18.52,18.18,18.82,18.5300,0.2364
+S03,M14 No-Memory-Compute,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M14 No-Memory-Compute,Success/M tokens,10.06,9.66,8.9,8.12,7.49,8.8460,1.0613
+S03,M14 No-Memory-Compute,Total Tokens (k),47.24,55.54,52.79,57.58,60.0,54.6300,4.9083
+S03,M2 Plan-Semantic,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M2 Plan-Semantic,Env Steps/task,18.87,19.21,18.71,18.45,18.42,18.7320,0.3259
+S03,M2 Plan-Semantic,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M2 Plan-Semantic,Success/M tokens,11.15,13.33,11.51,12.01,10.9,11.7800,0.9617
+S03,M2 Plan-Semantic,Total Tokens (k),40.98,37.51,38.46,37.39,38.96,38.6600,1.4533
+S03,M3 Skill-Semantic,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M3 Skill-Semantic,Env Steps/task,18.79,18.5,18.79,18.73,19.38,18.8380,0.3257
+S03,M3 Skill-Semantic,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M3 Skill-Semantic,Success/M tokens,12.21,14.96,11.75,13.14,9.54,12.3200,1.9816
+S03,M3 Skill-Semantic,Total Tokens (k),38.51,34.46,38.01,33.3,45.47,37.9500,4.7610
+S03,M4 Mixed-Semantic,Adapt/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M4 Mixed-Semantic,Env Steps/task,18.61,18.2,18.93,18.79,18.97,18.7000,0.3130
+S03,M4 Mixed-Semantic,Queries/task,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S03,M4 Mixed-Semantic,Success/M tokens,7.61,11.98,8.59,8.49,7.97,8.9280,1.7518
+S03,M4 Mixed-Semantic,Total Tokens (k),60.05,44.98,52.43,48.95,51.49,51.5800,5.5441
+S03,M5 AWM-adapt,Adapt/task,0.22,0.2,0.26,0.22,0.2,0.2200,0.0245
+S03,M5 AWM-adapt,Env Steps/task,18.35,18.38,18.57,18.61,18.63,18.5080,0.1327
+S03,M5 AWM-adapt,Queries/task,1.05,1.03,1.07,0.95,1.1,1.0400,0.0566
+S03,M5 AWM-adapt,Success/M tokens,10.75,11.67,10.45,9.8,9.24,10.3820,0.9276
+S03,M5 AWM-adapt,Total Tokens (k),43.0,44.95,45.75,46.37,47.23,45.4600,1.6091
+S03,M6 ReasoningBank-adapt,Adapt/task,0.22,0.24,0.25,0.24,0.25,0.2400,0.0122
+S03,M6 ReasoningBank-adapt,Env Steps/task,18.53,19.11,18.98,18.8,18.22,18.7280,0.3577
+S03,M6 ReasoningBank-adapt,Queries/task,1.36,1.38,1.39,1.38,1.45,1.3920,0.0342
+S03,M6 ReasoningBank-adapt,Success/M tokens,11.1,11.08,9.96,9.86,10.25,10.4500,0.6016
+S03,M6 ReasoningBank-adapt,Total Tokens (k),43.86,48.55,48.5,47.56,45.34,46.7620,2.0795
+S03,M7 H-EPM-infer-adapt,Adapt/task,0.32,0.33,0.32,0.33,0.35,0.3300,0.0122
+S03,M7 H-EPM-infer-adapt,Env Steps/task,18.19,18.53,18.45,18.87,18.86,18.5800,0.2890
+S03,M7 H-EPM-infer-adapt,Queries/task,1.83,1.82,1.75,1.78,1.87,1.8100,0.0464
+S03,M7 H-EPM-infer-adapt,Success/M tokens,12.12,13.6,13.21,10.04,9.46,11.6860,1.8600
+S03,M7 H-EPM-infer-adapt,Total Tokens (k),41.24,40.8,38.63,47.87,49.82,43.6720,4.8735
+S03,M8 HMT-adapt,Adapt/task,0.43,0.45,0.46,0.39,0.48,0.4420,0.0342
+S03,M8 HMT-adapt,Env Steps/task,18.17,18.43,18.27,18.27,18.5,18.3280,0.1339
+S03,M8 HMT-adapt,Queries/task,2.15,2.18,2.15,2.12,2.15,2.1500,0.0212
+S03,M8 HMT-adapt,Success/M tokens,10.61,14.06,10.9,10.64,9.75,11.1920,1.6608
+S03,M8 HMT-adapt,Total Tokens (k),51.06,41.57,47.53,46.88,50.87,47.5820,3.8583
+S03,M9 QCR-adapt,Adapt/task,0.47,0.41,0.43,0.38,0.4,0.4180,0.0342
+S03,M9 QCR-adapt,Env Steps/task,18.17,18.3,18.46,17.95,18.58,18.2920,0.2465
+S03,M9 QCR-adapt,Queries/task,1.89,1.83,1.88,1.88,1.98,1.8920,0.0545
+S03,M9 QCR-adapt,Success/M tokens,13.52,16.32,12.74,11.45,10.84,12.9740,2.1462
+S03,M9 QCR-adapt,Total Tokens (k),40.34,36.7,43.43,47.32,46.37,42.8320,4.3826
+S04,M0 No Persistent Experience,NT (%),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S04,M0 No Persistent Experience,PT (%),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S04,M0 No Persistent Experience,ΔSR (pp),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S04,M1 Trajectory-Semantic,NT (%),9.0,8.2,6.2,7.9,7.2,7.7000,1.0583
+S04,M1 Trajectory-Semantic,PT (%),6.4,8.7,2.9,7.8,6.5,6.4600,2.2075
+S04,M1 Trajectory-Semantic,ΔSR (pp),-2.6,0.5,-3.4,-0.1,-0.7,-1.2600,1.6682
+S04,M10 FreshFacts+Mixed,NT (%),3.6,3.0,3.4,2.9,3.4,3.2600,0.2966
+S04,M10 FreshFacts+Mixed,PT (%),9.1,10.3,9.4,9.0,11.6,9.8800,1.0895
+S04,M10 FreshFacts+Mixed,ΔSR (pp),5.5,7.3,6.0,6.1,8.2,6.6200,1.1032
+S04,M11 Independent-3+Selector,NT (%),1.6,0.9,1.7,0.9,1.7,1.3600,0.4219
+S04,M11 Independent-3+Selector,PT (%),14.3,15.5,16.7,17.7,15.2,15.8800,1.3312
+S04,M11 Independent-3+Selector,ΔSR (pp),12.8,14.6,15.0,16.8,13.5,14.5400,1.5356
+S04,M12 Verify-All+Adapt,NT (%),1.7,0.9,0.9,1.3,1.3,1.2200,0.3347
+S04,M12 Verify-All+Adapt,PT (%),16.3,16.4,16.9,19.3,17.3,17.2400,1.2198
+S04,M12 Verify-All+Adapt,ΔSR (pp),14.6,15.5,16.0,18.0,16.0,16.0200,1.2458
+S04,M13 DEUL (proposed),NT (%),0.5,0.4,0.8,0.9,1.0,0.7200,0.2588
+S04,M13 DEUL (proposed),PT (%),18.1,18.6,18.9,19.9,20.7,19.2400,1.0479
+S04,M13 DEUL (proposed),ΔSR (pp),17.6,18.2,18.1,19.0,19.7,18.5200,0.8289
+S04,M14 No-Memory-Compute,NT (%),4.0,3.6,3.4,3.1,2.6,3.3400,0.5273
+S04,M14 No-Memory-Compute,PT (%),8.9,10.7,8.5,10.3,8.7,9.4200,1.0060
+S04,M14 No-Memory-Compute,ΔSR (pp),4.8,7.0,5.1,7.2,6.1,6.0400,1.0831
+S04,M2 Plan-Semantic,NT (%),4.8,4.0,4.3,4.7,3.5,4.2600,0.5320
+S04,M2 Plan-Semantic,PT (%),7.8,7.4,6.6,10.0,7.2,7.8000,1.3038
+S04,M2 Plan-Semantic,ΔSR (pp),3.0,3.4,2.3,5.3,3.6,3.5200,1.1122
+S04,M3 Skill-Semantic,NT (%),4.8,4.3,5.9,4.9,3.8,4.7400,0.7829
+S04,M3 Skill-Semantic,PT (%),9.1,9.2,8.6,9.1,8.3,8.8600,0.3912
+S04,M3 Skill-Semantic,ΔSR (pp),4.3,4.9,2.7,4.2,4.6,4.1400,0.8503
+S04,M4 Mixed-Semantic,NT (%),2.6,5.2,4.3,6.4,2.3,4.1600,1.7329
+S04,M4 Mixed-Semantic,PT (%),5.6,12.5,7.4,8.3,4.6,7.6800,3.0622
+S04,M4 Mixed-Semantic,ΔSR (pp),3.0,7.3,3.1,2.0,2.2,3.5200,2.1673
+S04,M5 AWM-adapt,NT (%),3.3,3.4,4.6,5.1,4.0,4.0800,0.7727
+S04,M5 AWM-adapt,PT (%),6.8,9.2,10.4,10.9,8.9,9.2400,1.5947
+S04,M5 AWM-adapt,ΔSR (pp),3.5,5.9,5.9,5.9,4.8,5.2000,1.0630
+S04,M6 ReasoningBank-adapt,NT (%),3.4,3.5,2.7,3.6,4.2,3.4800,0.5357
+S04,M6 ReasoningBank-adapt,PT (%),9.4,10.7,9.1,10.9,11.8,10.3800,1.1167
+S04,M6 ReasoningBank-adapt,ΔSR (pp),6.0,7.2,6.4,7.3,7.7,6.9200,0.6979
+S04,M7 H-EPM-infer-adapt,NT (%),3.0,3.0,2.9,2.9,2.9,2.9400,0.0548
+S04,M7 H-EPM-infer-adapt,PT (%),10.3,11.8,12.0,11.3,11.2,11.3200,0.6611
+S04,M7 H-EPM-infer-adapt,ΔSR (pp),7.3,8.9,9.1,8.5,8.3,8.4200,0.7014
+S04,M8 HMT-adapt,NT (%),2.1,1.4,2.1,1.7,2.5,1.9600,0.4219
+S04,M8 HMT-adapt,PT (%),13.5,13.3,12.0,12.0,13.3,12.8200,0.7530
+S04,M8 HMT-adapt,ΔSR (pp),11.5,11.8,9.9,10.3,10.8,10.8600,0.7956
+S04,M9 QCR-adapt,NT (%),1.2,1.6,1.6,1.3,1.0,1.3400,0.2608
+S04,M9 QCR-adapt,PT (%),13.0,14.8,15.0,15.9,12.5,14.2400,1.4328
+S04,M9 QCR-adapt,ΔSR (pp),11.8,13.3,13.4,14.6,11.5,12.9200,1.2716
+S06,Contract shift/Plan,NT (%),3.5156,4.6875,3.9062,3.5156,3.125,3.7500,0.5924
+S06,Contract shift/Plan,PT (%),3.91,8.59,3.12,4.3,3.12,4.6080,2.2840
+S06,Contract shift/Plan,ΔSR (pp),0.39,3.91,-0.79,0.78,-0.0,0.8580,1.8022
+S06,Contract shift/Plan,无经验SR (%),39.84,43.36,47.27,41.8,40.23,42.5000,3.0088
+S06,Contract shift/Plan,该表示SR (%),40.23,47.27,46.48,42.58,40.23,43.3580,3.3625
+S06,Contract shift/Skill,NT (%),10.1562,8.5938,10.5469,10.9375,10.9375,10.2344,0.9726
+S06,Contract shift/Skill,PT (%),0.39,-0.39,0.39,2.73,1.95,1.0140,1.2817
+S06,Contract shift/Skill,ΔSR (pp),-9.76,-8.98,-10.16,-8.21,-8.98,-9.2180,0.7600
+S06,Contract shift/Skill,无经验SR (%),39.84,43.36,47.27,41.8,40.23,42.5000,3.0088
+S06,Contract shift/Skill,该表示SR (%),30.08,34.38,37.11,33.59,31.25,33.2820,2.7539
+S06,Contract shift/Trajectory,NT (%),19.5312,14.8438,13.2812,9.7656,13.2812,14.1406,3.5416
+S06,Contract shift/Trajectory,PT (%),10.55,3.52,-1.56,-5.86,-4.3,0.4700,6.6681
+S06,Contract shift/Trajectory,ΔSR (pp),-8.98,-11.33,-14.85,-15.63,-17.57,-13.6720,3.4611
+S06,Contract shift/Trajectory,无经验SR (%),39.84,43.36,47.27,41.8,40.23,42.5000,3.0088
+S06,Contract shift/Trajectory,该表示SR (%),30.86,32.03,32.42,26.17,22.66,28.8280,4.2542
+S06,DOM shift/Plan,NT (%),3.475,0.35,1.5219,1.1313,1.5219,1.6000,1.1522
+S06,DOM shift/Plan,PT (%),13.24,8.55,6.6,8.94,7.38,8.9420,2.5764
+S06,DOM shift/Plan,ΔSR (pp),9.77,8.2,5.08,7.82,5.86,7.3460,1.8823
+S06,DOM shift/Plan,无经验SR (%),31.25,42.19,34.38,40.23,42.19,38.0480,4.9684
+S06,DOM shift/Plan,该表示SR (%),41.02,50.39,39.45,48.05,48.05,45.3920,4.8356
+S06,DOM shift/Skill,NT (%),3.125,3.125,5.8594,4.2969,3.125,3.9063,1.2040
+S06,DOM shift/Skill,PT (%),7.81,3.52,4.69,3.91,3.91,4.7680,1.7528
+S06,DOM shift/Skill,ΔSR (pp),4.69,0.39,-1.17,-0.39,0.78,0.8600,2.2682
+S06,DOM shift/Skill,无经验SR (%),31.25,42.19,34.38,40.23,42.19,38.0480,4.9684
+S06,DOM shift/Skill,该表示SR (%),35.94,42.58,33.2,39.84,42.97,38.9060,4.2498
+S06,DOM shift/Trajectory,NT (%),8.5938,9.375,8.2031,8.2031,10.5469,8.9844,0.9959
+S06,DOM shift/Trajectory,PT (%),1.17,-0.39,-0.39,0.39,4.3,1.0160,1.9464
+S06,DOM shift/Trajectory,ΔSR (pp),-7.42,-9.77,-8.59,-7.81,-6.25,-7.9680,1.3144
+S06,DOM shift/Trajectory,无经验SR (%),31.25,42.19,34.38,40.23,42.19,38.0480,4.9684
+S06,DOM shift/Trajectory,该表示SR (%),23.83,32.42,25.78,32.42,35.94,30.0780,5.0706
+S06,Irrelevant/Plan,NT (%),0.7375,3.0812,0.3469,4.2531,3.0812,2.3000,1.6801
+S06,Irrelevant/Plan,PT (%),6.99,6.21,3.86,12.07,12.07,8.2400,3.6812
+S06,Irrelevant/Plan,ΔSR (pp),6.25,3.13,3.51,7.82,8.99,5.9400,2.5852
+S06,Irrelevant/Plan,无经验SR (%),46.09,44.14,41.02,46.48,45.7,44.6860,2.2336
+S06,Irrelevant/Plan,该表示SR (%),52.34,47.27,44.53,54.3,54.69,50.6260,4.5104
+S06,Irrelevant/Skill,NT (%),1.5688,1.1781,2.35,0.3969,0.0063,1.1000,0.9326
+S06,Irrelevant/Skill,PT (%),16.41,11.33,14.46,14.07,10.16,13.2860,2.5174
+S06,Irrelevant/Skill,ΔSR (pp),14.85,10.16,12.1,13.68,10.16,12.1900,2.0944
+S06,Irrelevant/Skill,无经验SR (%),46.09,44.14,41.02,46.48,45.7,44.6860,2.2336
+S06,Irrelevant/Skill,该表示SR (%),60.94,54.3,53.12,60.16,55.86,56.8760,3.5027
+S06,Irrelevant/Trajectory,NT (%),2.3438,1.5625,0.7812,1.1719,1.5625,1.4844,0.5794
+S06,Irrelevant/Trajectory,PT (%),12.5,8.98,8.98,8.59,7.42,9.2940,1.9028
+S06,Irrelevant/Trajectory,ΔSR (pp),10.16,7.42,8.2,7.43,5.86,7.8140,1.5631
+S06,Irrelevant/Trajectory,无经验SR (%),46.09,44.14,41.02,46.48,45.7,44.6860,2.2336
+S06,Irrelevant/Trajectory,该表示SR (%),56.25,51.56,49.22,53.91,51.56,52.5000,2.6728
+S06,Rare exception/Plan,NT (%),5.4688,6.25,5.8594,3.9062,5.8594,5.4688,0.9161
+S06,Rare exception/Plan,PT (%),3.52,6.64,3.91,0.0,3.12,3.4380,2.3666
+S06,Rare exception/Plan,ΔSR (pp),-1.95,0.39,-1.95,-3.91,-2.73,-2.0300,1.5727
+S06,Rare exception/Plan,无经验SR (%),31.64,41.8,33.2,43.36,44.92,38.9840,6.1177
+S06,Rare exception/Plan,该表示SR (%),29.69,42.19,31.25,39.45,42.19,36.9540,6.0490
+S06,Rare exception/Skill,NT (%),2.3438,1.9531,3.9062,2.3438,2.7344,2.6563,0.7514
+S06,Rare exception/Skill,PT (%),8.98,5.47,12.89,7.42,8.98,8.7480,2.7282
+S06,Rare exception/Skill,ΔSR (pp),6.64,3.51,8.99,5.08,6.25,6.0940,2.0257
+S06,Rare exception/Skill,无经验SR (%),31.64,41.8,33.2,43.36,44.92,38.9840,6.1177
+S06,Rare exception/Skill,该表示SR (%),38.28,45.31,42.19,48.44,51.17,45.0780,5.0750
+S06,Rare exception/Trajectory,NT (%),0.3438,0.0469,1.125,0.7344,0.3438,0.5188,0.4177
+S06,Rare exception/Trajectory,PT (%),12.06,14.89,17.92,13.23,14.8,14.5800,2.2064
+S06,Rare exception/Trajectory,ΔSR (pp),11.72,14.84,16.8,12.5,14.46,14.0640,2.0115
+S06,Rare exception/Trajectory,无经验SR (%),31.64,41.8,33.2,43.36,44.92,38.9840,6.1177
+S06,Rare exception/Trajectory,该表示SR (%),43.36,56.64,50.0,55.86,59.38,53.0480,6.4041
+S06,Stable/Plan,NT (%),1.0656,1.0656,2.2375,1.8469,0.2844,1.3000,0.7615
+S06,Stable/Plan,PT (%),4.97,7.71,9.66,10.44,4.97,7.5500,2.5565
+S06,Stable/Plan,ΔSR (pp),3.9,6.64,7.43,8.6,4.69,6.2520,1.9380
+S06,Stable/Plan,无经验SR (%),41.02,46.09,40.23,45.31,37.5,42.0300,3.6063
+S06,Stable/Plan,该表示SR (%),44.92,52.73,47.66,53.91,42.19,48.2820,5.0065
+S06,Stable/Skill,NT (%),1.1219,0.3406,1.1219,2.2938,1.1219,1.2000,0.6988
+S06,Stable/Skill,PT (%),10.89,7.76,15.18,15.18,12.84,12.3700,3.1407
+S06,Stable/Skill,ΔSR (pp),9.76,7.43,14.07,12.89,11.72,11.1740,2.6290
+S06,Stable/Skill,无经验SR (%),41.02,46.09,40.23,45.31,37.5,42.0300,3.6063
+S06,Stable/Skill,该表示SR (%),50.78,53.52,54.3,58.2,49.22,53.2040,3.4644
+S06,Stable/Trajectory,NT (%),2.7344,1.5625,1.1719,2.3438,1.1719,1.7969,0.7096
+S06,Stable/Trajectory,PT (%),9.77,8.2,7.81,9.77,6.64,8.4380,1.3446
+S06,Stable/Trajectory,ΔSR (pp),7.03,6.64,6.65,7.42,5.47,6.6420,0.7296
+S06,Stable/Trajectory,无经验SR (%),41.02,46.09,40.23,45.31,37.5,42.0300,3.6063
+S06,Stable/Trajectory,该表示SR (%),48.05,52.73,46.88,52.73,42.97,48.6720,4.1547
+S07,Frozen trajectory + current evidence,SR (%),36.8,27.5,36.5,31.9,30.4,32.6200,4.0059
+S07,Frozen trajectory + current evidence,相对同一无经验组 ΔSR (pp),-3.7,-9.4,-7.9,-9.3,-9.3,-7.9200,2.4397
+S07,Frozen trajectory + fact rebinding,SR (%),37.4,34.1,38.2,33.5,34.3,35.5000,2.1389
+S07,Frozen trajectory + fact rebinding,相对同一无经验组 ΔSR (pp),-5.0,-6.0,-3.5,-3.2,-7.8,-5.1000,1.8894
+S07,Length-matched irrelevant text,SR (%),38.6,39.9,37.2,41.4,39.3,39.2800,1.5547
+S07,Length-matched irrelevant text,相对同一无经验组 ΔSR (pp),-0.1,-4.0,-1.8,-1.3,0.7,-1.3000,1.8014
+S07,No Memory + current evidence,SR (%),43.8,41.6,41.3,38.0,38.2,40.5800,2.4621
+S07,No Memory + current evidence,相对同一无经验组 ΔSR (pp),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S07,Reordered irrelevant text,SR (%),42.8,38.9,40.2,38.9,37.1,39.5800,2.1112
+S07,Reordered irrelevant text,相对同一无经验组 ΔSR (pp),-0.1,-0.7,-4.5,-0.9,1.2,-1.0000,2.1213
+S07,Target-bound adaptation,SR (%),53.0,49.5,51.7,51.4,48.9,50.9000,1.6778
+S07,Target-bound adaptation,相对同一无经验组 ΔSR (pp),12.2,7.7,11.9,11.1,8.6,10.3000,2.0285
+S08,Four factors,AUROC,0.797,0.821,0.791,0.78,0.786,0.7950,0.0158
+S08,Four factors,Brier,0.184,0.19,0.19,0.174,0.187,0.1850,0.0066
+S08,Four factors,ECE,0.022,0.014,0.018,0.02,0.037,0.0222,0.0088
+S08,Four+Representation,AUROC,0.771,0.789,0.812,0.8,0.802,0.7948,0.0156
+S08,Four+Representation,Brier,0.184,0.187,0.192,0.188,0.174,0.1850,0.0068
+S08,Four+Representation,ECE,0.014,0.022,0.018,0.021,0.029,0.0208,0.0055
+S08,Four+Representation+Interactions,AUROC,0.84,0.828,0.854,0.831,0.838,0.8382,0.0101
+S08,Four+Representation+Interactions,Brier,0.161,0.16,0.169,0.169,0.161,0.1640,0.0046
+S08,Four+Representation+Interactions,ECE,0.016,0.019,0.024,0.02,0.031,0.0220,0.0058
+S08,Semantic,AUROC,0.568,0.529,0.555,0.584,0.558,0.5588,0.0201
+S08,Semantic,Brier,0.244,0.249,0.247,0.246,0.249,0.2470,0.0021
+S08,Semantic,ECE,0.02,0.014,0.019,0.006,0.016,0.0150,0.0056
+S08,Semantic+Dependency,AUROC,0.707,0.711,0.723,0.701,0.743,0.7170,0.0166
+S08,Semantic+Dependency,Brier,0.21,0.211,0.222,0.21,0.218,0.2142,0.0055
+S08,Semantic+Dependency,ECE,0.021,0.019,0.031,0.021,0.033,0.0250,0.0065
+S08,Semantic+State,AUROC,0.644,0.644,0.678,0.661,0.664,0.6582,0.0145
+S08,Semantic+State,Brier,0.228,0.231,0.231,0.236,0.228,0.2308,0.0033
+S08,Semantic+State,ECE,0.033,0.011,0.033,0.015,0.027,0.0238,0.0103
+S08,Semantic+Structure,AUROC,0.647,0.621,0.646,0.649,0.642,0.6410,0.0115
+S08,Semantic+Structure,Brier,0.235,0.234,0.238,0.232,0.237,0.2352,0.0024
+S08,Semantic+Structure,ECE,0.018,0.019,0.025,0.009,0.024,0.0190,0.0064
+S09,Changed structure / Invalid state,Plan ΔSR (pp),-6.1,-3.3,-3.1,-3.4,-6.6,-4.5000,1.7015
+S09,Changed structure / Invalid state,Skill ΔSR (pp),-8.7,-9.9,-8.1,-8.6,-8.7,-8.8000,0.6633
+S09,Changed structure / Invalid state,Trajectory ΔSR (pp),-8.8,-11.1,-9.1,-9.3,-11.1,-9.8800,1.1278
+S09,Changed structure / Valid state,Plan ΔSR (pp),4.0,4.5,4.7,5.6,4.6,4.6800,0.5805
+S09,Changed structure / Valid state,Skill ΔSR (pp),-0.5,-1.4,3.9,0.6,1.3,0.7800,2.0266
+S09,Changed structure / Valid state,Trajectory ΔSR (pp),-2.0,-3.7,-0.7,-2.0,-5.6,-2.8000,1.8934
+S09,High semantic / Compatible,Plan ΔSR (pp),4.9,7.1,6.6,7.3,5.1,6.2000,1.1269
+S09,High semantic / Compatible,Skill ΔSR (pp),10.8,13.3,14.0,12.2,10.7,12.2000,1.4714
+S09,High semantic / Compatible,Trajectory ΔSR (pp),8.1,7.2,8.7,10.5,8.0,8.5000,1.2390
+S09,High semantic / Incompatible,Plan ΔSR (pp),1.0,2.3,1.9,3.0,0.2,1.6800,1.0986
+S09,High semantic / Incompatible,Skill ΔSR (pp),-4.5,-7.4,-5.1,-5.3,-6.2,-5.7000,1.1292
+S09,High semantic / Incompatible,Trajectory ΔSR (pp),-9.2,-10.0,-8.1,-12.2,-9.0,-9.7000,1.5524
+S09,Low semantic / Compatible,Plan ΔSR (pp),3.5,4.3,5.2,5.8,4.1,4.5800,0.9149
+S09,Low semantic / Compatible,Skill ΔSR (pp),6.4,5.4,7.6,8.9,5.7,6.8000,1.4474
+S09,Low semantic / Compatible,Trajectory ΔSR (pp),1.4,1.8,4.4,5.7,3.8,3.4200,1.8033
+S09,Low semantic / Incompatible,Plan ΔSR (pp),-3.0,-2.2,-0.7,-0.9,-5.1,-2.3800,1.7908
+S09,Low semantic / Incompatible,Skill ΔSR (pp),-7.8,-5.5,-5.2,-3.0,-5.0,-5.3000,1.7088
+S09,Low semantic / Incompatible,Trajectory ΔSR (pp),-6.3,-5.7,-6.5,-5.1,-5.9,-5.9000,0.5477
+S09,Same structure / Invalid state,Plan ΔSR (pp),-3.0,-2.8,-2.6,-3.0,-4.1,-3.1000,0.5831
+S09,Same structure / Invalid state,Skill ΔSR (pp),-6.4,-6.6,-6.0,-4.2,-8.3,-6.3000,1.4663
+S09,Same structure / Invalid state,Trajectory ΔSR (pp),-6.0,-5.2,-3.8,-3.5,-5.5,-4.8000,1.0932
+S09,Same structure / Valid state,Plan ΔSR (pp),7.4,5.8,6.7,5.9,6.1,6.3800,0.6686
+S09,Same structure / Valid state,Skill ΔSR (pp),10.5,11.3,12.7,12.4,10.2,11.4200,1.1122
+S09,Same structure / Valid state,Trajectory ΔSR (pp),7.0,7.7,8.4,9.0,5.9,7.6000,1.2104
+S10,0,Irrelevant跨表示均值,9.4,8.2,8.2,9.2,10.0,9.0000,0.7874
+S10,0,Plan,5.3,6.3,6.1,6.9,6.9,6.3000,0.6633
+S10,0,Recurring跨表示均值,10.7,8.2,8.1,8.6,8.0,8.7200,1.1300
+S10,0,Skill,12.3,10.8,10.2,14.2,12.5,12.0000,1.5700
+S10,0,Stable跨表示均值,10.7,8.3,7.3,10.4,8.8,9.1000,1.4335
+S10,0,Trajectory,9.3,7.2,8.7,9.7,9.5,8.8800,1.0109
+S10,1,Irrelevant跨表示均值,9.6,9.2,8.9,10.1,9.2,9.4000,0.4637
+S10,1,Plan,7.4,5.3,4.0,6.7,5.2,5.7200,1.3405
+S10,1,Recurring跨表示均值,8.9,7.8,7.7,9.9,8.7,8.6000,0.9000
+S10,1,Skill,11.3,9.0,8.4,12.8,11.9,10.6800,1.8966
+S10,1,Stable跨表示均值,8.6,7.3,8.4,9.7,9.0,8.6000,0.8803
+S10,1,Trajectory,12.1,5.8,7.4,10.0,9.6,8.9800,2.4376
+S10,10,Irrelevant跨表示均值,8.8,7.5,9.7,9.8,10.3,9.2200,1.1032
+S10,10,Plan,-5.8,-7.1,-11.4,-3.1,-7.1,-6.9000,2.9992
+S10,10,Recurring跨表示均值,8.2,7.2,5.7,8.0,7.9,7.4000,1.0223
+S10,10,Skill,-12.0,-11.5,-13.5,-12.6,-11.3,-12.1800,0.8927
+S10,10,Stable跨表示均值,7.7,6.5,8.5,9.5,8.8,8.2000,1.1489
+S10,10,Trajectory,-12.9,-13.4,-15.0,-13.1,-11.6,-13.2000,1.2186
+S10,11,Irrelevant跨表示均值,12.2,9.8,7.6,9.4,10.4,9.8800,1.6649
+S10,11,Plan,-6.8,-7.0,-7.2,-6.5,-6.0,-6.7000,0.4690
+S10,11,Recurring跨表示均值,9.8,7.1,7.7,8.1,9.8,8.5000,1.2390
+S10,11,Skill,-8.7,-11.0,-12.9,-11.0,-9.9,-10.7000,1.5540
+S10,11,Stable跨表示均值,7.6,7.9,7.7,10.0,8.7,8.3800,1.0035
+S10,11,Trajectory,-14.9,-18.4,-14.0,-12.6,-10.2,-14.0200,3.0236
+S10,12,Irrelevant跨表示均值,10.7,7.0,6.4,10.2,8.2,8.5000,1.9026
+S10,12,Plan,-6.3,-8.9,-8.1,-5.3,-7.9,-7.3000,1.4629
+S10,12,Recurring跨表示均值,9.7,6.3,9.2,11.1,10.8,9.4200,1.9097
+S10,12,Skill,-11.4,-15.3,-13.7,-10.5,-12.7,-12.7200,1.8900
+S10,12,Stable跨表示均值,7.8,6.1,7.3,9.2,11.1,8.3000,1.9196
+S10,12,Trajectory,-13.2,-15.2,-15.4,-10.8,-12.9,-13.5000,1.8868
+S10,2,Irrelevant跨表示均值,8.4,6.8,7.9,11.3,9.0,8.6800,1.6724
+S10,2,Plan,7.9,4.1,4.3,5.0,4.7,5.2000,1.5492
+S10,2,Recurring跨表示均值,8.0,7.8,7.3,8.4,8.4,7.9800,0.4604
+S10,2,Skill,11.0,8.6,7.5,9.4,13.5,10.0000,2.3356
+S10,2,Stable跨表示均值,9.3,8.4,7.0,9.8,9.5,8.8000,1.1336
+S10,2,Trajectory,8.0,3.7,3.2,8.4,7.3,6.1200,2.4753
+S10,3,Irrelevant跨表示均值,7.8,7.6,6.1,9.9,11.6,8.6000,2.1552
+S10,3,Plan,7.0,2.6,4.8,4.1,6.0,4.9000,1.7000
+S10,3,Recurring跨表示均值,9.0,7.9,7.2,7.9,8.5,8.1000,0.6819
+S10,3,Skill,10.3,8.8,9.3,10.7,11.3,10.0800,1.0208
+S10,3,Stable跨表示均值,8.2,9.5,6.7,8.7,10.9,8.8000,1.5556
+S10,3,Trajectory,3.8,2.4,2.5,5.2,5.5,3.8800,1.4550
+S10,4,Irrelevant跨表示均值,8.5,8.7,7.8,10.0,9.0,8.8000,0.8031
+S10,4,Plan,6.3,3.7,2.9,3.9,5.8,4.5200,1.4567
+S10,4,Recurring跨表示均值,-7.9,-8.6,-8.8,-7.0,-7.2,-7.9000,0.8062
+S10,4,Skill,7.5,8.0,8.8,8.8,9.5,8.5200,0.7791
+S10,4,Stable跨表示均值,10.1,7.8,8.2,10.1,9.8,9.2000,1.1113
+S10,4,Trajectory,-1.4,-3.3,-4.3,-1.8,-1.7,-2.5000,1.2470
+S10,5,Irrelevant跨表示均值,9.0,10.7,5.2,11.6,9.9,9.2800,2.4753
+S10,5,Plan,4.6,4.6,3.7,4.4,5.3,4.5200,0.5718
+S10,5,Recurring跨表示均值,-7.5,-12.0,-10.6,-6.1,-7.8,-8.8000,2.4218
+S10,5,Skill,0.2,3.0,3.5,5.2,5.5,3.4800,2.1230
+S10,5,Stable跨表示均值,9.4,9.4,8.6,10.0,11.6,9.8000,1.1225
+S10,5,Trajectory,-7.1,-7.4,-6.9,-5.4,-5.3,-6.4200,0.9935
+S10,6,Irrelevant跨表示均值,8.1,3.9,10.9,12.8,8.2,8.7800,3.3641
+S10,6,Plan,0.9,0.0,0.2,2.0,0.8,0.7800,0.7823
+S10,6,Recurring跨表示均值,-9.2,-8.9,-10.4,-7.1,-5.9,-8.3000,1.7875
+S10,6,Skill,-3.4,-4.2,-3.9,-3.9,-3.1,-3.7000,0.4416
+S10,6,Stable跨表示均值,7.7,8.2,8.1,10.6,11.0,9.1200,1.5515
+S10,6,Trajectory,-8.8,-10.3,-11.7,-7.9,-9.8,-9.7000,1.4509
+S10,7,Irrelevant跨表示均值,8.5,9.2,6.5,10.4,11.9,9.3000,2.0285
+S10,7,Plan,-1.8,-1.3,-4.9,-3.8,-4.2,-3.2000,1.5668
+S10,7,Recurring跨表示均值,-7.8,-10.8,-10.9,-8.4,-6.6,-8.9000,1.8947
+S10,7,Skill,-5.0,-7.7,-9.1,-6.4,-6.3,-6.9000,1.5572
+S10,7,Stable跨表示均值,8.2,8.4,6.5,10.3,10.1,8.7000,1.5572
+S10,7,Trajectory,-12.7,-12.0,-12.1,-11.3,-10.4,-11.7000,0.8803
+S10,8,Irrelevant跨表示均值,10.2,7.2,7.5,9.7,9.9,8.9000,1.4300
+S10,8,Plan,-2.7,-5.5,-5.6,-3.2,-3.9,-4.1800,1.3217
+S10,8,Recurring跨表示均值,-8.3,-10.3,-11.4,-7.4,-6.2,-8.7200,2.1183
+S10,8,Skill,-10.4,-8.7,-10.1,-7.2,-7.1,-8.7000,1.5540
+S10,8,Stable跨表示均值,8.4,7.9,7.9,10.0,9.8,8.8000,1.0271
+S10,8,Trajectory,-10.7,-11.6,-13.1,-10.2,-10.8,-11.2800,1.1345
+S10,9,Irrelevant跨表示均值,8.6,7.4,7.7,10.6,11.7,9.2000,1.8748
+S10,9,Plan,-3.6,-6.8,-8.8,-1.2,-5.0,-5.0800,2.9175
+S10,9,Recurring跨表示均值,8.2,7.3,6.9,8.3,8.4,7.8200,0.6760
+S10,9,Skill,-9.7,-11.8,-10.1,-8.4,-9.5,-9.9000,1.2349
+S10,9,Stable跨表示均值,11.0,8.6,8.2,8.3,7.0,8.6200,1.4636
+S10,9,Trajectory,-12.8,-13.6,-13.7,-12.4,-13.0,-13.1000,0.5477
+S12,Irrelevant,Plan,23.2,26.8,23.0,24.5,25.9,24.6800,1.6604
+S12,Irrelevant,Replan,9.1,4.8,7.9,5.9,5.4,6.6200,1.8102
+S12,Irrelevant,Skill,47.7,49.3,46.5,46.3,43.2,46.6000,2.2450
+S12,Irrelevant,Trajectory,20.0,19.1,22.6,23.3,25.5,22.1000,2.5817
+S12,Recurring,Plan,23.2,24.5,29.5,29.9,25.4,26.5000,3.0274
+S12,Recurring,Replan,9.5,16.6,4.2,15.0,9.4,10.9400,4.9596
+S12,Recurring,Skill,38.6,36.2,40.9,31.9,37.4,37.0000,3.3384
+S12,Recurring,Trajectory,28.7,22.7,25.4,23.2,27.8,25.5600,2.6764
+S12,Relevant,Plan,34.4,30.4,34.4,32.2,34.2,33.1200,1.7810
+S12,Relevant,Replan,16.1,20.3,17.6,19.0,17.5,18.1000,1.6016
+S12,Relevant,Skill,32.5,32.7,32.2,31.9,31.6,32.1800,0.4438
+S12,Relevant,Trajectory,17.0,16.6,15.8,16.9,16.7,16.6000,0.4743
+S12,Stable,Plan,20.8,24.2,25.4,22.3,25.8,23.7000,2.1166
+S12,Stable,Replan,5.8,7.3,5.1,12.2,5.7,7.2200,2.8995
+S12,Stable,Skill,50.1,47.4,49.5,48.6,47.4,48.6000,1.2186
+S12,Stable,Trajectory,23.3,21.1,20.0,16.9,21.1,20.4800,2.3328
+S13,0,DEUL,62.0,57.4,58.7,61.2,60.8,60.0200,1.9058
+S13,0,Independent-3,60.3,58.7,56.0,60.9,59.1,59.0000,1.8974
+S13,0,QCR,61.2,56.0,54.8,60.2,58.4,58.1200,2.7115
+S13,0,Skill-only,59.6,56.8,54.8,60.8,58.4,58.0800,2.3563
+S13,0,Verify-All,58.2,55.5,54.5,56.2,61.0,57.0800,2.5762
+S13,1,DEUL,51.5,49.7,50.2,50.9,50.7,50.6000,0.6856
+S13,1,Independent-3,49.0,44.7,43.7,48.8,45.2,46.2800,2.4530
+S13,1,QCR,44.3,44.9,42.7,45.4,44.2,44.3000,1.0173
+S13,1,Skill-only,35.0,35.3,37.5,37.0,40.3,37.0200,2.1230
+S13,1,Verify-All,54.6,52.0,53.4,52.2,52.2,52.8800,1.1100
+S13,12,DEUL,64.4,62.6,59.0,62.7,59.8,61.7000,2.2361
+S13,12,Independent-3,55.1,55.0,60.0,53.1,56.4,55.9200,2.5665
+S13,12,QCR,50.9,49.1,49.5,48.9,53.2,50.3200,1.7894
+S13,12,Skill-only,52.4,47.5,44.7,48.7,50.3,48.7200,2.9021
+S13,12,Verify-All,58.6,54.4,56.2,59.3,55.9,56.8800,2.0241
+S13,16,DEUL,64.0,59.8,58.7,61.6,61.4,61.1000,2.0125
+S13,16,Independent-3,58.2,53.4,51.8,55.5,53.6,54.5000,2.4495
+S13,16,QCR,56.0,52.0,52.1,54.1,52.7,53.3800,1.6873
+S13,16,Skill-only,51.6,46.3,46.1,51.4,53.5,49.7800,3.3700
+S13,16,Verify-All,58.2,56.8,56.9,59.4,59.2,58.1000,1.2288
+S13,2,DEUL,54.1,54.3,54.7,57.4,53.9,54.8800,1.4394
+S13,2,Independent-3,49.0,46.7,44.8,49.4,53.1,48.6000,3.1265
+S13,2,QCR,45.7,45.6,43.5,48.1,46.5,45.8800,1.6649
+S13,2,Skill-only,40.5,39.2,39.2,40.2,41.3,40.0800,0.8983
+S13,2,Verify-All,57.3,50.6,55.3,53.9,56.9,54.8000,2.7092
+S13,4,DEUL,59.9,56.9,54.0,58.4,58.3,57.5000,2.2260
+S13,4,Independent-3,53.3,49.0,51.5,50.6,51.0,51.0800,1.5547
+S13,4,QCR,51.4,48.2,46.4,49.4,49.1,48.9000,1.8221
+S13,4,Skill-only,46.0,43.5,42.7,43.3,45.0,44.1000,1.3583
+S13,4,Verify-All,56.8,52.9,53.6,57.3,55.4,55.2000,1.9274
+S13,8,DEUL,59.6,59.8,58.1,59.6,62.4,59.9000,1.5556
+S13,8,Independent-3,55.1,53.9,52.7,55.6,54.3,54.3200,1.1234
+S13,8,QCR,53.4,47.8,49.3,55.5,52.4,51.6800,3.1140
+S13,8,Skill-only,47.5,45.0,45.0,45.3,47.1,45.9800,1.2194
+S13,8,Verify-All,57.2,60.1,55.3,58.3,55.0,57.1800,2.1253
+S14,DEUL,BWT (pp),-1.1,-0.5,-0.8,-1.4,-1.7,-1.1000,0.4743
+S14,DEUL,FWT (pp),16.2,18.2,18.7,16.9,16.9,17.3800,1.0330
+S14,DEUL,False Retire (%),1.0,1.5,0.7,0.6,0.3,0.8200,0.4550
+S14,Independent-3,BWT (pp),-1.5,-0.3,-0.4,-1.6,-1.7,-1.1000,0.6892
+S14,Independent-3,FWT (pp),12.2,13.6,13.1,12.2,12.0,12.6200,0.6943
+S14,Independent-3,False Retire (%),1.6,1.5,1.5,0.5,1.5,1.3200,0.4604
+S14,No drift update,BWT (pp),0.3,0.6,0.1,-1.4,-0.0,-0.0800,0.7727
+S14,No drift update,FWT (pp),8.8,10.7,10.8,10.3,9.9,10.1000,0.8093
+S14,No drift update,False Retire (%),0.3,0.6,0.6,-0.1,0.0,0.2800,0.3271
+S14,Permanent delete,BWT (pp),-6.2,-5.6,-6.0,-6.4,-6.4,-6.1200,0.3347
+S14,Permanent delete,FWT (pp),16.5,18.7,17.7,15.9,16.6,17.0800,1.1145
+S14,Permanent delete,False Retire (%),7.9,4.1,5.2,4.8,5.5,5.5000,1.4405
+S14,QCR,BWT (pp),-1.3,0.3,-1.0,-2.2,-1.2,-1.0800,0.8983
+S14,QCR,FWT (pp),11.1,12.0,12.0,10.1,11.3,11.3000,0.7842
+S14,QCR,False Retire (%),1.0,2.6,1.8,2.1,2.1,1.9200,0.5891
+S14,Skill-only,BWT (pp),-3.2,-1.5,-2.3,-2.3,-2.8,-2.4200,0.6380
+S14,Skill-only,FWT (pp),7.5,8.9,8.2,7.5,7.9,8.0000,0.5831
+S14,Skill-only,False Retire (%),1.5,2.1,1.7,0.2,0.6,1.2200,0.7918
+S15,M11 Independent-3+Selector,0.5×B,44.9,41.1,43.5,41.9,43.1,42.9000,1.4697
+S15,M11 Independent-3+Selector,1.0×B,55.5,61.2,56.9,56.4,52.3,56.4600,3.1973
+S15,M11 Independent-3+Selector,1.5×B,63.3,62.2,63.6,61.0,61.4,62.3000,1.1402
+S15,M11 Independent-3+Selector,2.0×B,68.8,67.8,68.7,67.4,66.3,67.8000,1.0271
+S15,M12 Verify-All+Adapt,0.5×B,34.8,31.1,33.5,31.2,32.5,32.6200,1.5707
+S15,M12 Verify-All+Adapt,1.0×B,57.3,62.1,57.9,57.5,54.8,57.9200,2.6348
+S15,M12 Verify-All+Adapt,1.5×B,65.8,64.6,66.0,63.2,64.4,64.8000,1.1402
+S15,M12 Verify-All+Adapt,2.0×B,73.7,70.7,72.0,70.3,70.4,71.4200,1.4446
+S15,M13 DEUL (proposed),0.5×B,49.5,47.8,49.1,48.5,46.1,48.2000,1.3379
+S15,M13 DEUL (proposed),1.0×B,60.3,64.8,60.0,58.6,58.5,60.4400,2.5677
+S15,M13 DEUL (proposed),1.5×B,67.0,64.3,68.7,65.2,64.8,66.0000,1.8207
+S15,M13 DEUL (proposed),2.0×B,69.6,68.4,70.3,68.9,65.9,68.6200,1.6814
+S15,M14 No-Memory-Compute,0.5×B,39.1,33.6,37.7,33.5,35.6,35.9000,2.4809
+S15,M14 No-Memory-Compute,1.0×B,47.5,53.6,47.0,46.7,44.9,47.9400,3.3126
+S15,M14 No-Memory-Compute,1.5×B,56.3,54.8,56.4,54.6,53.5,55.1200,1.2276
+S15,M14 No-Memory-Compute,2.0×B,60.4,58.4,57.9,59.1,57.2,58.6000,1.2227
+S15,M9 QCR-adapt,0.5×B,43.5,39.2,41.3,38.3,39.1,40.2800,2.1147
+S15,M9 QCR-adapt,1.0×B,54.6,59.9,55.3,54.2,50.3,54.8600,3.4239
+S15,M9 QCR-adapt,1.5×B,61.4,59.6,63.7,61.5,57.8,60.8000,2.2192
+S15,M9 QCR-adapt,2.0×B,66.2,63.4,65.0,63.2,59.7,63.5000,2.4536
+S16,12,DEUL,39.3,36.7,35.9,39.5,39.6,38.2000,1.7607
+S16,12,Select-once,28.3,27.9,35.6,34.6,30.0,31.2800,3.5926
+S16,12,Skill-only,22.3,18.1,16.8,20.6,19.2,19.4000,2.1413
+S16,2,DEUL,63.9,63.9,60.8,65.4,66.5,64.1000,2.1459
+S16,2,Select-once,65.8,65.0,62.3,63.8,63.6,64.1000,1.3491
+S16,2,Skill-only,61.9,60.4,59.6,60.7,61.5,60.8200,0.9094
+S16,4,DEUL,61.4,56.6,53.0,58.9,58.6,57.7000,3.1321
+S16,4,Select-once,59.1,55.6,56.2,56.9,56.6,56.8800,1.3330
+S16,4,Skill-only,55.5,51.4,49.1,55.2,52.8,52.8000,2.6786
+S16,8,DEUL,50.7,50.7,48.3,48.9,50.4,49.8000,1.1225
+S16,8,Select-once,47.5,44.6,43.1,45.9,41.9,44.6000,2.2159
+S16,8,Skill-only,35.9,35.3,31.1,34.8,36.4,34.7000,2.1012
+S17,Qwen3-8B executor,DEUL,41.1,37.2,45.5,35.5,38.2,39.5000,3.9224
+S17,Qwen3-8B executor,Independent-3,34.9,31.5,34.3,37.1,33.7,34.3000,2.0248
+S17,Qwen3-8B executor,Skill-only,29.8,31.0,28.8,27.4,30.0,29.4000,1.3638
+S17,Seen variants,DEUL,63.6,60.6,65.0,62.8,64.1,63.2200,1.6679
+S17,Seen variants,Independent-3,60.5,60.2,57.3,55.0,61.0,58.8000,2.5681
+S17,Seen variants,Skill-only,54.9,57.0,56.9,57.4,51.8,55.6000,2.3356
+S17,Unseen compositions,DEUL,59.1,59.8,57.6,56.3,57.2,58.0000,1.4265
+S17,Unseen compositions,Independent-3,49.1,47.5,52.3,47.0,45.6,48.3000,2.5622
+S17,Unseen compositions,Skill-only,47.2,42.8,47.4,42.5,46.6,45.3000,2.4393
+S17,Unseen drift family,DEUL,53.0,44.4,47.2,50.4,48.0,48.6000,3.2619
+S17,Unseen drift family,Independent-3,40.6,41.6,44.8,41.7,43.4,42.4200,1.6679
+S17,Unseen drift family,Skill-only,41.2,39.7,38.3,38.6,39.7,39.5000,1.1424
+S17,Web→App zero-shot,DEUL,53.8,51.0,54.0,51.4,52.4,52.5200,1.3609
+S17,Web→App zero-shot,Independent-3,48.2,45.5,47.8,44.9,47.2,46.7200,1.4481
+S17,Web→App zero-shot,Skill-only,44.0,40.0,44.5,43.4,44.6,43.3000,1.9053
+S17,Web→Work zero-shot,DEUL,44.7,41.2,41.4,40.2,42.0,41.9000,1.6941
+S17,Web→Work zero-shot,Independent-3,38.9,35.4,38.8,36.1,37.7,37.3800,1.5802
+S17,Web→Work zero-shot,Skill-only,35.1,31.8,33.9,30.1,34.1,33.0000,2.0174
+S18,10% probe noise,DEUL,57.9,58.8,60.7,57.9,57.2,58.5000,1.3546
+S18,10% probe noise,Independent-3,51.3,53.5,52.7,52.6,53.0,52.6200,0.8167
+S18,10% probe noise,Verify-All,58.3,61.8,57.7,58.9,59.3,59.2000,1.5748
+S18,20% missing graph edges,DEUL,56.8,55.3,53.5,53.1,50.9,53.9200,2.2454
+S18,20% missing graph edges,Independent-3,51.9,51.1,52.2,50.0,50.8,51.2000,0.8803
+S18,20% missing graph edges,Verify-All,57.2,53.7,56.5,53.8,51.7,54.5800,2.2488
+S18,25% probe noise,DEUL,48.2,51.4,48.9,53.8,47.2,49.9000,2.6758
+S18,25% probe noise,Independent-3,45.7,43.9,47.9,47.5,44.5,45.9000,1.7720
+S18,25% probe noise,Verify-All,49.6,49.3,47.9,44.1,45.2,47.2200,2.4631
+S18,50% missing graph edges,DEUL,44.8,46.2,48.0,43.3,44.7,45.4000,1.7790
+S18,50% missing graph edges,Independent-3,44.1,47.1,44.6,43.3,44.3,44.6800,1.4360
+S18,50% missing graph edges,Verify-All,44.5,47.5,45.0,46.6,45.4,45.8000,1.2268
+S18,Clean evidence,DEUL,60.2,62.0,63.0,59.9,60.4,61.1000,1.3379
+S18,Clean evidence,Independent-3,52.6,56.2,55.2,54.4,53.1,54.3000,1.4799
+S18,Clean evidence,Verify-All,59.3,64.6,59.4,59.5,60.7,60.7000,2.2528
+S18,Unobservable drift,DEUL,36.7,37.0,37.6,34.8,37.3,36.6800,1.1032
+S18,Unobservable drift,Independent-3,36.7,39.6,38.4,38.3,36.0,37.8000,1.4405
+S18,Unobservable drift,Verify-All,40.3,39.5,37.7,37.1,34.9,37.9000,2.1213
+S19,MemoryOrigins=1024,Dev SR (%),59.7,59.3,56.4,57.0,62.6,59.0000,2.4648
+S19,MemoryOrigins=1024,Tokens (k),54.8,56.8,53.8,53.5,55.5,54.8800,1.3368
+S19,MemoryOrigins=256,Dev SR (%),59.2,62.4,58.0,60.8,58.1,59.7000,1.8841
+S19,MemoryOrigins=256,Tokens (k),44.9,47.1,43.4,45.5,45.1,45.2000,1.3266
+S19,MemoryOrigins=64,Dev SR (%),55.9,56.4,55.5,57.0,56.2,56.2000,0.5612
+S19,MemoryOrigins=64,Tokens (k),42.1,43.7,41.3,43.0,43.4,42.7000,0.9874
+S19,QueryDepth=0,Dev SR (%),53.7,54.5,52.3,52.7,52.9,53.2200,0.8786
+S19,QueryDepth=0,Tokens (k),36.8,40.4,38.4,38.9,37.0,38.3000,1.4765
+S19,QueryDepth=1,Dev SR (%),57.5,56.6,54.5,56.7,55.7,56.2000,1.1446
+S19,QueryDepth=1,Tokens (k),42.7,43.6,40.8,42.5,42.4,42.4000,1.0124
+S19,QueryDepth=2,Dev SR (%),58.3,58.4,58.3,61.3,62.2,59.7000,1.8987
+S19,QueryDepth=2,Tokens (k),45.2,46.6,43.0,45.4,45.8,45.2000,1.3416
+S19,QueryDepth=3,Dev SR (%),59.3,60.9,57.8,61.2,59.9,59.8200,1.3627
+S19,QueryDepth=3,Tokens (k),51.0,53.7,51.6,52.3,52.4,52.2000,1.0124
+S19,TopK=1,Dev SR (%),55.8,57.1,53.4,54.5,56.7,55.5000,1.5411
+S19,TopK=1,Tokens (k),39.2,39.3,38.3,39.8,39.4,39.2000,0.5523
+S19,TopK=10,Dev SR (%),63.4,63.0,59.0,62.3,60.9,61.7200,1.7936
+S19,TopK=10,Tokens (k),54.0,56.5,54.6,53.4,56.0,54.9000,1.3153
+S19,TopK=3,Dev SR (%),59.7,61.4,58.2,60.0,59.7,59.8000,1.1380
+S19,TopK=3,Tokens (k),41.5,44.9,43.2,44.8,44.6,43.8000,1.4577
+S19,TopK=5,Dev SR (%),59.9,61.0,56.9,61.8,59.0,59.7200,1.9018
+S19,TopK=5,Tokens (k),46.1,45.1,42.9,46.0,45.9,45.2000,1.3454
+S20,Common text guidance interface,DEUL,59.4,57.4,59.8,58.8,56.6,58.4000,1.3565
+S20,Common text guidance interface,Independent-3,55.5,53.3,55.3,54.1,54.7,54.5800,0.9011
+S20,Common text guidance interface,Skill-only,49.3,54.0,53.2,52.9,51.2,52.1200,1.8780
+S20,Equal injected tokens,DEUL,59.4,58.4,59.3,57.9,58.4,58.6800,0.6458
+S20,Equal injected tokens,Independent-3,52.6,53.9,54.6,52.2,55.7,53.8000,1.4370
+S20,Equal injected tokens,Skill-only,49.8,50.0,50.8,52.5,47.9,50.2000,1.6688
+S20,Native interface allowed,DEUL,59.5,59.8,60.0,58.9,60.3,59.7000,0.5339
+S20,Native interface allowed,Independent-3,58.4,58.2,55.9,55.5,57.6,57.1200,1.3368
+S20,Native interface allowed,Skill-only,54.0,54.7,53.1,52.9,55.2,53.9800,0.9935
+S20,Same source origins,DEUL,61.5,59.5,59.8,59.8,59.9,60.1000,0.7969
+S20,Same source origins,Independent-3,54.3,57.8,57.7,53.7,57.4,56.1800,2.0067
+S20,Same source origins,Skill-only,50.7,54.6,53.0,50.1,54.2,52.5200,2.0340
+S20,"Two writers, version A",DEUL,59.5,59.9,60.7,58.9,60.0,59.8000,0.6633
+S20,"Two writers, version A",Independent-3,54.1,55.9,56.1,54.6,54.7,55.0800,0.8729
+S20,"Two writers, version A",Skill-only,56.8,54.7,52.7,52.8,53.6,54.1200,1.6991
+S20,"Two writers, version B",DEUL,57.2,57.7,58.7,57.6,60.3,58.3000,1.2470
+S20,"Two writers, version B",Independent-3,55.5,53.6,53.7,51.7,54.0,53.7000,1.3546
+S20,"Two writers, version B",Skill-only,52.0,56.1,53.0,51.0,52.5,52.9200,1.9254
+S21,0,DEUL,51.2,46.6,48.2,52.5,48.0,49.3000,2.4515
+S21,0,Independent-3,47.8,46.7,45.7,48.3,47.0,47.1000,1.0075
+S21,100,DEUL,50.7,48.9,50.7,52.5,52.3,51.0200,1.4601
+S21,100,Independent-3,50.8,52.9,46.9,50.5,48.9,50.0000,2.2428
+S21,1200,DEUL,62.2,63.4,58.2,58.0,56.7,59.7000,2.9189
+S21,1200,Independent-3,56.8,52.9,53.6,60.0,52.2,55.1000,3.2558
+S21,2400,DEUL,59.5,60.8,61.4,61.3,57.1,60.0200,1.7992
+S21,2400,Independent-3,55.8,54.4,53.6,55.0,52.6,54.2800,1.2377
+S21,300,DEUL,55.0,56.0,54.2,55.8,54.5,55.1000,0.7874
+S21,300,Independent-3,50.1,51.9,51.2,50.7,52.7,51.3200,1.0159
+S21,600,DEUL,59.9,57.2,58.2,59.1,55.6,58.0000,1.6778
+S21,600,Independent-3,53.6,56.5,53.2,54.5,53.7,54.3000,1.3172
+S22,Adaptation introduces error,占失败任务比例 (%),16.1,10.1,13.5,15.2,15.6,14.1000,2.4403
+S22,Budget exhausted,占失败任务比例 (%),18.5,19.3,18.8,18.9,16.5,18.4000,1.1000
+S22,Grounding failure,占失败任务比例 (%),17.8,23.4,19.3,21.1,22.8,20.8800,2.3488
+S22,Other,占失败任务比例 (%),12.0,13.5,11.7,2.7,5.8,9.1400,4.6468
+S22,Rule inference failure,占失败任务比例 (%),20.1,19.2,20.0,20.7,20.4,20.0800,0.5630
+S22,Wrong reuse decision,占失败任务比例 (%),15.5,14.5,16.7,21.4,18.9,17.4000,2.7731
+S23,App-Drift,DEUL重复不一致 (%),7.3,7.9,5.7,6.3,9.4,7.3200,1.4429
+S23,App-Drift,No Memory重复不一致 (%),9.2,8.5,6.2,7.9,7.7,7.9000,1.1158
+S23,W-Drift,DEUL重复不一致 (%),8.6,8.0,6.7,7.7,8.6,7.9200,0.7855
+S23,W-Drift,No Memory重复不一致 (%),9.4,7.3,6.7,9.0,9.1,8.3000,1.2145
+S23,Work-Drift,DEUL重复不一致 (%),9.4,5.7,4.5,8.1,8.3,7.2000,2.0248
+S23,Work-Drift,No Memory重复不一致 (%),9.7,10.1,7.6,10.0,9.1,9.3000,1.0271
+S25,10 duplicated renderings,DecisionLoss,0.15,0.155,0.155,0.136,0.139,0.1470,0.0090
+S25,10 duplicated renderings,ECE,0.231,0.215,0.217,0.189,0.218,0.2140,0.0153
+S25,3 renderings counted separately,DecisionLoss,0.078,0.084,0.087,0.071,0.074,0.0788,0.0067
+S25,3 renderings counted separately,ECE,0.123,0.12,0.119,0.108,0.115,0.1170,0.0058
+S25,Independent origins,DecisionLoss,0.036,0.043,0.042,0.029,0.046,0.0392,0.0068
+S25,Independent origins,ECE,0.073,0.062,0.066,0.064,0.046,0.0622,0.0100
+S25,"Lineage dedup, 10 renderings",DecisionLoss,0.043,0.045,0.052,0.045,0.045,0.0460,0.0035
+S25,"Lineage dedup, 10 renderings",ECE,0.06,0.064,0.067,0.064,0.055,0.0620,0.0046
+S25,"Lineage dedup, 3 renderings",DecisionLoss,0.041,0.047,0.048,0.037,0.042,0.0430,0.0045
+S25,"Lineage dedup, 3 renderings",ECE,0.059,0.072,0.054,0.057,0.044,0.0572,0.0101
+S26,0,DEUL Queries/task,3.1,3.2,2.7,2.8,3.1,2.9800,0.2168
+S26,0,DEUL SR (%),54.3,55.2,48.9,52.4,51.7,52.5000,2.4566
+S26,0,独立模型Queries/task,3.0,2.9,2.5,2.9,3.0,2.8600,0.2074
+S26,0,独立模型SR (%),53.6,55.5,51.1,52.1,53.6,53.1800,1.6754
+S26,0.25,DEUL Queries/task,2.6,2.9,2.7,2.9,3.0,2.8200,0.1643
+S26,0.25,DEUL SR (%),57.1,56.7,54.0,54.0,55.7,55.5000,1.4612
+S26,0.25,独立模型Queries/task,3.4,3.6,3.4,3.4,3.6,3.4800,0.1095
+S26,0.25,独立模型SR (%),53.9,53.8,52.2,53.4,55.6,53.7800,1.2215
+S26,0.5,DEUL Queries/task,2.6,2.9,2.2,2.5,2.7,2.5800,0.2588
+S26,0.5,DEUL SR (%),57.2,56.9,56.6,56.2,59.6,57.3000,1.3379
+S26,0.5,独立模型Queries/task,4.3,4.3,4.4,4.3,4.5,4.3600,0.0894
+S26,0.5,独立模型SR (%),55.6,54.4,52.3,52.7,55.1,54.0200,1.4584
+S26,0.75,DEUL Queries/task,2.5,2.7,2.4,2.4,2.5,2.5000,0.1225
+S26,0.75,DEUL SR (%),61.2,60.2,57.9,58.6,60.2,59.6200,1.3387
+S26,0.75,独立模型Queries/task,5.7,5.6,5.4,5.6,5.5,5.5600,0.1140
+S26,0.75,独立模型SR (%),54.3,56.0,52.9,54.4,55.0,54.5200,1.1300
+S28,M0 No Persistent Experience,Delta SR (pp),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S28,M0 No Persistent Experience,NT (%),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S28,M0 No Persistent Experience,PT (%),0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S28,M0 No Persistent Experience,SR (%),52.1,54.2,54.3,55.2,50.0,53.1600,2.1007
+S28,M0 No Persistent Experience,Tokens (k),37.1,36.68,37.15,37.16,36.42,36.9020,0.3350
+S28,M1 Trajectory-Semantic,Delta SR (pp),-1.4,-1.2,-1.0,-0.7,1.0,-0.6600,0.9633
+S28,M1 Trajectory-Semantic,NT (%),8.5,8.2,9.2,6.9,6.9,7.9400,1.0164
+S28,M1 Trajectory-Semantic,PT (%),7.1,6.9,8.2,6.2,8.0,7.2800,0.8228
+S28,M1 Trajectory-Semantic,SR (%),50.7,53.0,53.3,54.5,51.0,52.5000,1.6109
+S28,M1 Trajectory-Semantic,Tokens (k),40.08,39.34,40.78,41.58,39.71,40.2980,0.8926
+S28,M10 FreshFacts+Mixed,Delta SR (pp),8.7,6.2,8.5,7.1,9.5,8.0000,1.3266
+S28,M10 FreshFacts+Mixed,NT (%),4.3,2.6,3.8,4.3,4.3,3.8600,0.7369
+S28,M10 FreshFacts+Mixed,PT (%),13.0,8.9,12.3,11.5,13.9,11.9200,1.9058
+S28,M10 FreshFacts+Mixed,SR (%),60.8,60.4,62.8,62.3,59.5,61.1600,1.3649
+S28,M10 FreshFacts+Mixed,Tokens (k),42.0,41.15,41.4,43.68,44.77,42.6000,1.5635
+S28,M11 Independent-3+Selector,Delta SR (pp),12.3,8.7,14.8,14.6,15.5,13.1800,2.7779
+S28,M11 Independent-3+Selector,NT (%),1.6,1.9,2.1,1.6,1.7,1.7800,0.2168
+S28,M11 Independent-3+Selector,PT (%),13.9,10.6,16.8,16.1,17.2,14.9200,2.7308
+S28,M11 Independent-3+Selector,SR (%),64.4,62.8,69.1,69.8,65.5,66.3200,3.0244
+S28,M11 Independent-3+Selector,Tokens (k),41.92,42.81,43.52,39.76,43.5,42.3020,1.5640
+S28,M12 Verify-All+Adapt,Delta SR (pp),15.6,14.6,14.9,14.6,18.1,15.5600,1.4775
+S28,M12 Verify-All+Adapt,NT (%),1.7,1.0,2.3,2.4,1.6,1.8000,0.5701
+S28,M12 Verify-All+Adapt,PT (%),17.4,15.6,17.2,17.0,19.6,17.3600,1.4381
+S28,M12 Verify-All+Adapt,SR (%),67.7,68.8,69.3,69.8,68.1,68.7400,0.8562
+S28,M12 Verify-All+Adapt,Tokens (k),56.23,55.8,56.38,56.11,55.98,56.1000,0.2235
+S28,M13 DEUL (proposed),Delta SR (pp),17.5,18.2,20.7,17.9,20.5,18.9600,1.5192
+S28,M13 DEUL (proposed),NT (%),1.4,1.2,0.7,0.5,1.9,1.1400,0.5595
+S28,M13 DEUL (proposed),PT (%),18.9,19.4,21.4,18.4,22.4,20.1000,1.7176
+S28,M13 DEUL (proposed),SR (%),69.6,72.4,75.0,73.1,70.5,72.1200,2.1394
+S28,M13 DEUL (proposed),Tokens (k),39.67,39.98,37.19,41.19,39.47,39.5000,1.4537
+S28,M14 No-Memory-Compute,Delta SR (pp),6.1,4.9,5.9,7.8,6.9,6.3200,1.0918
+S28,M14 No-Memory-Compute,NT (%),4.5,4.0,4.3,3.8,4.2,4.1600,0.2702
+S28,M14 No-Memory-Compute,PT (%),10.6,8.9,10.2,11.6,11.1,10.4800,1.0281
+S28,M14 No-Memory-Compute,SR (%),58.2,59.0,60.2,63.0,56.9,59.4600,2.3147
+S28,M14 No-Memory-Compute,Tokens (k),54.45,55.09,58.48,56.35,58.13,56.5000,1.7882
+S28,M2 Plan-Semantic,Delta SR (pp),2.3,3.1,4.3,4.0,7.1,4.1600,1.8215
+S28,M2 Plan-Semantic,NT (%),4.9,4.5,5.2,4.7,5.9,5.0400,0.5459
+S28,M2 Plan-Semantic,PT (%),7.1,7.6,9.5,8.7,13.0,9.1800,2.3317
+S28,M2 Plan-Semantic,SR (%),54.3,57.3,58.7,59.2,57.1,57.3200,1.9110
+S28,M2 Plan-Semantic,Tokens (k),33.52,33.49,33.48,34.02,34.49,33.8000,0.4476
+S28,M3 Skill-Semantic,Delta SR (pp),7.5,4.7,6.4,10.1,8.0,7.3400,1.9957
+S28,M3 Skill-Semantic,NT (%),4.0,5.2,3.5,3.8,5.2,4.3400,0.8050
+S28,M3 Skill-Semantic,PT (%),11.5,9.9,9.9,13.9,13.2,11.6800,1.8445
+S28,M3 Skill-Semantic,SR (%),59.5,58.9,60.8,65.3,58.0,60.5000,2.8697
+S28,M3 Skill-Semantic,Tokens (k),31.21,30.89,33.0,34.01,31.4,32.1020,1.3420
+S28,M4 Mixed-Semantic,Delta SR (pp),4.5,4.7,6.2,4.3,7.6,5.4600,1.4117
+S28,M4 Mixed-Semantic,NT (%),4.5,5.2,4.7,4.9,4.7,4.8000,0.2646
+S28,M4 Mixed-Semantic,PT (%),9.0,9.9,10.9,9.2,12.3,10.2600,1.3612
+S28,M4 Mixed-Semantic,SR (%),56.6,58.9,60.6,59.5,57.6,58.6400,1.5726
+S28,M4 Mixed-Semantic,Tokens (k),43.75,46.71,45.68,46.33,44.03,45.3000,1.3425
+S28,M5 AWM-adapt,Delta SR (pp),4.3,5.6,5.0,5.9,5.0,5.1600,0.6189
+S28,M5 AWM-adapt,NT (%),4.9,5.7,4.7,4.7,5.6,5.1200,0.4919
+S28,M5 AWM-adapt,PT (%),9.2,11.3,9.7,10.6,10.6,10.2800,0.8289
+S28,M5 AWM-adapt,SR (%),56.4,59.7,59.4,61.1,55.0,58.3200,2.5253
+S28,M5 AWM-adapt,Tokens (k),40.07,40.68,39.47,38.19,37.09,39.1000,1.4528
+S28,M6 ReasoningBank-adapt,Delta SR (pp),8.2,7.5,8.5,8.5,9.9,8.5200,0.8729
+S28,M6 ReasoningBank-adapt,NT (%),3.5,3.5,3.3,3.1,3.8,3.4400,0.2608
+S28,M6 ReasoningBank-adapt,PT (%),11.6,10.9,11.8,11.6,13.7,11.9200,1.0521
+S28,M6 ReasoningBank-adapt,SR (%),60.2,61.6,62.8,63.7,59.9,61.6400,1.6349
+S28,M6 ReasoningBank-adapt,Tokens (k),44.07,42.38,42.96,40.97,42.62,42.6000,1.1176
+S28,M7 H-EPM-infer-adapt,Delta SR (pp),9.7,8.2,10.1,9.2,10.1,9.4600,0.7956
+S28,M7 H-EPM-infer-adapt,NT (%),3.0,3.0,2.6,3.0,3.3,2.9800,0.2490
+S28,M7 H-EPM-infer-adapt,PT (%),12.7,11.1,12.7,12.2,13.4,12.4200,0.8526
+S28,M7 H-EPM-infer-adapt,SR (%),61.8,62.3,64.4,64.4,60.1,62.6000,1.8344
+S28,M7 H-EPM-infer-adapt,Tokens (k),40.1,40.04,39.0,39.56,40.81,39.9020,0.6733
+S28,M8 HMT-adapt,Delta SR (pp),8.7,7.6,11.1,9.4,11.5,9.6600,1.6349
+S28,M8 HMT-adapt,NT (%),3.0,3.3,3.6,2.4,3.1,3.0800,0.4438
+S28,M8 HMT-adapt,PT (%),11.6,10.9,14.8,11.8,14.6,12.7400,1.8215
+S28,M8 HMT-adapt,SR (%),60.8,61.8,65.5,64.6,61.5,62.8400,2.0744
+S28,M8 HMT-adapt,Tokens (k),41.9,40.28,40.04,39.68,42.1,40.8000,1.1183
+S28,M9 QCR-adapt,Delta SR (pp),12.2,9.5,10.1,11.1,13.9,11.3600,1.7516
+S28,M9 QCR-adapt,NT (%),2.6,1.9,2.8,1.6,2.4,2.2600,0.4980
+S28,M9 QCR-adapt,PT (%),14.8,11.5,12.8,12.7,16.3,13.6200,1.9097
+S28,M9 QCR-adapt,SR (%),64.2,63.7,64.4,66.3,63.9,64.5000,1.0416
+S28,M9 QCR-adapt,Tokens (k),39.13,38.19,38.12,40.23,38.34,38.8020,0.8944
+S30,DEUL / frozen shared controller,ALF-StateShift,67.3,69.2,68.2,66.7,69.6,68.2000,1.2268
+S30,DEUL / frozen shared controller,App-Drift,58.3,59.2,59.4,61.6,59.0,59.5000,1.2450
+S30,DEUL / frozen shared controller,W-Drift,58.5,54.7,53.4,54.3,57.6,55.7000,2.2192
+S30,DEUL / frozen shared controller,Work-Drift,44.4,46.5,44.8,45.3,47.0,45.6000,1.1113
+S30,DEUL / target-domain-trained reference,ALF-StateShift,69.6,72.4,75.0,73.1,70.5,72.1200,2.1394
+S30,DEUL / target-domain-trained reference,App-Drift,68.4,62.7,64.8,67.4,62.3,65.1200,2.7326
+S30,DEUL / target-domain-trained reference,W-Drift,60.3,64.8,60.0,58.6,58.5,60.4400,2.5677
+S30,DEUL / target-domain-trained reference,Work-Drift,56.9,54.0,49.5,47.9,52.3,52.1200,3.5738
+S30,Dev-selected single representation,ALF-StateShift,61.1,59.5,53.4,58.9,58.0,58.1800,2.9012
+S30,Dev-selected single representation,App-Drift,47.7,48.7,46.6,50.3,47.2,48.1000,1.4509
+S30,Dev-selected single representation,W-Drift,49.7,49.6,46.1,49.8,44.9,48.0200,2.3403
+S30,Dev-selected single representation,Work-Drift,29.8,36.6,32.9,32.9,36.7,33.7800,2.9098
+S30,Independent-3+Selector,ALF-StateShift,66.7,62.2,60.1,65.0,62.6,63.3200,2.5685
+S30,Independent-3+Selector,App-Drift,52.8,53.3,52.6,56.9,52.9,53.7000,1.8069
+S30,Independent-3+Selector,W-Drift,52.5,53.1,49.5,53.5,48.9,51.5000,2.1401
+S30,Independent-3+Selector,Work-Drift,39.2,37.9,38.4,42.8,39.7,39.6000,1.9196
+S30,Verify-All+Adapt,ALF-StateShift,67.5,66.4,63.2,68.5,66.0,66.3200,1.9992
+S30,Verify-All+Adapt,App-Drift,60.7,57.7,54.5,59.2,55.0,57.4200,2.6640
+S30,Verify-All+Adapt,W-Drift,55.5,60.0,52.6,54.0,54.4,55.3000,2.8249
+S30,Verify-All+Adapt,Work-Drift,44.1,42.7,43.3,49.0,41.4,44.1000,2.9112
+S31,Belief-state DP with known generative model,Abrupt SR (%),94.3,92.4,92.8,93.2,90.9,92.7200,1.2398
+S31,Belief-state DP with known generative model,Abrupt pseudo-regret,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S31,Belief-state DP with known generative model,Gradual SR (%),92.5,93.0,91.7,94.0,89.8,92.2000,1.5796
+S31,Belief-state DP with known generative model,Gradual pseudo-regret,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S31,Belief-state DP with known generative model,Recurring SR (%),94.2,94.4,93.8,93.9,90.3,93.3200,1.7050
+S31,Belief-state DP with known generative model,Recurring pseudo-regret,0.0,0.0,0.0,0.0,0.0,0.0000,0.0000
+S31,ChangePoint+Greedy,Abrupt SR (%),80.2,79.8,83.0,80.3,81.7,81.0000,1.3285
+S31,ChangePoint+Greedy,Abrupt pseudo-regret,102.2,122.3,99.9,105.7,111.4,108.3000,8.9462
+S31,ChangePoint+Greedy,Gradual SR (%),69.8,73.3,72.3,70.9,69.7,71.2000,1.5748
+S31,ChangePoint+Greedy,Gradual pseudo-regret,182.6,179.5,188.9,177.5,190.4,183.7800,5.6830
+S31,ChangePoint+Greedy,Recurring SR (%),78.5,82.0,79.7,80.3,81.0,80.3000,1.3210
+S31,ChangePoint+Greedy,Recurring pseudo-regret,113.7,120.6,103.1,114.3,105.3,111.4000,7.1491
+S31,DEUL,Abrupt SR (%),86.0,86.8,86.1,85.6,90.5,87.0000,2.0037
+S31,DEUL,Abrupt pseudo-regret,75.0,70.4,72.6,72.9,68.0,71.7800,2.6687
+S31,DEUL,Gradual SR (%),87.0,87.2,85.1,86.5,81.8,85.5200,2.2354
+S31,DEUL,Gradual pseudo-regret,91.5,87.7,85.0,87.1,96.7,89.6000,4.6109
+S31,DEUL,Recurring SR (%),89.2,87.9,87.0,89.1,87.3,88.1000,1.0124
+S31,DEUL,Recurring pseudo-regret,67.8,67.0,69.2,64.3,58.2,65.3000,4.3520
+S31,Discounted-LinTS,Abrupt SR (%),78.4,78.3,80.2,78.2,74.4,77.9000,2.1237
+S31,Discounted-LinTS,Abrupt pseudo-regret,135.6,125.7,119.1,126.5,125.1,126.4000,5.9186
+S31,Discounted-LinTS,Gradual SR (%),73.6,75.9,71.4,72.0,72.2,73.0200,1.8006
+S31,Discounted-LinTS,Gradual pseudo-regret,152.3,159.6,153.6,171.4,160.6,159.5000,7.5743
+S31,Discounted-LinTS,Recurring SR (%),75.2,76.1,77.5,72.4,73.7,74.9800,1.9967
+S31,Discounted-LinTS,Recurring pseudo-regret,148.8,155.4,146.4,152.4,142.9,149.1800,4.9084
+S31,Greedy similarity,Abrupt SR (%),71.9,70.8,71.1,69.5,70.2,70.7000,0.9083
+S31,Greedy similarity,Abrupt pseudo-regret,182.5,175.3,159.6,179.6,174.0,174.2000,8.8383
+S31,Greedy similarity,Gradual SR (%),64.6,60.1,60.3,60.4,62.1,61.5000,1.9092
+S31,Greedy similarity,Gradual pseudo-regret,241.1,240.6,252.2,220.1,236.4,238.0800,11.6291
+S31,Greedy similarity,Recurring SR (%),64.8,66.6,64.1,65.7,62.8,64.8000,1.4612
+S31,Greedy similarity,Recurring pseudo-regret,218.2,225.1,230.2,215.9,221.2,222.1200,5.6804
+S31,Myopic-VOI,Abrupt SR (%),84.6,86.9,85.7,82.1,82.1,84.2800,2.1499
+S31,Myopic-VOI,Abrupt pseudo-regret,96.8,93.3,97.1,87.2,86.7,92.2200,5.0405
+S31,Myopic-VOI,Gradual SR (%),77.4,81.3,76.0,79.3,77.9,78.3800,2.0142
+S31,Myopic-VOI,Gradual pseudo-regret,114.7,130.1,139.8,133.6,131.3,129.9000,9.2836
+S31,Myopic-VOI,Recurring SR (%),83.9,83.8,82.8,82.0,84.5,83.4000,0.9925
+S31,Myopic-VOI,Recurring pseudo-regret,95.6,104.8,90.8,93.1,98.7,96.6000,5.4438
+S31,Recurrent-Q (capacity-matched),Abrupt SR (%),81.8,82.3,81.6,83.2,79.6,81.7000,1.3266
+S31,Recurrent-Q (capacity-matched),Abrupt pseudo-regret,104.0,108.7,104.2,100.6,100.0,103.5000,3.4799
+S31,Recurrent-Q (capacity-matched),Gradual SR (%),76.8,75.5,79.3,77.6,78.9,77.6200,1.5515
+S31,Recurrent-Q (capacity-matched),Gradual pseudo-regret,127.3,123.4,129.7,132.6,144.6,131.5200,8.0515
+S31,Recurrent-Q (capacity-matched),Recurring SR (%),81.4,82.9,80.0,82.1,81.0,81.4800,1.0986
+S31,Recurrent-Q (capacity-matched),Recurring pseudo-regret,102.4,113.2,109.3,99.3,113.8,107.6000,6.4927
+S31,SW-LinUCB,Abrupt SR (%),80.7,79.2,80.2,79.0,77.5,79.3200,1.2357
+S31,SW-LinUCB,Abrupt pseudo-regret,113.7,118.4,107.1,118.5,111.8,113.9000,4.7984
+S31,SW-LinUCB,Gradual SR (%),71.1,71.5,72.3,71.6,72.4,71.7800,0.5541
+S31,SW-LinUCB,Gradual pseudo-regret,175.4,180.3,173.8,168.3,169.7,173.5000,4.7807
+S31,SW-LinUCB,Recurring SR (%),78.7,74.5,77.9,79.2,78.7,77.8000,1.9026
+S31,SW-LinUCB,Recurring pseudo-regret,145.1,132.8,131.9,131.6,140.1,136.3000,6.0328
+S32,+ domain-specific learned heads,ALF probe cohort,70.9,72.5,71.1,74.4,77.1,73.2000,2.5904
+S32,+ domain-specific learned heads,App probe cohort,67.5,67.6,65.8,67.2,65.8,66.7800,0.9066
+S32,+ domain-specific learned heads,Web probe cohort,64.1,60.2,61.4,63.4,62.4,62.3000,1.5556
+S32,DEUL / shared typed interface,ALF probe cohort,75.5,74.2,71.7,73.6,74.9,73.9800,1.4618
+S32,DEUL / shared typed interface,App probe cohort,67.9,68.1,64.0,66.6,68.8,67.0800,1.8966
+S32,DEUL / shared typed interface,Web probe cohort,62.4,61.3,57.9,60.4,58.4,60.0800,1.9071
+S32,Remove source/dependency alignment,ALF probe cohort,67.9,65.4,64.9,67.7,66.6,66.5000,1.3398
+S32,Remove source/dependency alignment,App probe cohort,61.5,58.9,57.7,61.5,61.4,60.2000,1.7861
+S32,Remove source/dependency alignment,Web probe cohort,58.4,53.5,53.8,54.7,56.1,55.3000,2.0062
+S32,Shared interface + no local drift update,ALF probe cohort,68.6,67.4,68.6,67.4,68.6,68.1200,0.6573
+S32,Shared interface + no local drift update,App probe cohort,60.5,59.8,58.6,60.2,60.4,59.9000,0.7746
+S32,Shared interface + no local drift update,Web probe cohort,56.0,54.7,54.9,55.8,56.6,55.6000,0.7906
+S32,Surface aliases permuted / shared interface,ALF probe cohort,76.2,73.1,72.3,74.4,74.0,74.0000,1.4748
+S32,Surface aliases permuted / shared interface,App probe cohort,64.0,68.3,67.8,68.7,66.7,67.1000,1.8881
+S32,Surface aliases permuted / shared interface,Web probe cohort,60.7,57.4,59.1,61.2,62.2,60.1200,1.8887
+S33,Irrelevant state change,Plan U (pp),8.4,4.4,6.8,8.4,10.4,7.6800,2.2343
+S33,Irrelevant state change,Skill U (pp),14.1,12.5,12.7,12.7,14.5,13.3000,0.9274
+S33,Irrelevant state change,Trajectory U (pp),8.3,7.6,8.3,4.9,9.0,7.6200,1.5991
+S33,Rare recovery needed,Plan U (pp),-1.2,-2.3,-0.3,-0.7,2.0,-0.5000,1.5859
+S33,Rare recovery needed,Skill U (pp),5.7,5.8,5.1,3.4,9.0,5.8000,2.0310
+S33,Rare recovery needed,Trajectory U (pp),12.3,8.3,10.5,8.0,10.5,9.9200,1.7782
+S33,Stable,Plan U (pp),6.5,6.1,9.6,5.4,9.9,7.5000,2.0940
+S33,Stable,Skill U (pp),13.0,12.7,12.6,12.5,15.2,13.2000,1.1336
+S33,Stable,Trajectory U (pp),7.7,5.6,9.9,7.2,9.6,8.0000,1.7790
+S33,State precondition changed,Plan U (pp),7.1,1.8,5.0,1.6,7.5,4.6000,2.8134
+S33,State precondition changed,Skill U (pp),-3.2,-4.8,-3.4,-4.9,-3.7,-4.0000,0.7969
+S33,State precondition changed,Trajectory U (pp),-5.9,-8.9,-4.1,-6.9,-7.2,-6.6000,1.7664
+S34,0,Irrelevant/Skill,12.4,11.2,11.3,13.6,12.5,12.2000,0.9874
+S34,0,Recurring/Skill,13.1,12.2,11.6,13.5,12.6,12.6000,0.7450
+S34,0,Relevant/Plan,8.3,7.5,7.9,9.9,7.5,8.2200,0.9960
+S34,0,Relevant/Skill,11.8,11.7,11.8,12.3,11.4,11.8000,0.3240
+S34,0,Relevant/Trajectory,9.2,7.6,8.4,11.2,8.7,9.0200,1.3498
+S34,0,Stable/Skill,11.8,11.6,12.8,13.3,11.6,12.2200,0.7823
+S34,1,Irrelevant/Skill,12.6,12.7,10.6,13.6,12.9,12.4800,1.1212
+S34,1,Recurring/Skill,12.7,13.1,10.5,14.5,12.2,12.6000,1.4526
+S34,1,Relevant/Plan,8.1,7.6,7.6,9.6,6.5,7.8800,1.1256
+S34,1,Relevant/Skill,11.6,9.2,10.6,12.5,10.5,10.8800,1.2438
+S34,1,Relevant/Trajectory,8.8,6.7,7.8,7.8,7.4,7.7000,0.7616
+S34,1,Stable/Skill,12.5,11.2,12.2,13.9,11.2,12.2000,1.1158
+S34,10,Irrelevant/Skill,13.4,12.5,12.4,14.2,11.6,12.8200,1.0010
+S34,10,Recurring/Skill,15.2,13.4,11.3,15.7,12.9,13.7000,1.7847
+S34,10,Relevant/Plan,-0.3,-0.3,-2.8,1.2,0.1,-0.4200,1.4653
+S34,10,Relevant/Skill,-3.5,-5.2,-5.1,-3.8,-4.8,-4.4800,0.7791
+S34,10,Relevant/Trajectory,-5.8,-8.0,-7.2,-5.2,-6.3,-6.5000,1.1136
+S34,10,Stable/Skill,14.2,13.0,11.9,15.3,11.6,13.2000,1.5572
+S34,11,Irrelevant/Skill,13.3,12.0,11.6,14.0,12.2,12.6200,0.9960
+S34,11,Recurring/Skill,15.9,12.6,12.7,15.1,12.3,13.7200,1.6559
+S34,11,Relevant/Plan,-0.4,-2.0,-2.3,0.8,-3.0,-1.3800,1.5466
+S34,11,Relevant/Skill,-6.4,-7.7,-6.4,-5.7,-7.3,-6.7000,0.7969
+S34,11,Relevant/Trajectory,-7.6,-7.9,-9.7,-6.2,-7.7,-7.8200,1.2478
+S34,11,Stable/Skill,13.9,13.0,9.9,16.0,12.1,12.9800,2.2488
+S34,12,Irrelevant/Skill,12.4,11.8,12.8,13.9,13.1,12.8000,0.7842
+S34,12,Recurring/Skill,11.9,11.9,13.0,14.0,10.8,12.3200,1.2194
+S34,12,Relevant/Plan,-1.0,-5.6,-1.9,-0.5,-1.5,-2.1000,2.0261
+S34,12,Relevant/Skill,-7.8,-8.6,-9.6,-7.4,-9.0,-8.4800,0.8899
+S34,12,Relevant/Trajectory,-9.8,-11.3,-10.6,-7.5,-10.3,-9.9000,1.4474
+S34,12,Stable/Skill,13.6,11.4,13.0,15.6,10.4,12.8000,2.0149
+S34,2,Irrelevant/Skill,13.7,12.5,11.9,14.4,12.5,13.0000,1.0198
+S34,2,Recurring/Skill,12.2,11.7,10.5,14.0,13.1,12.3000,1.3360
+S34,2,Relevant/Plan,7.4,5.0,5.3,8.1,6.7,6.5000,1.3323
+S34,2,Relevant/Skill,10.2,7.6,7.8,10.9,9.5,9.2000,1.4577
+S34,2,Relevant/Trajectory,6.2,4.2,5.2,8.0,5.0,5.7200,1.4601
+S34,2,Stable/Skill,12.9,10.5,12.3,14.6,10.3,12.1200,1.7838
+S34,3,Irrelevant/Skill,14.3,12.1,13.6,12.9,12.5,13.0800,0.8786
+S34,3,Recurring/Skill,11.2,11.4,12.6,14.3,12.5,12.4000,1.2349
+S34,3,Relevant/Plan,6.1,5.6,5.5,8.4,5.9,6.3000,1.1979
+S34,3,Relevant/Skill,9.2,7.8,6.6,7.5,6.4,7.5000,1.1180
+S34,3,Relevant/Trajectory,5.5,3.6,4.1,5.7,4.6,4.7000,0.8972
+S34,3,Stable/Skill,13.4,10.5,11.8,14.5,11.8,12.4000,1.5604
+S34,4,Irrelevant/Skill,14.4,12.2,12.2,14.7,12.5,13.2000,1.2430
+S34,4,Recurring/Skill,-4.3,-7.8,-6.1,-3.8,-5.6,-5.5200,1.5802
+S34,4,Relevant/Plan,5.8,5.2,3.6,7.3,3.6,5.1000,1.5684
+S34,4,Relevant/Skill,7.5,4.6,5.3,6.9,6.7,6.2000,1.2042
+S34,4,Relevant/Trajectory,3.7,1.6,3.5,3.8,3.0,3.1200,0.9039
+S34,4,Stable/Skill,12.9,11.6,12.2,14.4,11.9,12.6000,1.1158
+S34,5,Irrelevant/Skill,14.3,11.3,12.5,14.9,11.9,12.9800,1.5531
+S34,5,Recurring/Skill,-3.8,-6.1,-6.4,-2.7,-5.0,-4.8000,1.5572
+S34,5,Relevant/Plan,4.8,4.0,3.3,7.9,1.9,4.3800,2.2376
+S34,5,Relevant/Skill,4.4,4.2,2.7,6.0,3.7,4.2000,1.2021
+S34,5,Relevant/Trajectory,0.7,1.4,-0.8,2.1,0.1,0.7000,1.1247
+S34,5,Stable/Skill,12.7,11.1,11.5,14.8,11.9,12.4000,1.4663
+S34,6,Irrelevant/Skill,13.8,12.8,11.8,16.1,12.5,13.4000,1.6718
+S34,6,Recurring/Skill,-4.2,-5.0,-6.3,-4.3,-6.1,-5.1800,0.9834
+S34,6,Relevant/Plan,2.4,2.1,2.4,7.4,4.2,3.7000,2.2293
+S34,6,Relevant/Skill,3.6,0.6,2.3,1.4,1.6,1.9000,1.1269
+S34,6,Relevant/Trajectory,-0.6,-0.6,-1.1,1.7,0.1,-0.1000,1.0932
+S34,6,Stable/Skill,13.8,12.7,12.2,13.9,12.4,13.0000,0.7969
+S34,7,Irrelevant/Skill,11.5,13.6,12.3,14.2,11.9,12.7000,1.1511
+S34,7,Recurring/Skill,-4.7,-5.2,-5.5,-4.6,-5.6,-5.1200,0.4550
+S34,7,Relevant/Plan,5.8,2.0,0.5,4.6,0.7,2.7200,2.3742
+S34,7,Relevant/Skill,0.4,-0.2,-0.5,1.6,-1.8,-0.1000,1.2450
+S34,7,Relevant/Trajectory,-1.4,-2.3,-1.1,1.0,-3.2,-1.4000,1.5732
+S34,7,Stable/Skill,12.4,10.8,12.4,15.1,13.2,12.7800,1.5627
+S34,8,Irrelevant/Skill,12.8,12.1,10.4,14.8,13.0,12.6200,1.5912
+S34,8,Recurring/Skill,-2.8,-6.4,-4.8,-3.7,-5.7,-4.6800,1.4584
+S34,8,Relevant/Plan,2.0,2.6,2.1,3.2,1.1,2.2000,0.7778
+S34,8,Relevant/Skill,-2.2,-2.4,-1.8,-0.1,-2.4,-1.7800,0.9706
+S34,8,Relevant/Trajectory,-2.8,-3.7,-4.1,-2.9,-3.5,-3.4000,0.5477
+S34,8,Stable/Skill,14.3,13.9,13.4,14.2,13.7,13.9000,0.3674
+S34,9,Irrelevant/Skill,12.7,11.9,11.3,14.3,12.8,12.6000,1.1314
+S34,9,Recurring/Skill,14.2,11.3,12.6,15.7,14.1,13.5800,1.6814
+S34,9,Relevant/Plan,2.1,-0.2,1.1,1.3,0.3,0.9200,0.8955
+S34,9,Relevant/Skill,-2.2,-2.6,-2.5,-1.2,-4.0,-2.5000,1.0050
+S34,9,Relevant/Trajectory,-4.6,-4.9,-5.5,-3.5,-7.1,-5.1200,1.3236
+S34,9,Stable/Skill,14.2,13.4,12.9,15.0,13.5,13.8000,0.8155
+S24,M9 QCR-adapt,W-Drift diff (pp),5.73,4.95,4.69,4.43,8.2,5.6000,1.5327
+S24,M11 Independent-3+Selector,W-Drift diff (pp),4.82,3.65,3.12,2.21,6.12,3.9840,1.5220
+S24,M12 Verify-All+Adapt,W-Drift diff (pp),2.99,2.73,2.08,1.04,3.65,2.4980,0.9904
+S24,M14 No-Memory-Compute,W-Drift diff (pp),12.76,11.2,13.02,11.85,13.54,12.4740,0.9392

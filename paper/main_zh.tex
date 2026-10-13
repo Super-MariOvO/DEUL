@@ -1,0 +1,975 @@
+% Expanded standalone WWW 2027 source; no external project .tex or .bib required.
+% Figures remain placeholders. Numerical entries are retained from the supplied manuscript.
+% Expansion adds definitions, derivations, protocol explanation and result interpretation, not new experiments.
+% Compile with the unmodified ACM acmart class from the supplied template (v2.20).
+% !TeX program = xelatex
+% Chinese parallel reading copy. WWW submissions must be in English.
+\documentclass[sigconf,anonymous,review]{acmart}
+\newif\ifChinese
+\Chinesetrue
+\usepackage[UTF8,scheme=plain,fontset=fandol]{ctex}
+
+% ===== BEGIN inlined preamble =====
+% Shared typesetting only. Do not modify acmart.cls or the ACM page geometry.
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\newcommand{\lang}[2]{\ifChinese#2\else#1\fi}
+\newcommand{\DEUL}{\textsc{DEUL}}
+\DeclareMathOperator{\sg}{sg}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\diag}{diag}
+\newcommand{\E}{\mathbb{E}}
+\ifChinese
+\newtheoremstyle{zhplain}{6pt}{6pt}{\normalfont}{0pt}{\bfseries}{.}{0.5em}{}
+\theoremstyle{zhplain}
+\newtheorem{proposition}{命题}
+\newtheorem{definition}{定义}
+\renewcommand{\proofname}{证明}
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{图}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\abstractname}{摘要}
+\floatname{algorithm}{算法}
+\algrenewcommand{\algorithmicrequire}{输入：}
+\algrenewcommand{\algorithmicwhile}{当}
+\algrenewcommand{\algorithmicdo}{执行}
+\algrenewcommand{\algorithmicend}{结束}
+\algrenewcommand{\algorithmicif}{若}
+\algrenewcommand{\algorithmicthen}{则}
+\algrenewcommand{\algorithmicelse}{否则}
+\else
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\fi
+% No generated figures are embedded. Drop the named PDF into figures/ to replace a box.
+\newcommand{\figureasset}[3]{%
+  \IfFileExists{figures/#1.pdf}{\includegraphics[width=\linewidth,height=#2,keepaspectratio]{figures/#1.pdf}}{%
+  \fbox{\begin{minipage}[c][#2][c]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+  \centering\small\bfseries 图片占位\par\medskip
+  \normalfont #3\par\medskip\ttfamily\footnotesize\detokenize{figures/#1.pdf}
+  \end{minipage}}}}
+\setcopyright{none}
+\copyrightyear{2027}
+\acmYear{2027}
+\acmDOI{}
+\acmISBN{}
+\acmConference[WWW '27]{The Web Conference 2027}{May 10--14, 2027}{Dublin, Ireland}
+\settopmatter{printacmref=true}
+% Add the actual identifier only after OpenReview assigns it:
+% \acmSubmissionID{...}
+\renewcommand{\shortauthors}{Anonymous Author(s)}
+\AtBeginDocument{\providecommand\BibTeX{Bib\TeX}}
+\ifChinese
+  \pdfstringdefDisableCommands{\def\lang#1#2{#2}\def\DEUL{DEUL}}
+\else
+  \pdfstringdefDisableCommands{\def\lang#1#2{#1}\def\DEUL{DEUL}}
+\fi
+
+% ===== END inlined preamble =====
+
+\begin{document}
+
+% ===== BEGIN inlined content/frontmatter =====
+\title[When Experience Goes Stale]{经验何时失效：面向长程智能体的漂移感知经验效用学习}
+\begin{abstract}
+历史经验能够降低长程Web交互的探索成本，但在网站与在线服务变化后，检索相关的轨迹未必仍是有效的执行依据。本文研究同一经验在Trajectory、Plan和Skill三种表示下的效用变化，以及智能体应如何在复用前获取证据。我们提出漂移感知经验效用学习方法DEUL，将来源感知效用估计、局部依赖过滤和序贯证据获取统一为预算约束控制器。每次观测仅更新一个由受影响候选共享的联合后验，配对优势监督与实际转移学习则将后验关联到最终任务收益。报告的评测覆盖基于WebArena、WorkArena++、AppWorld和文本ALFWorld构建的六个协议。在三个接口或规则漂移协议上，DEUL成功率分别为60.4\%、52.1\%和65.1\%，比强化独立控制器提高1.25、1.08和2.36个百分点。在W-Drift上，DEUL比全面验证提高2.50个百分点，同时减少25.5\%的逻辑token。不同变化条件下出现表示效用排序反转；当依赖条件恢复有效时，冻结经验也能够重新获得收益。方法优势主要体现在监督有限、依赖共享且变化可观测的条件下，而稳定环境、更多训练数据及错误依赖图揭示了其适用边界。结果表明，经验复用应依据其当前决策价值，而不能仅依赖检索相关性或经验年龄。
+\end{abstract}
+\ccsdesc[500]{Computing methodologies~Intelligent agents}
+\ccsdesc[300]{Computing methodologies~Reinforcement learning}
+\ccsdesc[300]{Information systems~Web applications}
+\keywords{长程智能体，经验效用，非平稳环境，共享证据，序贯决策，Web可靠性}
+
+% ===== END inlined content/frontmatter =====
+
+\maketitle
+
+% ===== BEGIN expanded main text =====
+\section{引言}
+\label{sec:intro}
+重复执行相似任务的Web智能体不应每次都重新探索完整流程。历史轨迹、子目标计划与参数化技能能够提供执行指导，但网站和在线服务会独立演化：页面组织发生变化，工具契约被修改，先前的中间结果也可能不再满足当前前提。因此，关键科学问题不仅是如何检索相关经验，还包括如何判断其中的程序性内容在当前Web环境下是否仍然有用。这一区分直接影响跨页面、跨服务智能体的可靠性和执行成本。
+
+已有工作从轨迹中学习工作流，从成功与失败中提炼推理经验，构建分层记忆，或将检索结果适配到当前请求~\cite{awm,reasoningbank,hepm,hmt,qcr}。在这些进展之上，仍存在一个决策问题：同一相关来源能够派生出依赖条件不同的多种表示，而关于这些条件的证据既不完整，也需要付出获取成本。尤其当相同预算可以用于继续执行时，增加上下文或扩大验证范围并不必然改善结果~\cite{budgetstudy}。
+
+考虑一段依次读取全部匹配记录、检查异常、更新目标并确认结果的经验。其Trajectory保留具体观察和恢复分支，Plan保留子目标与顺序约束，Skill则编码参数化过程和终止检查。布局变化可能破坏轨迹中的具体定位，却不影响计划；罕见异常可能使保留细节的轨迹优于压缩计划；分页机制变化则可能使技能的完成条件失效，即便每次调用本身都成功。这些例子要求将效用建模为表示与条件的共同函数，而不是预设固定的抽象层级。
+
+我们提出\DEUL，将经验效用与证据获取价值联合学习。控制器维护作用域明确的依赖联合信念，在该信念下评估复用、适配和重规划，并通过有限深度决策树选择付费查询。基础执行器保持固定：本文贡献是经验与证据的决策管理，而不是新的底层语言模型policy或无限制回滚系统。图~\ref{fig:overview}概括其结构。
+
+\begin{figure}[t]
+\centering
+\figureasset{fig01_overview}{1.45in}{来源 \(e\) \(\rightarrow\) 三种经验表示\\作用域依赖 \(\rightarrow\) 共同后验\\同预算下的查询、复用、适配与重规划}
+\caption{DEUL框架。每次真实观测更新一个由受影响候选共享的后验；冻结执行器执行选定动作，直至下一个决策边界。}
+\Description{Placeholder for the source, representation, dependency, shared-posterior and sequential-control architecture.}
+\label{fig:overview}
+\end{figure}
+
+本文包括三项贡献。第一，定义程序性经验的当前增量效用，并研究跨表示、跨演化条件的正负迁移。第二，将来源感知配对监督、局部依赖信念和候选集合级证据获取耦合为统一控制器。第三，与强化独立模型、变点方法、潜在价值模型和计算预算匹配基线比较，同时分析收益与失效边界。在三个规则或接口漂移协议中，报告结果相对Independent-\allowbreak3++提高1.08--2.36个百分点；这一收益并不在稳定环境、不同监督规模和不同依赖质量下普遍成立。
+
+\section{相关工作}
+\textbf{智能体的程序性经验。}AWM提取可复用工作流~\cite{awm}，ReasoningBank从成败中提炼策略~\cite{reasoningbank}，H-EPM结合情景上下文与程序转移~\cite{hepm}，HMT通过可观察条件区分意图、阶段与具体动作~\cite{hmt}，QCR则明确区分检索与请求条件化复用~\cite{qcr}。因此，多表示组合、前提检查和旧轨迹适配本身并不是DEUL的新意。本文关注这些表示随条件变化的效用，以及同预算下证据对候选决策的共享价值。
+
+\textbf{非平稳决策与信息获取。}折扣、滑窗和贝叶斯变点过滤是适应环境变化的已有工具~\cite{nonstationary,bocpd}。相关知识梯度说明一次观测能够改变多个备选方案的价值~\cite{kg}，主动特征获取与付费观测bandit则显式考虑信息成本~\cite{l2m,paidbandit}。潜在状态与价值的联合学习也已用于基于模型的控制~\cite{tdmpc2}。DEUL将这些思想具体化到程序性经验的来源—表示—依赖结构，因此实验设置对应的强对照，而非将所有收益归因于加入记忆。
+
+\section{问题定义}
+\label{sec:problem}
+在决策边界\(t\)，智能体获得目标\(g_t\)及可观察状态估计\(b_t\)，后者包含交互前缀、已有证据、经验库摘要和剩余预算。不可变标识将历史来源\(e\)关联到其派生表示\(r\in\{\mathrm{Trajectory},\mathrm{Plan},\mathrm{Skill}\}\)。来源标识描述出处，并不保证统计独立。每次真实观测另有事件标识\(u\)和有效作用域；同一响应的多份表达属于一次测量，而多次独立调用仍是不同测量。
+
+\textbf{三种表示保持什么相同，又允许什么不同？}Trajectory保存历史观察、动作和结果的序列，并保留来源中已有的异常恢复分支；Plan提取子目标图、顺序约束和资源要求；Skill描述参数化程序、适用条件与终止检查。三者均派生自同一个历史来源，而不是分别调用更强模型为当前测试任务生成三个答案。经验内容通过共同文本接口作为建议输入，基础执行器仍可以依据当前证据拒绝旧步骤。因此，比较对象是不同表示对执行的指导效果，而不是强迫三组执行器逐字执行各自的历史流程。
+
+同源控制解决的是历史信息机会是否一致，等长控制解决的是上下文预算是否一致，公共接口控制解决的是执行权限是否一致。这三个条件不能互相替代：相同长度的文本可能保留不同的异常分支；相同来源生成的Skill也可能因为原生调用接口而额外获得执行优势。本文将表示内容与调用能力分开，主实验使用统一文本指导，原生接口与writer变化用于独立诊断。由此得到的效用比较应被理解为给定表示生成方式下的条件化结果，而不是Trajectory、Plan、Skill三个名称的固定能力排序。
+
+单个表示的增量效用定义为
+\begin{equation}
+U(e,r\mid g_t,b_t)=\E[Y^{e,r}-Y^{\varnothing}\mid g_t,b_t],
+\label{eq:utility}
+\end{equation}
+其中\(Y\)为任务最终成功指标。两条续行分支从相同前缀、状态和剩余预算开始，仅改变当前是否使用\((e,r)\)。共同前缀中此前的记忆影响并未被删除，因此该量不等于移除全部持久记忆的效果。仅观察到经验分支失败，不能判定负迁移，因为匹配的无经验分支也可能失败。
+
+这里的参照与当前决策边界绑定。一个经验与任务语义高度相关，仍可能因为条件不兼容而具有负增量效用；一个表示的绝对成功率较高，也可能因为重规划同样容易而几乎不提供额外收益。相反，某一次使用经验后失败，并不否认该表示在重复匹配续行中的平均收益为正。因此，\(U\)衡量的是相对于当前重规划选择的最终成功差异，而不是经验本身是否正确的静态标签。依赖兼容性是效用预测的输入依据，不能直接替代最终任务结果。
+
+\textbf{符号所指的两个层次。}\(g_t\)表示当前目标，\(b_t\)表示智能体根据合法历史形成的状态估计；其中已观察物理状态记为\(b_t^{\mathrm{obs}}\)，尚未确定的相关条件用\(z_t\)表示，其概率信念为\(p_t\)。因此，\(b_t\)不是评测器完整状态的别名，\(p_t\)也不是额外提供给智能体的环境答案。预算进入同一状态描述，是因为同一经验在充足预算下值得先验证，在剩余预算不足时则可能不如直接重规划。该区别由可行集和成本价值共同表达，而不是通过改变成功指标定义实现。
+
+动作集合包含合法查询\(q\)、复用\((e,r)\)、适配受影响步骤\(J\)，以及从当前状态重新规划。查询获取证据后可以继续决策；执行动作仅运行到下一有意义边界。记任务\(i\)的总逻辑token成本为\(C_i\)、原生环境调用数为\(A_i\)。管理策略\(\phi\)最大化总体任务成功，并满足
+\begin{equation}
+\max_{\phi}\E_{\phi}\!\left[\sum_iY_i\right],\quad
+ C_i\le B_i,\quad A_i\le B_i^{\mathrm{env}},\quad
+ \frac1T\sum_i\E_{\phi}\!\left[\frac{C_i}{B_i}\right]\le\bar C.
+\label{eq:objective}
+\end{equation}
+token账本包含检索、写入、推理、查询、适配、执行和摊入的在线维护成本。浏览器与API调用分别按原生单位约束。控制器内部的成本和剩余预算均以该任务初始token上限归一化。非负乘子\(\lambda\)用于比较可行动作，不能覆盖硬预算或权限约束。学习的续行价值在当前任务终止时结束，但经验与信念可以跨任务保留。
+
+\textbf{三个假说。}本文的实证检验围绕三个可推翻的假说展开，并预先写明各自的削弱条件。这三个假说并非并列罗列，而是同一论证链上三个不可省略的环节：若效用不随条件与表示变化（H1不成立），则存在固定最优表示，不存在需要管理的决策问题；若效用的变化无法在执行前从可观测证据中预测（H2不成立），则语义检索已是决策上限，控制器失去依据；若失效仅随时间发生、与相关环境变化无关（H3不成立），则折扣与滑窗等已有启发式即已足够，无需跟踪变化的信念更新。三者分别排除"固定最优表示""纯语义检索""按龄衰减"三类更简单的替代方案；只有同时成立，学习"表示选择+证据获取"的统一控制器才成为必要。
+
+H1（迁移依赖当前条件与表示）：同源经验的增量收益会变号或排序反转，且超过随机执行噪声；若事实刷新后差异消失，或某一表示在所有条件下始终最佳，则该主张被削弱。H2（兼容性证据优于单纯语义）：在未见任务与变化中，结构、依赖、状态及表示交互项提供超出语义的决策信息；若仅提高训练拟合而不改善留出条件下的决策，则该主张被削弱。H3（失效由相关变化驱动且可逆）：固定经验在无关变化下保持收益，在相关变化后下降，在条件恢复后可能恢复；若只有人工极端变化有影响，或真实可观测信号无法预测失效，则该主张被削弱。
+
+\section{环境与变化协议}
+\label{sec:protocol}
+在给出方法之前，先固定现象检验的舞台：环境与变化如何构造、数据如何划分、变化依据什么触发、以及哪些替代解释被预先排除。
+
+评测使用基于WebArena~\cite{webarena}、WorkArena++~\cite{workarena}、AppWorld~\cite{appworld}和文本ALFWorld~\cite{alfworld}构建的专用扩展协议。W-Static包含256个目标，W-Drift包含768个，Work-Drift和App-Drift各576个，ALF-Static为144个，ALF-StateShift为576个，合计每个seed 2,896个目标。它们不同于原版benchmark任务列表及排行榜。其中ALF-StateShift仅改变资源、前提与中间状态，保持底层动力学不变，因此验证非Web场景的状态条件化效用，而非转移规则漂移。
+
+每个变化协议均衡包含四条路径：Stable保持相关依赖，Relevant改变必需的接口、契约或条件，Irrelevant改变规模相近但无关的内容，Recurring通过A--B--A序列恢复先前条件。在线路径各包含12个任务；独立的冻结经验诊断评测13个快照，在快照4进入B、快照9恢复A，并在每个快照重新运行无经验参照。该设计将经验收益下降与任务自身变难区分，同时分离冻结来源分析与在线适应。
+
+控制器训练、开发和测试之间隔离工作流family及原始来源。WebArena的family数分别为32/8/16，其余各域为24/6/12。每条路径从相同训练来源库开始，最多保留256个活跃来源；测试流中的新经验仅在相应任务完成后可用。变化应改变实际可执行行为，保持目标可解，且新条件能够通过正常观察获得；仅在指令中声明规则改变，不构成环境变化。评测器隐藏状态、未来任务、变化标签及未选动作收益均不输入控制器。
+
+\textbf{变化何时发生。}变化触发依据共享语义事件，而不是模型调用次数。例如，不同控制器读取和验证的频率可能不同，按第几次模型调用触发变化会使各方法经历不同的环境阶段。独立路径同时重置环境和经验库，避免一条A--B--A路径得到的返回条件信息提前泄漏给另一条路径。冻结来源诊断则始终保持经验内容不变，逐快照重新运行无经验参照，测量旧内容本身的效用；它与允许更新信念及版本的系统恢复曲线回答不同问题。
+
+\textbf{排除几类替代解释。}当前证据控制为各组提供同样的信息入口；fact rebinding只刷新实体、位置和事实，不主动重写程序；等长无关文本控制额外上下文负担；writer与公共接口控制表示压缩方式和执行能力差异。执行器在所有条件下都可自主纠错，因此负迁移不依赖强迫其服从过时步骤。对于因素干预，语义高低、结构兼容性、依赖条件和状态前提必须与目标难度一起检查；无法完全独立操纵的因素不被解释为已经识别的独立因果效应。
+
+
+\section{现象证据：三个假说的检验}
+\label{sec:phenomenon}
+在给出方法之前，先检验第~\ref{sec:problem}节三个假说所描述的现象本身是否成立：同源经验在不同条件下的效用是否变号（H1）、兼容性证据是否优于单纯语义（H2）、失效是否由相关变化驱动且可逆（H3）。本节的诊断均不涉及后文提出的控制器。
+
+\subsection{表示效用的变号与排序反转（H1）}
+
+% ===== BEGIN inlined tables/rq1 =====
+\begin{table}[t]
+\centering
+\caption{同源经验相对无经验的配对效用（pp）。}
+\label{tab:rq1}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Condition & Trajectory & Plan & Skill \\
+\midrule
+Stable & \(6.6\!\pm\!0.6\) & \(6.2\!\pm\!1.7\) & \(11.2\!\pm\!2.4\) \\
+DOM shift & \(-7.9\!\pm\!1.2\) & \(7.4\!\pm\!1.7\) & \(0.9\!\pm\!2.0\) \\
+Contract shift & \(-13.6\!\pm\!3.1\) & \(0.9\!\pm\!1.6\) & \(-9.2\!\pm\!0.6\) \\
+Rare exception & \(14.1\!\pm\!1.7\) & \(-2.0\!\pm\!1.3\) & \(6.0\!\pm\!1.8\) \\
+Irrelevant & \(7.8\!\pm\!1.4\) & \(5.9\!\pm\!2.3\) & \(12.1\!\pm\!1.9\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ===== END inlined tables/rq1 =====
+
+表~\ref{tab:rq1}直接比较同一来源的三种表示。稳定条件下，Skill平均增益最大，为11.2 pp；DOM变化后，Trajectory降低7.9 pp，Plan提高7.4 pp；罕见异常下排序反转，Trajectory提高14.1 pp，Plan降低2.0 pp。契约变化分别使Trajectory和Skill降低13.6及9.2 pp，Plan则接近无经验参照。这些比较否定了在所测条件下采用单一固定排序的做法，但不能推出某种表示天然安全。
+
+信息控制诊断将程序不匹配与绑定过期、上下文长度区分。在相同当前证据入口下，无记忆参照成功率为40.6\%，冻结轨迹为32.6\%，事实重绑定为35.5\%，目标条件化适配为50.9\%，等长无关文本为39.3\%。因此，在该比较中更新事实只恢复了部分轨迹损失。辅助因素预测诊断中，仅语义特征的AUROC为0.559，四类因素为0.795，加入表示交互项后升至0.838。这些是预测关联，不是因果效应分解。
+
+配对因素干预进一步限定预测结果的含义。高语义相似但依赖不兼容时，Trajectory和Skill的增量收益分别为\(-9.7\)和\(-5.7\) pp；低语义相似但依赖兼容时，三种表示仍分别获得3.4、4.6和6.8 pp的正收益。因此，检索相关性与可执行兼容性不能互相替代，但该结果也不意味着语义信息没有价值：语义检索仍可用于提出候选，效用模型解决的是候选出现之后应如何使用。
+
+表示身份单独加入四因素模型后，AUROC仍为0.795；加入表示与条件的交互后提高至0.838。这说明被比较的预测配置中，新增信息主要来自表示在不同条件下如何改变，而不是对某一种表示统一增加常数偏好。Semantic-only的ECE已经较低，为0.015，却同时只有0.559的AUROC；一个预测器可以在总体概率上较保守而缺少区分候选的能力。因此，校准、判别及实际决策收益分别报告，不能挑选其中一个指标替代其余问题。
+
+\begin{figure*}[t]
+\centering
+\figureasset{fig02_utility_evolution}{1.65in}{(a) 同源表示在不同变化条件下的效用：S06\\(b) 13快照下冻结经验效用：S10\\(c) 稳定、无关与周期恢复路径；在4和9标注条件改变}
+\caption{表示条件化效用及环境演化。纵轴为相对同快照新运行无经验参照的配对成功率增益。相关变化路径的表示曲线与三条控制路径均值来自不同队列；误差线或带表示seed级SD。}
+\Description{Placeholder for paired representation utility and 13-snapshot frozen-experience curves.}
+\label{fig:utility}
+\end{figure*}
+
+在相关变化路径上，冻结Trajectory、Plan和Skill从快照0的8.9、6.3和12.0 pp增益，变为快照12的13.5、7.3和12.7 pp损失。稳定及无关变化路径的平均效用始终为正；周期恢复路径中，平均效用从切换前8.1 pp变为快照4的\(-7.9\) pp，并在快照9恢复到7.8 pp。该模式与依赖条件驱动、可逆的经验失效一致，而不是单纯按年龄衰减，但不能据此定义普遍适用的经验寿命。
+
+
+\section{漂移感知经验效用学习}
+\label{sec:method}
+上述证据支持三个假说：同源经验的效用随表示与条件变号，结构、依赖、状态及表示交互提供超出语义的预测信息，失效由相关变化驱动且在条件恢复时可逆。由此自然产生的问题是：能否构造一个控制器利用这种结构——在复用之前判断应使用哪种表示，以及是否值得先付费获取证据？本节给出候选方法。
+
+\subsection{共同依赖信念}
+作用域依赖图\(G_t\)将候选表示连接到由合法观察、历史参数和程序内容提取的条件。只有对象、时间及语义作用域一致时，条件才可以合并。记\(z_t\)为当前条件隐状态，\(p_t\)为其联合信念。先根据前一动作预测，再对每个尚未处理的事件进行一次似然更新：
+\begin{equation}
+\begin{aligned}
+p_t^-(z)&=\int p_{\eta}(z\mid z',a_{t-1},b_{t-1})p_{t-1}(z')\,dz',\\
+p_t(z)&\propto p_{\eta}(o_u\mid z,a_{t-1},b_{u,-}^{\mathrm{obs}})p_t^-(z).
+\end{aligned}
+\label{eq:filter}
+\end{equation}
+其中\(b_{u,-}^{\mathrm{obs}}\)不包含正在评分的响应，避免观测模型把答案作为自身输入。事件账本阻止同一似然被重复相乘。新观测可以同时更新多个候选价值，但不会因此成为多次独立观测。条件间相关性被保留，不能仅根据图上的直接连接忽略先验依赖。
+
+持久条件采用带局部hazard \(h_{j,t}\)的保留或重置转移。hazard由此前可见线索、时间间隔及历史残差决定，不读取评测器的变化标签。正常动作导致的状态改变由动作转移描述，不自动归类为漂移。实现配置在局部候选子图中维护32个联合粒子；梯度通过软权重传播，重采样的祖先选择停止梯度。这是近似且可能有偏的过滤梯度，不构成精确后验保证。
+
+\textbf{局部转移。}对持久条件\(j\)，混合转移为
+\begin{equation}
+\begin{aligned}
+p_\eta(z_{j,t}\mid z_{t-1},a_{t-1},b_{t-1})
+={}&(1-h_{j,t})p_\eta^{\mathrm{persist}}(z_{j,t}\mid z_{t-1},a_{t-1})\\
+&+h_{j,t}p_{j,0}(z_{j,t}).
+\end{aligned}
+\end{equation}
+该式沿用变点建模中的hazard思想~\cite{bocpd}。若当前响应为变点假设提供信息，应将该变量纳入同一次贝叶斯更新，而不是先用响应修改先验，再将其当作独立测量使用一次。
+
+\subsection{来源条件化价值与配对监督}
+共享编码器读取目标、可观察物理状态、来源内容、表示残差、依赖图和预算。对执行候选\(a\)，两个输出头分别估计剩余成功价值与成本，并在同一个后验下积分：
+\begin{equation}
+\begin{aligned}
+\hat Q^Y(b_t,a)&=\E_{z\sim p_t}[Q_\theta^Y(g_t,b_t^{\mathrm{obs}},z,a,B_t)],\\
+\hat Q^C(b_t,a)&=\E_{z\sim p_t}[Q_\theta^C(g_t,b_t^{\mathrm{obs}},z,a,B_t)],\\
+\hat Q(b_t,a)&=\hat Q^Y(b_t,a)-\lambda\hat Q^C(b_t,a).
+\end{aligned}
+\label{eq:values}
+\end{equation}
+成功头取值位于\([0,1]\)，成本头非负。估计优势为\(\hat U_a=\hat Q^Y(b_t,a)-\hat Q^Y(b_t,\mathrm{replan})\)，重规划本身也具有状态相关价值。同源不要求同效用，共同条件能够以不同方式影响不同表示。
+
+在配对训练快照\(d\)中，三个复用分支、三个适配分支和一个重规划分支共享前缀及续行policy，基础配置中每个分支重复两次。定义\(\Delta_{d,a}=\bar Y_{d,a}-\bar Y_{d,0}\)。由于所有优势共享重规划估计，其误差存在相关性，向量损失写为
+\begin{equation}
+\mathcal L_{\mathrm{pair}}=\frac1{|\mathcal D|}\sum_d
+\frac{(\hat{\boldsymbol U}_d-\boldsymbol\Delta_d)^\top
+\sg(R_d^{-1})(\hat{\boldsymbol U}_d-\boldsymbol\Delta_d)}{|\mathcal A_d^{\mathrm{paired}}|}.
+\label{eq:pair}
+\end{equation}
+在分支噪声条件独立时，协方差为
+\begin{equation}
+R_d=\diag\!\left(\frac{\sigma_{d,a}^2}{m_{d,a}}\right)+\frac{\sigma_{d,0}^2}{m_{d,0}}\boldsymbol1\boldsymbol1^\top.
+\end{equation}
+两次重复不足以识别完整协方差矩阵，因此利用训练残差汇总、公共基线项与对角收缩稳定估计；当分支随机性耦合时，还需要额外交叉协方差。强化独立基线采用相同的协方差处理与事件去重。
+
+共同后验描述的是当前环境可能处于哪些条件组合，而不是对三个互相独立预测的环境取平均。对于同一个联合粒子，所有候选都在相同条件赋值下接受价值评估；当一次查询提供新证据时，受影响候选的相对排序在同一个可能世界集合上更新。表示残差则允许不同表示保留不同步骤、异常信息和终止条件，因此共同后验不要求三种表示得出相同分数，也不要求同源表示具有相同效用方向。
+
+\textbf{环境不确定性与监督误差不是同一件事。}\(p_t\)反映对真实条件的认识不确定性；\(R_d\)反映配对分支均值的统计误差。当一次重规划恰好成功或失败时，以它为公共参照的多个优势标签可能一起升高或降低，因而需要处理协方差。这个公共误差项不表示不同表示的真实效用必然正相关。另一方面，同一原始响应被多次检索仅仅产生多个引用，不构成新测量；重复引用应在事件账本中去重，而不是靠调整优势损失的协方差补救。
+
+\subsection{价值、观测与查询的联合学习}
+训练交替进行冻结管理策略\(\phi_k\)的评价，以及基于共同查询树的策略改进。每个实际执行的动作产生到下一边界的转移；成功奖励仅在终止时为\(Y\)，中间为零，每项成本只计算一次。同一个后续动作\(a^+=\phi_k(b')\)定义两个目标：
+\begin{equation}
+\begin{aligned}
+y^Y&=r^Y+(1-d)\hat Q_{\bar\theta}^Y(b',a^+),\\
+y^C&=c+(1-d)\hat Q_{\bar\theta}^C(b',a^+),\\
+\mathcal L_{\mathrm{TD}}&=\E[(\hat Q^Y-\sg(y^Y))^2+\omega_C(\hat Q^C-\sg(y^C))^2].
+\end{aligned}
+\label{eq:td}
+\end{equation}
+其中\(d\)表示任务终止，滞后参数用于停止梯度的目标。配对续行必须采用被评价policy，旧policy的结果并不自动成为当前最优价值的标签。当前价值梯度传向依赖编码器及可微后验权重。未选择分支的结果不作为在线反馈提供。
+
+唯一事件预测损失将信念约束到可观察证据：
+\begin{equation}
+\mathcal L_{\mathrm{obs}}=-\frac1{|\mathcal E_{\mathrm{unique}}|}\sum_u
+\log\!\int p_\eta(o_u\mid z,a_u,b_{u,-}^{\mathrm{obs}})p_u^-(z)\,dz.
+\label{eq:obs}
+\end{equation}
+滞后参数\(\bar\theta,\bar\eta\)给出共同后验下的查询目标：
+\begin{equation}
+\begin{aligned}
+\mathcal L_{\mathrm{query}}=\E_{(b,q)}\Big[\big(\hat Q(b,q)-\sg\big(&-\lambda c_q+\E_{o\sim p_{\bar\eta}(\cdot\mid b,q)}\\
+&V_{d_q-1}^{\phi_k}(\mathcal T_{\bar\eta}(b,q,o),B-c_q)\big)\big)^2\Big].
+\end{aligned}
+\label{eq:queryconsistency}
+\end{equation}
+
+查询一致性损失将\(\hat Q(b,q)\)与付费成本及同一滞后过滤器产生的期望续行价值对齐。策略评价时沿用\(\phi_k\)，最大化仅用于策略改进。实际查询转移和预测损失与模型目标共同使用，避免查询头仅依赖自身想象的奖励训练。总目标为
+\begin{equation}
+\begin{aligned}
+\min_{\theta,\eta}\quad &\mathcal L_{\mathrm{TD}}+\alpha\mathcal L_{\mathrm{pair}}+
+\beta\mathcal L_{\mathrm{obs}}+\kappa\mathcal L_{\mathrm{query}}+\xi\mathcal R_{\mathrm{graph}},\\
+\lambda_{k+1}&=\big[\lambda_k+\rho(\widehat{\E}[C_i/B_i]-\bar C)\big]_+.
+\end{aligned}
+\label{eq:joint}
+\end{equation}
+图正则项抑制缺乏证据支持的稠密连接，损失权重与成本乘子由训练及开发数据确定。测试阶段神经网络权重冻结。行为支持掩码限制训练支持不足的动作，同时保留重规划；这一处理针对离线学习风险，但不继承保守Q学习的理论保证~\cite{cql}。
+
+\textbf{四类监督如何衔接。}配对优势损失比较从同一边界出发、采用同一续行policy时各个首次决策的收益差异；TD损失则利用实际动作到下一边界的转移，将中间查询、适配及执行的后果连接到最终成功和剩余成本。观测似然负责约束信念是否能够预测尚未看到的新证据，查询一致性负责检验该证据预测能否支持后续决策价值。四项损失约束的不是同一个标签，不能将它们理解为四份重复的成功率拟合。
+
+若仅优化价值，模型可能把条件编码成有利于拟合训练奖励的隐变量，却不能准确解释查询结果；若只优化观测预测，模型则可能主要保留高频但与表示选择无关的差异。联合训练通过价值梯度把任务相关信息传回条件模型，又通过独立的观测预测项避免信念完全脱离可见证据。这是结构设计的动机，而非最优性证明：是否带来额外收益，需要分别切断价值到信念的梯度、共同后验和查询一致性连接来检验。
+
+成功与成本也不能各自选择最有利的后续动作。式~\eqref{eq:td}使用同一个\(a^+=\phi_k(b')\)，使两个预测头评价同一续行方案；分别最大化成功头和最小化成本头，可能把两个互不兼容的策略拼成一个不存在的价值。终止标志令任务结束后的bootstrap为零，避免将下一个任务的成功奖励计入本任务的经验效用。跨任务保留来源与证据描述的是持续适应，而不是已经求解跨任务探索的全局最优控制。
+
+\subsection{序贯证据获取}
+假设查询从联合预测模型中采样一个结果\(o\)，并将其后验更新传播到整个候选集合。在最多连续查询\(d\)次、归一化预算为\(B\)时，改进规则为
+\begin{equation}
+\begin{aligned}
+V_0(b,B)&=\max_{a\in\mathcal A_B^{\mathrm{exec}}}\hat Q(b,a),\\
+V_d(b,B)&=\max\Big\{V_0(b,B),\max_{q\in\mathcal Q_B}\big[-\lambda c_q\\
+&\hspace{30mm}+\E_{o\mid b,q}V_{d-1}(\mathcal T_\eta(b,q,o),B-c_q)\big]\Big\}.
+\end{aligned}
+\label{eq:tree}
+\end{equation}
+控制器仅执行选中的第一个动作，获得真实响应后重新决策。由于最终只选择一个后续执行方案，不能将各候选的信息价值简单相加。影响很多候选的查询，若不改变最优决策，仍可能无用；只影响少数候选的查询，则可能因区分两个有竞争力的方案而有价值。第~\ref{app:analysis}节给出精确构造，说明边际效用不足以决定查询价值，以及互补查询为何能够超越短视规则。这些构造用于解释机制，而非提供普遍最优保证。
+
+相对于当前立即执行的最佳选择，查询的净价值为
+
+\begin{equation}
+\begin{aligned}
+\mathrm{VOI}(q\mid b,B)={}&-\lambda c_q-V_0(b,B)\\
+&+\E_{o\mid b,q}V_{d-1}(\mathcal T_\eta(b,q,o),B-c_q).
+\end{aligned}
+\label{eq:voi}
+\end{equation}
+
+正的VOI表示预期后续决策收益足以补偿观测成本。期望同时包含有帮助、无帮助乃至降低旧候选价值的响应，而不是只选择最有利的响应；深度二时，第一个结果还可以改变是否值得购买第二项证据。因此，查询覆盖多少候选、减少多少边际不确定性，以及最终能增加多少任务成功价值，是三个不同的量。对多个候选分别求VOI后相加，会将只能实现一次的任务收益计算多次；共同查询树在每个结果分支内先更新同一后验，再选择一个可行续行方案。
+
+默认查询树深度为二，每个节点最多六个合法查询，每个查询最多三个观测分支。查询遵守正常工具权限，页面导航与焦点变化均计入实际状态转移。适配不仅修改文字，还使依赖变更步骤的下游结果失效。当预算或证据不足时，控制器回退到常规重规划。
+
+\textbf{计算复杂度的来源。}若每个节点最多有\(m\)项查询、每项查询最多有\(c\)类结果，深度为\(d\)，朴素展开随\(O((mc)^d)\)增长；图编码和联合粒子计算还需另外计入。共享缓存减少的是重复候选和重复证据的计算，并不消除查询树的组合增长。因此，更多粒子、更多候选和更深搜索可能同时增加成功机会与控制开销，不能只根据逻辑token接近就推断控制器前向计算相同。默认深度二和32个粒子是材料给出的实现配置，不代表对所有预算都最优。
+
+\subsection{训练轮次与在线执行闭环}
+训练流程把评价当前policy的后果与改进policy分开。首先，观测模型利用唯一训练事件进行预热。随后在第\(k\)轮固定\(\phi_k\)，收集或选择具有一致续行policy的配对分支和真实转移，重建每个训练历史对应的共同信念，并联合优化配对、TD、观测预测与查询一致性损失。滞后网络提供停止梯度的目标，来源分组及公共重规划分支决定误差协方差处理。仅在评价轮次之间，查询树才改进管理policy；不能在同一监督目标中先评价旧policy，再未经说明切换为新policy的最大化结果。
+
+每条训练轨迹的policy版本用于区分其续行规则。当policy改变时，同一个首次动作之后的最终成功概率也可能改变，因此旧版本的终止标签不能天然视为当前最优价值的无偏标签。材料规定的处理方式是重新收集分支、使用具有行为支持的离策略校正，或仅将旧分支用于预训练。行为支持掩码限制缺乏训练覆盖的动作，同时始终保留合法重规划；该规则不为未执行动作补造成功反馈。基础配对批次只是训练量的起点，多轮采样、查询转移和来源采集都需要单独累计成本。
+
+测试时固定\(\theta\)、\(\eta\)和\(\lambda\)，仅更新后验、表示选择以及有界的经验版本。算法~\ref{alg:online}给出闭环：查询之后以真实响应替代假设分支，执行之后根据新的物理状态重新评估下一边界。局部适配不仅更改经验文本，还使依赖旧输出的下游中间结果失效；重规划从当前合法状态开始，不暗含评测器提供的免费快照回滚。对于暂时失效的版本，停用与删除分开：条件恢复时可以重新验证旧来源，但不能因此直接复用过去任务的答案。
+
+\begin{algorithm}[t]
+\caption{DEUL在线控制}
+\label{alg:online}
+\begin{algorithmic}[1]
+\Require 冻结的\(\theta,\eta,\lambda\)、合法工具、来源库与预算
+\While{当前任务未结束}
+\State 由真实响应更新可观察上下文。
+\State 检索来源并对表示候选去重。
+\State 利用动作条件化转移预测局部条件。
+\State 对每个新事件仅更新一次式~\eqref{eq:filter}。
+\State 评估候选及共享的深度二查询树。
+\State 执行首个可行动作并记录成本。
+\If{动作为查询}
+\State 传播该次真实结果，返回决策。
+\Else
+\State 执行至下一边界或任务终止。
+\EndIf
+\EndWhile
+\State 利用允许的反馈更新有界经验版本。
+\end{algorithmic}
+\end{algorithm}
+
+
+\section{机制分析与受限理论结论}
+\label{app:analysis}
+以下分析解释决策结构，是精确构造及给定假设下的基本推论，不是benchmark测量，也不是任意学习过滤器的性能保证。
+
+\begin{proposition}[边际效用不能决定查询价值]
+两个环境可以具有完全相同的候选边际价值分布，但同一个查询的价值不同。
+\end{proposition}
+\begin{proof}
+令两个候选价值均为二元变量，重规划价值为零。第一个环境等概率取\((1,1)\)或\((0,0)\)，第二个环境等概率取\((1,0)\)或\((0,1)\)。每个边际均为Bernoulli\((1/2)\)，未查询的最优期望价值都是\(1/2\)。查询揭示第一个候选的价值：在第一个环境，查询后最优价值的期望仍为\(1/2\)；在第二个环境则为\(1\)。因此免费查询价值分别为零和\(1/2\)。当查询成本为\(0.1\)时，两环境的最优查询决策不同。若独立架构具有充分表达能力的条件更新，也能处理该例；不足之处仅在于只保留边际分布。
+\end{proof}
+
+\begin{proposition}[互补查询]
+立即执行条件下无价值的查询，在允许后续第二次查询时可以有价值。
+\end{proposition}
+\begin{proof}
+令\(z_1,z_2\)为独立公平二元变量。候选A在\(z_1\mathbin{\mathrm{XOR}}z_2=0\)时成功，候选B在其为一时成功。每个查询以\(0.1\)成本揭示一个变量。任何单次查询都不能改变两候选各\(1/2\)的成功概率；联合查询则识别成功候选，净价值为\(1-0.2=0.8>0.5\)。该比较针对``查询一次后立即执行''的短视规则；已经具有正确长期Q值的单步动作选择器不受相同限制。
+\end{proof}
+
+\textbf{共用基线协方差。}对于\(\Delta_a=\bar Y_a-\bar Y_0\)和\(\Delta_b=\bar Y_b-\bar Y_0\)，在分支噪声条件独立下，\(a\ne b\)时有\(\Cov(\Delta_a,\Delta_b)=\Var(\bar Y_0)\)，展开四个协方差项即可得到。该结论描述标签噪声，不涉及观测重复或不同表示真实价值相等。
+
+\textbf{重复及局部更新。}若事件引用和相同候选被严格去重，编码及平局处理对集合表示不变，复制引用既不改变后验，也不改变policy分布。若两组条件的先验分解、无共享隐参数，且新似然只涉及其中一组，则归一化后另一组后验不变。存在先验相关时，后一结论不成立，间接更新可能是正确的。
+
+\begin{proposition}[受限的查询评分误差界]
+设单次查询后的续行价值位于\([0,V_{\max}]\)，其一致估计误差至多\(\epsilon\)，预测结果分布的总变差误差至多\(\delta\)，成本惩罚误差至多\(\epsilon_c\)，则查询评分误差至多\(\epsilon+V_{\max}\delta+\epsilon_c\)。若全部可行动作评分的误差至多\(\epsilon_Q\)，按估计分数取最大值的损失至多\(2\epsilon_Q\)。
+\end{proposition}
+\begin{proof}
+加减一次在预测分布下真实续行价值的期望。价值估计误差贡献至多\(\epsilon\)，取值位于\([0,V_{\max}]\)的函数所产生的分布误差至多\(V_{\max}\delta\)，成本误差贡献\(\epsilon_c\)。对动作选择，在真实最优与估计最优之间插入两个估计分数，中间差非正，其余两项各不超过\(\epsilon_Q\)。这些假设与界不推出全局regret保证或有限粒子的精确推断。
+\end{proof}
+
+\textbf{理论结论怎样对应消融。}边际相同的构造解释为何需要检查查询后的相对排序信息，互补查询构造解释为何只看一步可能不足，误差界则把价值误差、观测分布误差和成本误差同时放入选择风险。对应到实验，因子化信念、独立假设响应、短视VOI和删除观测预测损失分别切断不同连接。构造只说明存在相应机制，不保证实际任务频繁出现该条件；消融下降也不意味着该机制在全部环境中必不可少。特别是充分表达、共享输入的独立模型仍可能学会同样的条件更新，所以论文关注有限数据、真实成本和结构误差下的比较，而不主张联合结构对所有独立模型具有表达能力优势。
+
+
+\section{训练、对照与指标协议}
+\label{sec:evalproto}
+方法评估还需补全执行器、对照与指标口径；环境、变化与划分的定义见第~\ref{sec:protocol}节，不再重复。
+
+\subsection{执行器、训练与对照}
+主执行器为Qwen3-32B，第二执行器为Qwen3-8B~\cite{qwen32,qwen8}。各方法共享文本或AXTree观察、工具、32k上下文管理、0.6的temperature及0.95的top-\(p\)。Web和ALF任务的token上限为64k，Work和App为96k；Web原生动作上限为80，其余为120。经验注入最多4k token，检索五个来源。主比较将三种表示都作为文本指导，不为某一种表示额外提供更强执行接口。
+
+控制器配置采用冻结文本编码器、两层宽度为256的图网络及表示残差头。Adam学习率为\(3\times10^{-4}\)，batch size为128，梯度范数上限为1。默认权重为\(\alpha=1\)、\(\beta=0.2\)、\(\kappa=0.5\)、\(\xi=0.001\)及\(\omega_C=1\)。基础配对批次每域包含300个快照，每个快照14条续行，共16,800条；查询转移和重复策略评价轮次的成本另计。
+
+表~\ref{tab:main}包括无记忆、语义单表示与混合检索、五种近邻记忆方法的适配实现、事实刷新、独立效用选择、全面验证和计算预算匹配的无记忆执行器。后缀``adapt''表示在本文协议中接入共同执行器的实现，并不表示复现原论文排行榜数值。六种新增强对照分别为Independent-\allowbreak3++（M15）、分离训练的共享图价值模型（M16）、相关知识梯度（M17）、BOCPD结合相关知识梯度（M18）、循环belief-Q（M19）及通用联合latent-Q（M20）。M15获得去重、全部原始证据、配对协方差监督、相同查询深度与匹配容量，区别在于不强制共享依赖后验。M20是潜在模型规划的机制对照，不是完整TD-MPC2实现。
+
+这些强对照回答不同问题。M11与M15的差异检验收益能否经受更完善的独立实现，而不只是是否增加三个输出头；M16保留图结构，但将证据模型和价值模型分开训练；M18检验局部变点检测与相关信息获取是否已经足够；M19检验仅通过历史聚合而不显式过滤依赖的控制能力；M20保留联合潜在预测、价值学习与相同搜索深度，仅不采用DEUL的来源分块监督和类型化依赖约束。它们都获得相同的原始观察，不通过信息剥夺制造差距。因此，超过语义检索主要证明管理经验有用，超过这些强控制器才进一步支持所提出结构的增益。故意破坏共同假设结果的J4是压力诊断，不能代替正常实现的主要对照。
+
+\subsection{指标}
+结果在seed 11、23、37、53和71上报告任务成功率SR、平均总逻辑token及相关诊断指标。误差项为样本SD，而非标准误或置信区间。对于配对二元结果，PT表示记忆分支成功而匹配无经验分支失败的比例，NT为相反情况，因此未舍入时严格满足\(\Delta\mathrm{SR}=\mathrm{PT}-\mathrm{NT}\)。这些不一致包含执行噪声，不能作为个体因果伤害标签。提升由匹配seed向量计算；family级推断需要任务流底层记录，不根据边际SD添加显著性星号。
+
+相同硬预算与相同实际消耗是两个不同条件。Verify-All可以在共同上限内将更多预算用于验证，No-Memory-Compute可以把不维护经验所节省的额度用于执行和重规划；同成本随机查询则进一步匹配实际查询费用，以区分选择质量与单纯增加探测的作用。任务失败不使其已发生调用从成本中消失，经验写入和任务间整理也不免费。AppWorld中一段代码包含多次API调用时应逐次计数，不能只按一次语言模型回合计算环境动作。逻辑token、原生动作、计算量和时延不是同一个单位，本文表格不据此换算GPU消耗或货币成本。
+
+\textbf{结果表的重复不增加样本量。}M13、A0和J0指向同一完整配置，A7与M11、J12与M15、J13与M16也共享相应结果；默认预算、默认参数和查询深度的引用同样不能视为再次运行。均值差由匹配seed的原始向量相减后汇总，因此可能与先舍入到一位小数再相减存在0.1个百分点差异。相同seed并不自动意味着任务族独立，13个快照中的同一来源也具有纵向依赖。已有汇总能够支持描述性比较，但不能单凭边际SD恢复任务级配对置信区间。
+
+\textbf{为什么要看配对差值的SD。}设同一seed下两种方法的成功率为\(\mathrm{SR}_{\mathrm{DEUL}}\)与\(\mathrm{SR}_{\mathrm{M15}}\)，由方差恒等式有
+\begin{equation}
+\begin{aligned}
+\Var(\mathrm{SR}_{\mathrm{DEUL}}-\mathrm{SR}_{\mathrm{M15}})
+={}&\Var(\mathrm{SR}_{\mathrm{DEUL}})+\Var(\mathrm{SR}_{\mathrm{M15}})\\
+&-2\Cov(\mathrm{SR}_{\mathrm{DEUL}},\mathrm{SR}_{\mathrm{M15}}).
+\end{aligned}
+\end{equation}
+这个恒等式解释了统计口径，而不是新增实验。共同任务难度可能使两种方法同升同降，此时配对差值的波动与各自边际SD不同。因此，两个方法的误差条重叠不直接等于没有差异，误差条分开也不替代匹配设计下的推断；同样，不能用两个SD相加来描述改进幅度的不确定度。本文主表保留各配置波动，配对表保留同seed差值波动，且不从这些汇总额外构造任务族层面的显著性。数值排名、效应幅度与其稳定程度需要同时阅读。
+
+
+\section{方法有效性证据}
+\label{sec:results}
+% ===== BEGIN inlined tables/main =====
+\begin{table*}[t]
+\centering
+\caption{六个专用测试协议上的任务成功率（\%）。数值为五个seed的均值与样本标准差。前三个Drift协议包含规则或接口变化；ALF-StateShift保持动力学不变。成绩不对应原版benchmark排行榜。}
+\label{tab:main}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Method & W-Static & W-Drift & Work-Drift & App-Drift & ALF-Static & ALF-Shift \\
+\midrule
+M0 No persistent experience & \(42.0\!\pm\!5.1\) & \(41.9\!\pm\!3.1\) & \(32.7\!\pm\!2.6\) & \(47.1\!\pm\!2.8\) & \(54.9\!\pm\!2.7\) & \(53.2\!\pm\!2.1\) \\
+M1 Trajectory-Semantic & \(47.1\!\pm\!4.6\) & \(40.7\!\pm\!3.7\) & \(31.0\!\pm\!2.7\) & \(45.0\!\pm\!3.3\) & \(61.8\!\pm\!4.8\) & \(52.5\!\pm\!1.6\) \\
+M2 Plan-Semantic & \(48.1\!\pm\!5.3\) & \(45.5\!\pm\!2.8\) & \(36.5\!\pm\!3.2\) & \(50.6\!\pm\!3.2\) & \(65.0\!\pm\!3.2\) & \(57.3\!\pm\!1.9\) \\
+M3 Skill-Semantic & \(52.7\!\pm\!6.2\) & \(46.1\!\pm\!3.4\) & \(36.6\!\pm\!3.1\) & \(49.8\!\pm\!3.2\) & \(77.4\!\pm\!3.0\) & \(60.5\!\pm\!2.9\) \\
+M4 Mixed-Semantic & \(50.8\!\pm\!5.2\) & \(45.4\!\pm\!5.2\) & \(37.5\!\pm\!2.8\) & \(50.5\!\pm\!3.3\) & \(66.7\!\pm\!2.3\) & \(58.6\!\pm\!1.6\) \\
+M5 AWM-adapt & \(51.5\!\pm\!6.0\) & \(47.1\!\pm\!3.4\) & \(38.9\!\pm\!3.3\) & \(50.9\!\pm\!2.9\) & \(66.0\!\pm\!4.8\) & \(58.3\!\pm\!2.5\) \\
+M6 ReasoningBank-adapt & \(53.3\!\pm\!4.7\) & \(48.8\!\pm\!2.9\) & \(41.0\!\pm\!3.2\) & \(55.2\!\pm\!3.1\) & \(68.1\!\pm\!2.3\) & \(61.7\!\pm\!1.6\) \\
+M7 H-EPM-infer-adapt & \(55.2\!\pm\!4.7\) & \(50.3\!\pm\!3.3\) & \(42.7\!\pm\!2.8\) & \(55.7\!\pm\!4.1\) & \(69.3\!\pm\!2.0\) & \(62.6\!\pm\!1.8\) \\
+M8 HMT-adapt & \(54.8\!\pm\!5.6\) & \(52.8\!\pm\!3.7\) & \(44.1\!\pm\!3.6\) & \(58.5\!\pm\!3.4\) & \(69.6\!\pm\!2.0\) & \(62.8\!\pm\!2.1\) \\
+M9 QCR-adapt & \(57.7\!\pm\!6.0\) & \(54.8\!\pm\!3.4\) & \(46.2\!\pm\!4.1\) & \(58.5\!\pm\!3.0\) & \(73.5\!\pm\!1.8\) & \(64.5\!\pm\!1.0\) \\
+M10 FreshFacts+Mixed & \(52.0\!\pm\!4.4\) & \(48.5\!\pm\!3.2\) & \(40.7\!\pm\!2.8\) & \(53.3\!\pm\!3.9\) & \(68.2\!\pm\!3.1\) & \(61.2\!\pm\!1.4\) \\
+M11 Independent-3+Selector & \(54.7\!\pm\!5.2\) & \(56.5\!\pm\!3.2\) & \(47.7\!\pm\!3.2\) & \(60.3\!\pm\!3.8\) & \(71.5\!\pm\!3.7\) & \(66.3\!\pm\!3.0\) \\
+M12 Verify-All+Adapt & \(55.3\!\pm\!5.2\) & \(57.9\!\pm\!2.6\) & \(50.1\!\pm\!3.1\) & \(62.2\!\pm\!3.1\) & \(69.6\!\pm\!1.8\) & \(68.7\!\pm\!0.9\) \\
+\textbf{M13 DEUL} & \(55.5\!\pm\!6.9\) & \(60.4\!\pm\!2.6\) & \(52.1\!\pm\!3.6\) & \(65.1\!\pm\!2.7\) & \(77.9\!\pm\!3.0\) & \(72.1\!\pm\!2.1\) \\
+M14 No-Memory-Compute & \(49.5\!\pm\!5.2\) & \(48.0\!\pm\!3.3\) & \(39.8\!\pm\!3.8\) & \(53.6\!\pm\!3.8\) & \(61.9\!\pm\!2.7\) & \(59.5\!\pm\!2.3\) \\
+M15 Independent-3++ & \(55.2\!\pm\!7.0\) & \(59.2\!\pm\!3.0\) & \(51.0\!\pm\!3.2\) & \(62.7\!\pm\!3.5\) & \(74.4\!\pm\!2.6\) & \(69.5\!\pm\!3.0\) \\
+M16 SharedGraph / separate & \(55.0\!\pm\!7.3\) & \(58.7\!\pm\!2.0\) & \(49.4\!\pm\!3.2\) & \(63.2\!\pm\!2.3\) & \(73.9\!\pm\!3.5\) & \(70.1\!\pm\!2.6\) \\
+M17 Correlated-KG-adapt & \(55.7\!\pm\!7.8\) & \(57.5\!\pm\!2.5\) & \(49.0\!\pm\!2.9\) & \(61.9\!\pm\!3.2\) & \(75.4\!\pm\!2.8\) & \(70.5\!\pm\!2.4\) \\
+M18 BOCPD + Correlated-KG & \(56.0\!\pm\!6.9\) & \(59.1\!\pm\!2.6\) & \(50.5\!\pm\!3.5\) & \(63.6\!\pm\!2.4\) & \(74.4\!\pm\!3.8\) & \(71.2\!\pm\!1.6\) \\
+M19 Recurrent belief-Q / depth2 & \(55.7\!\pm\!6.4\) & \(58.7\!\pm\!3.0\) & \(50.6\!\pm\!2.0\) & \(63.2\!\pm\!2.8\) & \(73.2\!\pm\!2.8\) & \(70.8\!\pm\!2.2\) \\
+M20 Joint latent-Q / depth2 & \(54.7\!\pm\!6.9\) & \(59.3\!\pm\!2.4\) & \(50.5\!\pm\!3.2\) & \(64.0\!\pm\!3.1\) & \(73.6\!\pm\!3.4\) & \(70.7\!\pm\!2.8\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/main =====
+\subsection{端到端成功率与强对照}
+DEUL在W-Drift、Work-Drift和App-Drift上的成功率分别为60.4\%、52.1\%和65.1\%。相对Independent-\allowbreak3++的配对增益为1.25、1.08和2.36 pp，相对BOCPD+\allowbreak Correlated-KG为1.35、1.67和1.49 pp；与通用latent-Q比较，增益进一步收窄为1.12、1.67和1.11 pp，且存在对照更优的单个seed。附录表~\ref{tab:diff}保留配对SD。因此，主要证据是相对有竞争力方法的适度改善，而不是仅相对语义检索的大幅提升。
+
+静态结果限定了上述主张。W-Static中，QCR-adapt为57.7\%，DEUL为55.5\%。ALF-Static中，Skill-Semantic为77.4\%，DEUL为77.9\%。在ALF-StateShift中，DEUL达到72.1\%，比Independent-\allowbreak3++提高2.60 pp。这支持条件化经验管理在浏览器之外的作用，但不将状态变化解读为物理动力学变化。
+
+路径分解进一步定位收益出现的条件。在W-Drift的Relevant路径中，DEUL为62.7\%，QCR-adapt为49.4\%；Stable路径中则为60.7\%与62.1\%，排序相反；Irrelevant路径中分别为57.6\%与56.8\%。这些路径属于W-Drift内部的分解，不是独立W-Static测试集，四条等样本量路径的均值对应总体成绩。该对比与相关条件改变后进行选择性干预的解释一致，而不是说明增加经验管理总能改善任何稳定任务。报告路径分解也使整体Drift均值不掩盖稳定条件下的额外开销与局部劣势。
+
+\subsection{哪些耦合机制发挥作用？}
+
+% ===== BEGIN inlined tables/ablation =====
+\begin{table}[t]
+\centering
+\caption{W-Drift核心消融。SR为成功率（\%），成本为平均总逻辑token（k）。}
+\label{tab:ablation}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Configuration & SR & Tokens \\
+\midrule
+DEUL & \(60.4\!\pm\!2.6\) & \(45.6\!\pm\!2.3\) \\
+Skill-only + utility & \(56.2\!\pm\!2.5\) & \(41.6\!\pm\!1.5\) \\
+No shared posterior & \(56.9\!\pm\!2.3\) & \(48.1\!\pm\!1.1\) \\
+No local drift update & \(56.1\!\pm\!3.2\) & \(43.3\!\pm\!1.3\) \\
+No paired loss & \(57.3\!\pm\!2.7\) & \(44.4\!\pm\!1.5\) \\
+No paid queries & \(55.4\!\pm\!2.7\) & \(38.1\!\pm\!1.1\) \\
+Random queries & \(55.7\!\pm\!1.6\) & \(45.6\!\pm\!2.3\) \\
+Depth 1 & \(58.5\!\pm\!3.3\) & \(43.0\!\pm\!0.8\) \\
+Select once & \(56.9\!\pm\!2.8\) & \(42.7\!\pm\!0.6\) \\
+No consolidation & \(61.0\!\pm\!2.9\) & \(52.6\!\pm\!0.7\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ===== END inlined tables/ablation =====
+
+表~\ref{tab:ablation}将多表示候选的作用与管理控制器区分。W-Drift上，最佳单表示效用控制器为56.2\%，DEUL为60.4\%；删除局部漂移更新降至56.1\%，删除共享后验为56.9\%，删除配对监督为57.3\%。token成本匹配的随机验证为55.7\%，低于选择性验证的60.4\%。然而，去掉经验整理后SR略升至61.0\%，同时token由45.6k增至52.6k。因此，整理体现成本与质量的权衡，而不是普遍的准确率提升。
+
+定向统一机制实验进一步澄清收益来源，见附录表~\ref{tab:joint}。停止价值到信念的梯度后为59.3\%，将信念因子化后为58.1\%，删除观测预测损失后为57.1\%；仅删除协方差加权仍为60.2\%，说明协方差校正不是主要性能来源。在梯度与共享假设结果的\(2\times2\)设计中，W-Drift交互量为\(0.1\pm2.3\) pp，App-Drift为\(-0.5\pm0.7\) pp。这支持组件有用，但不足以建立超加性协同。正确去重使DEUL及Independent-\allowbreak3++都对重复引用保持不变，这不是联合模型独占的性质。
+
+\begin{figure}[t]
+\centering
+\figureasset{fig03_structure_and_data}{1.50in}{(a) 50/100/300/900训练快照：S38\\(b) 共享条件比例与错误依赖边：S41}
+\caption{数据效率与结构边界。比较不同监督规模下DEUL与M15/M18/M20，并保留零共享及错误依赖边条件，而非仅展示有利区间。}
+\Description{Placeholder for training-data curves and dependency-quality stress tests.}
+\label{fig:structure}
+\end{figure}
+
+\subsection{有限监督与依赖结构的有效范围}
+每域仅50个训练快照时，DEUL为53.6\%，Independent-\allowbreak3++为48.4\%，latent-Q为51.4\%；300个快照时差距缩小，900个快照时Independent-\allowbreak3++达到62.6\%，高于DEUL的61.6\%。这更支持有限数据下的归纳偏置优势，而非更高的渐近性能上限。同样，在共享条件诊断中，无共享时DEUL为56.2\%，M15为56.9\%；共享比例为75\%时，二者分别为60.4\%和56.9\%；错误边比例为35\%时，顺序反转为56.1\%与56.7\%。有用的是可靠的共享结构，而不是任何共享结构。
+
+\textbf{粒子数量与损失权重的敏感性。}统一机制参数表中，8个粒子的W-Drift成功率为59.9\%，16和32个粒子均为60.4\%，64个粒子为60.7\%；相应逻辑token为44.4k、45.1k、45.6k和47.5k。较多粒子可能更细致地近似联合不确定性，但这些数值不支持将粒子数增加解释为无成本的单调收益。默认\(\alpha=1\)时成功率为60.4\%，\(\alpha=0.5\)和\(2\)时分别为59.5\%和59.1\%；仅有几个配置的比较也不能证明一个全局最优权重。敏感性结果用于说明所报告配置附近的表现与代价，默认项复用主表向量，不作为额外独立重复。
+
+\subsection{预算约束与选择性验证}
+
+W-Drift上，DEUL总逻辑token为45.60k，Verify-All+Adapt为61.21k，按报告均值计算减少25.5\%，同时SR提高2.50 pp。与Independent-\allowbreak3++相比，token差距仅为0.67k。DEUL的配对NT不一致率为0.73\%，M15为2.42\%，但该指标仍是结果不一致率，而非已识别的因果错误率。概率诊断中，DEUL的Brier为0.215、查询收益MAE为0.029；M15分别为0.225和0.044。概率误差降低能够补充端到端评测，但不能替代后者。
+
+\begin{figure}[t]
+\centering
+\figureasset{fig04_budget_and_recovery}{1.50in}{(a) 0.5/1/1.5/2倍预算成功率：S15\\(b) 随已观察任务数变化的恢复曲线：S13\\保留全面验证在高预算下的优势}
+\caption{预算与恢复权衡。预算倍数同时改变token及原生动作上限，横轴不是实际消耗token。恢复曲线来自独立锚定队列，而非主表任务流。}
+\Description{Placeholder for a budget sweep and a separate post-change recovery cohort.}
+\label{fig:budget}
+\end{figure}
+
+默认预算的一半下，DEUL为48.2\%，全面验证为32.6\%；预算加倍后，全面验证达到71.4\%，反而高于DEUL的68.6\%。因此，选择性证据获取的优势依赖预算，而非普遍成立。恢复队列中，DEUL由变化前60.0\%降至观察第一个任务后的50.6\%，观察八个任务后为59.9\%。这些是离散队列测量，不能据此定义精确恢复时刻。
+
+\subsection{长程依赖与跨领域泛化}
+
+长程收益也依赖真实的子目标依赖深度。深度为二时，DEUL与仅选择一次表示的控制器均为64.1\%；深度为十二时，分别为38.2\%与31.3\%。在强基线留一领域实验中，DEUL于四个变化或状态迁移协议上分别达到55.7\%、46.6\%、60.4\%和66.6\%，见附录表~\ref{tab:lodo}。这里迁移的是评估目标域经验的决策规则，而不是将不相关工作流直接搬到另一动作空间。所提供的Qwen3-8B第二执行器比较中，DEUL为39.5\%，Independent-3为34.3\%；由于未报告该比较中的M15和M20，不能据此宣称对它们也有相同提升。
+
+这里的跨领域迁移区分两个对象：目标域经验库提供的是本领域可用的程序内容，跨域控制器学习的是如何评价这些内容、是否先验证以及何时切换表示。每次LODO由其他三域各100个快照训练，共300个，与逐域主协议保持相同的监督快照数；目标域权重冻结，所有方法都获得相同的非测试历史库和合法适配器。因此，Web到ALF的验证不是把网页购买步骤搬到物体整理任务，而是在不同动作接口下检验经验管理规则是否仍可使用。
+
+同样，长程比较的关键不是人为增加重复动作次数，而是增加彼此依赖的子目标。Select-once在开始时选择表示，随后不能根据中间结果重新选择；DEUL可以在后续边界再次评估。深度二时两者相同，而深度十二时出现差距，与更多有意义的调整机会一致。该结果支持任务内重决策的作用，但不直接给出每一个中间动作的因果信用，也不构成新的动作级奖励归因算法。将这两类问题分开，能够避免把经验管理的收益扩张为整套执行policy优化的证明。
+
+\textbf{适应新条件与保留旧能力。}版本保留诊断中，DEUL的FWT为17.4 pp、BWT为\(-1.1\) pp；永久删除变体的FWT为17.1 pp、BWT为\(-6.1\) pp。这里FWT比较新任务上的经验帮助，BWT则在冻结旧环境快照中比较当前库与历史库，不能将遵守新规则后不再执行旧规则直接叫作遗忘。该独立诊断与A--B--A恢复问题相呼应：停用当前不兼容版本与彻底删除来源具有不同后果。与此同时，保留版本需要存储与维护成本，所以这一对比不意味着所有旧经验都应无限保留；版本策略仍受活跃来源上限和统一成本账本约束。
+
+\subsection{剩余失败类型及其含义}
+独立失败诊断将原因分为六类。其中，定位失败占20.9\%，规则推断失败占20.1\%，错误复用占17.4\%，适配引入错误占14.1\%，预算耗尽占18.4\%，其他原因为9.1\%。这些比例在被诊断的失败任务内归一化，不是全部主测试任务的失败发生率。同一次执行出现多个错误时，按预先定义的最早不可恢复原因归类，不能把同一失败重复分配给多个类别后再合计。该分解说明，降低旧经验误用不能消除执行器的定位与规则推断错误；局部适配还可能引入新的错误。
+
+失败原因与NT需要分开理解。NT比较记忆方法失败而匹配无经验方法成功的结果不一致；失败分类则解释某次未完成任务的执行过程。两条分支都失败时，NT不增加，但执行仍可能存在清晰的定位错误或适配错误；反之，两条分支因随机性出现不同结果，也不说明已经定位了具体因果伤害。独立重复诊断中，W-Drift的No Memory与DEUL不一致率分别为8.3\%和7.9\%，这些值不能直接从NT中相减，也不能把较小的NT当作执行噪声已被彻底排除的证明。错误归类、配对迁移与重复执行分别描述原因、相对结果和随机波动，三者共同限定系统稳定性的解释。
+
+
+\section{讨论与结论}
+DEUL研究Web条件变化后程序性经验在检索环节之后的可靠性。报告结果支持表示条件化效用、选择性共享证据获取及有限数据下的结构约束，但不建立普遍更优的复用、超加性学习或全局贝叶斯最优控制。错误图可能传播错误信念，不可观测变化则可能使智能体缺少区分有效与无效经验的信息。在不可观测变化诊断中，DEUL为47.7\%，M15为48.6\%，体现了这一边界。
+
+逻辑token不能替代控制器FLOPs、墙钟时间或货币成本，来源匹配也无法消除表示writer引入的信息差异。实际部署应将权限边界与期望效用分开，并将检索内容视为不可信指导，而不是具有执行权限的指令。在这些边界内，本文主要结论是：经验应依据其当前、表示相关的决策价值复用；当共享证据能够在代价较大的长程执行前消除相关不确定性时，其价值最为明确。
+
+% ===== END expanded main text =====
+
+\label{maintext:end}
+\clearpage
+% References and optional appendices begin after the self-contained main text.
+% ===== BEGIN inline bibliography (from ACM BibTeX style) =====
+%%% -*-BibTeX-*-
+%%% Embedded reference list originally produced by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{19}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter does
+%%% not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+\makeatletter
+\@ifundefined{NAT@parse@date}{}{\let\NAT@parse@date@orig\NAT@parse@date}
+\@ifundefined{NAT@parse@date}{}{\def\NAT@parse@date#1#2#3#4#5#6@@{\NAT@parse@date@orig#1#2#3#4#5#6@@\def\NAT@tempyear{0000}\def\NAT@tempexlab{{?}}\ifx\NAT@year\NAT@tempyear\ifx\NAT@exlab\NAT@tempexlab\def\NAT@date{[n.\,d.]}\else\edef\NAT@date{[n.\,d.]\NAT@exlab}\fi\fi}}
+\makeatother
+
+\bibitem[Adams and MacKay(2007)]%
+        {bocpd}
+\bibfield{author}{\bibinfo{person}{Ryan~Prescott Adams} {and}
+  \bibinfo{person}{David J.~C. MacKay}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \bibinfo{title}{Bayesian Online Changepoint Detection}.
+\newblock \bibinfo{howpublished}{arXiv:0710.3742}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.0710.3742}{doi:\nolinkurl{10.48550/arXiv.0710.3742}}
+
+
+\bibitem[Boisvert et~al\mbox{.}(2024)]%
+        {workarena}
+\bibfield{author}{\bibinfo{person}{L{\'e}o Boisvert}, \bibinfo{person}{Megh
+  Thakkar}, \bibinfo{person}{Maxime Gasse}, \bibinfo{person}{Massimo Caccia},
+  \bibinfo{person}{Thibault Le~Sellier De~Chezelles}, \bibinfo{person}{Quentin
+  Cappart}, \bibinfo{person}{Nicolas Chapados}, \bibinfo{person}{Alexandre
+  Lacoste}, {and} \bibinfo{person}{Alexandre Drouin}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{WorkArena++}: Towards Compositional Planning and
+  Reasoning-based Common Knowledge Work Tasks}.
+\newblock \bibinfo{howpublished}{arXiv:2407.05291v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2407.05291}{doi:\nolinkurl{10.48550/arXiv.2407.05291}}
+
+
+\bibitem[Frazier et~al\mbox{.}(2009)]%
+        {kg}
+\bibfield{author}{\bibinfo{person}{Peter Frazier},
+  \bibinfo{person}{Warren~Buckler Powell}, {and} \bibinfo{person}{Savas
+  Dayanik}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{The Knowledge-Gradient Policy for Correlated Normal
+  Beliefs}.
+\newblock \bibinfo{journal}{\emph{INFORMS Journal on Computing}}
+  \bibinfo{volume}{21}, \bibinfo{number}{4} (\bibinfo{year}{2009}),
+  \bibinfo{pages}{599--613}.
+\newblock
+\href{https://doi.org/10.1287/ijoc.1080.0314}{doi:\nolinkurl{10.1287/ijoc.1080.0314}}
+
+
+\bibitem[Garivier and Moulines(2008)]%
+        {nonstationary}
+\bibfield{author}{\bibinfo{person}{Aur{\'e}lien Garivier} {and}
+  \bibinfo{person}{Eric Moulines}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \bibinfo{title}{On Upper-Confidence Bound Policies for Non-Stationary
+  Bandit Problems}.
+\newblock \bibinfo{howpublished}{arXiv:0805.3415}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.0805.3415}{doi:\nolinkurl{10.48550/arXiv.0805.3415}}
+
+
+\bibitem[Gong and Zhang(2026)]%
+        {paidbandit}
+\bibfield{author}{\bibinfo{person}{Xueping Gong} {and} \bibinfo{person}{Jiheng
+  Zhang}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{The Cost of Information: Phase Transitions in
+  Contextual Bandits with Paid Observations}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 43rd International Conference on
+  Machine Learning}} \emph{(\bibinfo{series}{Proceedings of Machine Learning
+  Research}, Vol.~\bibinfo{volume}{306})}. \bibinfo{publisher}{PMLR},
+  \bibinfo{pages}{36013--36044}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v306/gong26i.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Hajimiri et~al\mbox{.}(2026)]%
+        {budgetstudy}
+\bibfield{author}{\bibinfo{person}{Sina Hajimiri}, \bibinfo{person}{Masih
+  Aminbeidokhti}, \bibinfo{person}{Jose Dolz}, \bibinfo{person}{Ismail
+  Ben~Ayed}, \bibinfo{person}{Issam~H. Laradji}, \bibinfo{person}{Spandana
+  Gella}, {and} \bibinfo{person}{Nicolas Gontier}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{Are Online Skill and Memory Modules Always Worth
+  Their Tokens? A Budget-Constrained Study of Web Agents}.
+\newblock \bibinfo{howpublished}{arXiv:2606.15017v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2606.15017}{doi:\nolinkurl{10.48550/arXiv.2606.15017}}
+
+
+\bibitem[Hansen et~al\mbox{.}(2024)]%
+        {tdmpc2}
+\bibfield{author}{\bibinfo{person}{Nicklas Hansen}, \bibinfo{person}{Hao Su},
+  {and} \bibinfo{person}{Xiaolong Wang}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{TD-MPC2}: Scalable, Robust World Models for
+  Continuous Control}.
+\newblock \bibinfo{howpublished}{arXiv:2310.16828v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2310.16828}{doi:\nolinkurl{10.48550/arXiv.2310.16828}}
+\newblock
+\shownote{ICLR 2024}.
+
+
+\bibitem[Kobayashi et~al\mbox{.}(2026)]%
+        {l2m}
+\bibfield{author}{\bibinfo{person}{Yuta Kobayashi}, \bibinfo{person}{Zilin
+  Jing}, \bibinfo{person}{Jiayu Yao}, \bibinfo{person}{Hongseok Namkoong},
+  {and} \bibinfo{person}{Shalmali Joshi}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Learning-To-Measure: In-Context Active Feature
+  Acquisition}. In \bibinfo{booktitle}{\emph{Proceedings of the 43rd
+  International Conference on Machine Learning}}
+  \emph{(\bibinfo{series}{Proceedings of Machine Learning Research},
+  Vol.~\bibinfo{volume}{306})}. \bibinfo{publisher}{PMLR},
+  \bibinfo{pages}{59720--59752}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v306/kobayashi26a.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Kumar et~al\mbox{.}(2020)]%
+        {cql}
+\bibfield{author}{\bibinfo{person}{Aviral Kumar}, \bibinfo{person}{Aurick
+  Zhou}, \bibinfo{person}{George Tucker}, {and} \bibinfo{person}{Sergey
+  Levine}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{Conservative {Q}-Learning for Offline Reinforcement
+  Learning}.
+\newblock \bibinfo{howpublished}{arXiv:2006.04779}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2006.04779}{doi:\nolinkurl{10.48550/arXiv.2006.04779}}
+
+
+\bibitem[Li et~al\mbox{.}(2026a)]%
+        {hepm}
+\bibfield{author}{\bibinfo{person}{Sijia Li}, \bibinfo{person}{Yuchen Huang},
+  \bibinfo{person}{Zifan Liu}, \bibinfo{person}{Zijian Li},
+  \bibinfo{person}{Jingjing Fu}, \bibinfo{person}{Lei Song},
+  \bibinfo{person}{Jiang Bian}, \bibinfo{person}{Jun Zhang}, {and}
+  \bibinfo{person}{Rui Wang}.} \bibinfo{year}{2026}\natexlab{a}.
+\newblock \bibinfo{title}{Experience-Evolving Multi-Turn Tool-Use Agent with
+  Hybrid Episodic--Procedural Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2512.07287v3}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2512.07287}{doi:\nolinkurl{10.48550/arXiv.2512.07287}}
+\newblock
+\shownote{ICML 2026}.
+
+
+\bibitem[Li et~al\mbox{.}(2026b)]%
+        {qcr}
+\bibfield{author}{\bibinfo{person}{Yifei Li}, \bibinfo{person}{Heng Wang},
+  \bibinfo{person}{Lingling Zhang}, \bibinfo{person}{Muye Huang},
+  \bibinfo{person}{Xinyu Zhang}, \bibinfo{person}{Jiashuai Liu},
+  \bibinfo{person}{Hang Yan}, {and} \bibinfo{person}{Rongman Xu}.}
+  \bibinfo{year}{2026}\natexlab{b}.
+\newblock \bibinfo{title}{Beyond Retrieval: Query-Conditioned Reuse of
+  Long-Horizon Agent Trajectories}.
+\newblock \bibinfo{howpublished}{arXiv:2608.12847v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2608.12847}{doi:\nolinkurl{10.48550/arXiv.2608.12847}}
+
+
+\bibitem[Ouyang et~al\mbox{.}(2026)]%
+        {reasoningbank}
+\bibfield{author}{\bibinfo{person}{Siru Ouyang}, \bibinfo{person}{Jun Yan},
+  \bibinfo{person}{I-Hung Hsu}, \bibinfo{person}{Yanfei Chen},
+  \bibinfo{person}{Ke Jiang}, \bibinfo{person}{Zifeng Wang},
+  \bibinfo{person}{Rujun Han}, \bibinfo{person}{Long~T. Le},
+  \bibinfo{person}{Samira Daruki}, \bibinfo{person}{Xiangru Tang},
+  \bibinfo{person}{Vishy Tirumalashetty}, \bibinfo{person}{George Lee},
+  \bibinfo{person}{Mahsan Rofouei}, \bibinfo{person}{Hangfei Lin},
+  \bibinfo{person}{Jiawei Han}, \bibinfo{person}{Chen-Yu Lee}, {and}
+  \bibinfo{person}{Tomas Pfister}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{{ReasoningBank}: Scaling Agent Self-Evolving with
+  Reasoning Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2509.25140v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2509.25140}{doi:\nolinkurl{10.48550/arXiv.2509.25140}}
+\newblock
+\shownote{Accepted to ICLR 2026}.
+
+
+\bibitem[{Qwen Team}(2025a)]%
+        {qwen32}
+\bibfield{author}{\bibinfo{person}{{Qwen Team}}.}
+  \bibinfo{year}{2025}\natexlab{a}.
+\newblock \bibinfo{title}{{Qwen3-32B} Model Card}.
+\newblock
+\urldef\tempurl%
+\url{https://huggingface.co/Qwen/Qwen3-32B}
+\showURL{%
+\tempurl}
+
+
+\bibitem[{Qwen Team}(2025b)]%
+        {qwen8}
+\bibfield{author}{\bibinfo{person}{{Qwen Team}}.}
+  \bibinfo{year}{2025}\natexlab{b}.
+\newblock \bibinfo{title}{{Qwen3-8B} Model Card}.
+\newblock
+\urldef\tempurl%
+\url{https://huggingface.co/Qwen/Qwen3-8B}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Shridhar et~al\mbox{.}(2021)]%
+        {alfworld}
+\bibfield{author}{\bibinfo{person}{Mohit Shridhar}, \bibinfo{person}{Xingdi
+  Yuan}, \bibinfo{person}{Marc-Alexandre C{\^o}t{\'e}},
+  \bibinfo{person}{Yonatan Bisk}, \bibinfo{person}{Adam Trischler}, {and}
+  \bibinfo{person}{Matthew Hausknecht}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \bibinfo{title}{{ALFWorld}: Aligning Text and Embodied Environments
+  for Interactive Learning}.
+\newblock \bibinfo{howpublished}{arXiv:2010.03768v2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2010.03768}{doi:\nolinkurl{10.48550/arXiv.2010.03768}}
+\newblock
+\shownote{ICLR 2021}.
+
+
+\bibitem[Tan et~al\mbox{.}(2026)]%
+        {hmt}
+\bibfield{author}{\bibinfo{person}{Yunteng Tan}, \bibinfo{person}{Zhi Gao},
+  {and} \bibinfo{person}{Xinxiao Wu}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{Enhancing Web Agents with a Hierarchical Memory
+  Tree}.
+\newblock \bibinfo{howpublished}{arXiv:2603.07024v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2603.07024}{doi:\nolinkurl{10.48550/arXiv.2603.07024}}
+
+
+\bibitem[Trivedi et~al\mbox{.}(2024)]%
+        {appworld}
+\bibfield{author}{\bibinfo{person}{Harsh Trivedi}, \bibinfo{person}{Tushar
+  Khot}, \bibinfo{person}{Mareike Hartmann}, \bibinfo{person}{Ruskin Manku},
+  \bibinfo{person}{Vinty Dong}, \bibinfo{person}{Edward Li},
+  \bibinfo{person}{Shashank Gupta}, \bibinfo{person}{Ashish Sabharwal}, {and}
+  \bibinfo{person}{Niranjan Balasubramanian}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{AppWorld}: A Controllable World of Apps and People
+  for Benchmarking Interactive Coding Agents}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 62nd Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Bangkok, Thailand}, \bibinfo{pages}{16022--16076}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.acl-long.850}{doi:\nolinkurl{10.18653/v1/2024.acl-long.850}}
+
+
+\bibitem[Wang et~al\mbox{.}(2024)]%
+        {awm}
+\bibfield{author}{\bibinfo{person}{Zora~Zhiruo Wang}, \bibinfo{person}{Jiayuan
+  Mao}, \bibinfo{person}{Daniel Fried}, {and} \bibinfo{person}{Graham Neubig}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Agent Workflow Memory}.
+\newblock \bibinfo{howpublished}{arXiv:2409.07429v1}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2409.07429}{doi:\nolinkurl{10.48550/arXiv.2409.07429}}
+
+
+\bibitem[Zhou et~al\mbox{.}(2024)]%
+        {webarena}
+\bibfield{author}{\bibinfo{person}{Shuyan Zhou}, \bibinfo{person}{Frank~F. Xu},
+  \bibinfo{person}{Hao Zhu}, \bibinfo{person}{Xuhui Zhou},
+  \bibinfo{person}{Robert Lo}, \bibinfo{person}{Abishek Sridhar},
+  \bibinfo{person}{Xianyi Cheng}, \bibinfo{person}{Tianyue Ou},
+  \bibinfo{person}{Yonatan Bisk}, \bibinfo{person}{Daniel Fried},
+  \bibinfo{person}{Uri Alon}, {and} \bibinfo{person}{Graham Neubig}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{WebArena}: A Realistic Web Environment for Building
+  Autonomous Agents}.
+\newblock \bibinfo{howpublished}{arXiv:2307.13854v4}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2307.13854}{doi:\nolinkurl{10.48550/arXiv.2307.13854}}
+
+
+\end{thebibliography}
+
+% ===== END inline bibliography =====
+
+% ===== BEGIN inlined content/appendix =====
+\appendix
+\section{算法与协议细节}
+\label{app:details}
+
+
+
+评价续行采用与配对分支相同的冻结\(\phi_k\)。预热阶段以来源隔离的唯一原始事件训练观测模型；每轮评价中，当前过滤器重建历史，向量监督与实际转移损失更新模型，并刷新滞后目标。轮次间通过共享查询树改进policy。不受支持的旧policy分支需要重新采集、适当离策略校正，或仅限预训练使用。基础协议不声称求解跨任务贝叶斯最优探索。
+
+\textbf{预算与复杂度。}默认剩余预算坐标和所有学习成本价值采用相同的任务归一化单位，查询响应类别保留unknown分支。当每个节点有\(m\)个查询、每次查询\(c\)种结果、深度为\(d\)时，不计图与粒子成本，朴素展开为\(O((mc)^d)\)。共享缓存能够减少重复计算，但不能消除这一组合依赖。
+
+\textbf{测试集解释。}固定来源效用研究、在线闭环任务流、恢复队列及受控图诊断是不同实验。ALFWorld状态干预应位于合法状态转移范围内，并保留可行参考路径；WorkArena++变化采用允许的配置、表单、角色、知识规则及工作流设置，而不假设能够任意修改专有服务端代码。这些限制属于协议定义，SR表格并不能提供版本标识、硬件时延或完整控制器计算账本。
+
+\section{补充定量比较}
+\label{app:results}
+
+% ===== BEGIN inlined tables/differences =====
+\begin{table*}[t]
+\centering
+\caption{DEUL相对各对照的逐seed配对提升（pp，均值与SD）；SD来自差值向量，不是边际SD之和。}
+\label{tab:diff}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Comparator & W-Drift & Work-Drift & App-Drift & ALF-Shift \\
+\midrule
+Independent-3+Selector & \(4.0\!\pm\!1.5\) & \(4.4\!\pm\!2.5\) & \(4.8\!\pm\!1.9\) & \(5.8\!\pm\!2.3\) \\
+Verify-All+Adapt & \(2.5\!\pm\!1.0\) & \(2.0\!\pm\!2.0\) & \(2.9\!\pm\!1.1\) & \(3.4\!\pm\!1.5\) \\
+Independent-3++ & \(1.3\!\pm\!0.6\) & \(1.1\!\pm\!0.6\) & \(2.4\!\pm\!1.2\) & \(2.6\!\pm\!1.4\) \\
+SharedGraph / separate & \(1.7\!\pm\!0.7\) & \(2.7\!\pm\!1.3\) & \(1.9\!\pm\!1.0\) & \(2.0\!\pm\!0.8\) \\
+Correlated-KG-adapt & \(3.0\!\pm\!0.7\) & \(3.1\!\pm\!1.1\) & \(3.2\!\pm\!1.0\) & \(1.6\!\pm\!1.1\) \\
+BOCPD + Correlated-KG & \(1.4\!\pm\!0.4\) & \(1.7\!\pm\!1.4\) & \(1.5\!\pm\!0.7\) & \(0.9\!\pm\!1.1\) \\
+Recurrent belief-Q / depth2 & \(1.7\!\pm\!1.3\) & \(1.5\!\pm\!1.7\) & \(1.9\!\pm\!0.4\) & \(1.3\!\pm\!0.8\) \\
+Joint latent-Q / depth2 & \(1.1\!\pm\!1.3\) & \(1.7\!\pm\!1.1\) & \(1.1\!\pm\!1.2\) & \(1.4\!\pm\!1.5\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/differences =====
+
+
+% ===== BEGIN inlined tables/joint =====
+\begin{table*}[t]
+\centering
+\caption{统一机制消融。成功率单位为\%，逻辑token单位为k。J4为不一致模型压力测试，并非主要基线；J12、J13复用M15、M16。}
+\label{tab:joint}
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Configuration & W-Drift & Work-Drift & App-Drift & ALF-Shift & W tokens \\
+\midrule
+J0 DEUL & \(60.4\!\pm\!2.6\) & \(52.1\!\pm\!3.6\) & \(65.1\!\pm\!2.7\) & \(72.1\!\pm\!2.1\) & \(45.6\!\pm\!2.3\) \\
+J1 Stop value-to-belief gradient & \(59.3\!\pm\!2.1\) & \(50.9\!\pm\!3.3\) & \(64.1\!\pm\!3.1\) & \(71.0\!\pm\!1.9\) & \(46.4\!\pm\!2.3\) \\
+J2 Scalar paired MSE & \(60.2\!\pm\!3.1\) & \(51.6\!\pm\!3.9\) & \(64.9\!\pm\!3.5\) & \(71.2\!\pm\!2.4\) & \(45.6\!\pm\!2.2\) \\
+J3 Factorized belief & \(58.1\!\pm\!2.7\) & \(51.1\!\pm\!3.6\) & \(62.8\!\pm\!3.0\) & \(70.8\!\pm\!2.4\) & \(45.7\!\pm\!2.1\) \\
+J4 Independent query outcomes & \(58.7\!\pm\!2.2\) & \(49.9\!\pm\!3.1\) & \(62.7\!\pm\!3.0\) & \(70.0\!\pm\!2.0\) & \(46.3\!\pm\!2.2\) \\
+J5 Sum candidate VOIs & \(58.1\!\pm\!2.6\) & \(50.5\!\pm\!2.9\) & \(63.3\!\pm\!3.0\) & \(70.2\!\pm\!2.0\) & \(52.2\!\pm\!2.0\) \\
+J6 No observation loss & \(57.1\!\pm\!3.2\) & \(50.3\!\pm\!3.3\) & \(62.6\!\pm\!2.7\) & \(70.7\!\pm\!3.0\) & \(45.7\!\pm\!2.3\) \\
+J7 No query consistency & \(59.9\!\pm\!2.6\) & \(51.0\!\pm\!3.9\) & \(64.4\!\pm\!2.5\) & \(71.3\!\pm\!2.7\) & \(45.1\!\pm\!2.3\) \\
+J8 Global drift rate & \(59.1\!\pm\!3.1\) & \(50.3\!\pm\!3.2\) & \(63.3\!\pm\!2.8\) & \(70.4\!\pm\!1.9\) & \(45.7\!\pm\!2.3\) \\
+J9 No representation residual & \(58.1\!\pm\!3.0\) & \(50.2\!\pm\!4.2\) & \(63.8\!\pm\!3.1\) & \(70.6\!\pm\!2.5\) & \(45.1\!\pm\!1.8\) \\
+J10 Marginal entropy queries & \(58.5\!\pm\!2.9\) & \(50.0\!\pm\!3.0\) & \(63.9\!\pm\!3.2\) & \(70.1\!\pm\!2.4\) & \(49.3\!\pm\!2.5\) \\
+J11 Fixed cost multiplier & \(60.4\!\pm\!1.5\) & \(50.7\!\pm\!3.6\) & \(64.4\!\pm\!1.7\) & \(72.2\!\pm\!2.3\) & \(45.1\!\pm\!2.6\) \\
+J12 Independent-3++ & \(59.2\!\pm\!3.0\) & \(51.0\!\pm\!3.2\) & \(62.7\!\pm\!3.5\) & \(69.5\!\pm\!3.0\) & \(46.3\!\pm\!3.0\) \\
+J13 Two-stage shared model & \(58.7\!\pm\!2.0\) & \(49.4\!\pm\!3.2\) & \(63.2\!\pm\!2.3\) & \(70.1\!\pm\!2.6\) & \(47.8\!\pm\!2.1\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/joint =====
+
+
+% ===== BEGIN inlined tables/lodo =====
+\begin{table*}[t]
+\centering
+\caption{留一领域的强基线评测（S43）；目标域控制器权重冻结。}
+\label{tab:lodo}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Method & W-Drift & Work-Drift & App-Drift & ALF-Shift \\
+\midrule
+Independent-3++ & \(53.9\!\pm\!4.0\) & \(45.2\!\pm\!3.5\) & \(57.4\!\pm\!4.1\) & \(63.6\!\pm\!4.2\) \\
+BOCPD + Correlated-KG & \(53.5\!\pm\!1.7\) & \(44.7\!\pm\!3.8\) & \(58.9\!\pm\!2.4\) & \(64.4\!\pm\!1.2\) \\
+Joint latent-Q / depth2 & \(53.4\!\pm\!3.2\) & \(44.5\!\pm\!2.1\) & \(58.7\!\pm\!3.7\) & \(65.6\!\pm\!2.9\) \\
+DEUL full & \(55.7\!\pm\!3.5\) & \(46.6\!\pm\!4.5\) & \(60.4\!\pm\!2.6\) & \(66.6\!\pm\!2.0\) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ===== END inlined tables/lodo =====
+
+表~\ref{tab:diff}直接报告配对seed向量的差值，保留平均为正但单seed为负的结果，误差为差值向量的样本SD。表~\ref{tab:joint}区分损失组件与结构近似：J2删除协方差加权但保留配对监督，J3因子化信念但不删除图；J4是独立假设结果导致不一致的压力测试，不能证明所有独立控制器都不一致；J11固定成本乘子，在ALF-StateShift上略高于DEUL，但并未在全部协议上提高。
+
+表~\ref{tab:lodo}采用S43强基线留一领域实验。每个控制器使用另外三个域各100个快照训练；目标域神经权重和超参数保持固定，各方法获得相同的非测试目标域历史及合法适配器。因此，迁移对象是经验管理规则，而不意味着底层语言模型此前从未接触目标域。
+
+完整实验矩阵存在重复别名：M13/A0/J0表示同一完整配置，A7/M11、A15/Myopic-VOI、J12/M15及J13/M16复用对应运行，默认预算及默认参数行也复用基础向量，不能当作新增独立重复。正文表格保留原始舍入汇总，配对提升则来自所提供的更高精度向量，因此可能与直接相减表中均值存在0.1个百分点的差异。
+
+% ===== END inlined content/appendix =====
+
+\end{document}
